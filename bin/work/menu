@@ -1,0 +1,106 @@
+#! /usr/bin/env bash
+
+invalid_input () {
+  local actual=$1
+  echo "Invalid input '$actual''" >&2
+  exit 1
+}
+
+clear 
+echo "
+Please Select:
+1. Get Table Definition          ( tabdef)
+2. Get Table Data                ( tabdata)
+3. Get Table Relations( get_table_relations)
+4. Get Configuration By Category ( confbycat)
+0. Quit
+"
+
+read -p "Enter selection [0-4] > " REPLY
+if [[ $REPLY =~ ^[0-4]$ ]]; then
+  if [[ $REPLY == 0 ]]; then
+    echo "Program terminated."
+    exit
+  fi
+  if [[ $REPLY == 1 ]]; then
+	  read -p "Please enter db (ie qaone, shared) -> " db
+
+    # input is empty (invalid)
+    [[ -z $db ]] && invalid_input $db
+
+    tabdef.sh $db
+    exit
+  fi
+  if [[ $REPLY == 2 ]]; then
+	  read -p "Please enter db (ie qaone, shared) -> " db
+    
+    # input is empty (invalid)
+    [[ -z $db ]] && invalid_input $db
+
+    tabdata.sh $db
+    exit
+  fi
+  if [[ $REPLY == 3 ]]; then
+	  read -p "Please enter keyword (ie loyalty_segmentation) -> " keyword
+
+    # input is empty (invalid)
+    [[ -z $keyword ]] && invalid_input $keyword
+
+    show_table_relations.sh $keyword
+    exit
+  fi
+  if [[ $REPLY == 4 ]]; then
+    confbycat.sh
+    exit
+  fi
+fi
+
+
+##### reading input
+
+	##array of values REPLY is assigned al the input
+	#read
+	
+	#echo "REPLY = '$REPLY'"
+
+	##read options 
+	#-a : array  
+	#-d : delimiter 
+	#-e : readline 
+	#-n : num of chars 
+	#-p : prompt   
+	#-r : raw, don't interpret backslash chars as escapes 
+	#-s : silent for passwords 
+	#-t : timeout 
+	#-u fd : use input from file descriptor
+
+	##ex. 2
+	#if (read -t 10 -sp "Enter secrete pass > " secret_pass; then
+		#echo -e "\nSecret pass = '$secret_pass'"
+	#else
+		#echo -e "\nInput timed out" >&2
+	#fi
+
+###### validating input
+
+	#read -p "Enter a single item > "
+
+	## input is multiple items (invalide)
+	#(( $(echo $REPLY | wc -w) > 1 )) && invalid_input
+
+	## is input a valid filename?
+	#if [[ $REPLY =~ ^[-[:alnum:]\._]+$ ]]; then
+		#echo "'$REPLY' is a valid filename."
+		#if ([[ -e $REPLY ]]; then
+			#echo "And file '$REPLY' exists."
+
+	## is input a floating point number?
+	#if [[ $REPLY =~ ^-?[[:digit:]]*\.[[:difit:]]+$ ]]; then
+		#..
+
+	## is input a integer
+	#if [[ $REPLY =~ ^-?[[:digit:]]+$ ]]; then
+
+
+
+	##if [[ "$int" =~ ^-?[0-9]+$ ]]

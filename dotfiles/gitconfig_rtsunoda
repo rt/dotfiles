@@ -1,0 +1,34 @@
+[user]
+	name = rtsunoda
+	email = ryantsunoda@gmail.com
+[branch]
+	autosetuprebase = always
+[push]
+	default = tracking
+[branch "master"]
+	rebase = true
+[core]
+	preloadindex = true
+	autocrlf = input
+	ignorecase = true
+	editor = vim
+[color]
+	status = auto
+	branch = auto
+	interactive = auto
+	diff = auto
+[mergetool]
+	prompt = false
+[mergetool "mvimdiff"]
+	cmd="mvim -c 'Gdiff' $MERGED" # use fugitive.com for 3-way merge
+	keepbackup=false
+[merge]
+	summary = true
+	verbosity = 1
+	tool = mvimdiff
+[apply]
+	whitespace = nowarn
+[diff]
+	tool = mvimdiff
+[difftool "mvimdiff"]
+	cmd = mvim -f -d \"$LOCAL\" \"$REMOTE\"

@@ -1,0 +1,31 @@
+#!/bin/bash
+
+#usage: ./get_jenkins_status 145
+
+index = 0
+for i in $(curl https://jenkins.switchfly.com/api/json/?pretty=true); do
+	if [ "$i" = "\"Build-platform-master\"," ]; then
+		master=$((index + 6))
+	fi
+	if [[ $index -eq $master ]]; then
+		master_status="#[fg=$i]master " 
+	fi
+	
+	if [ "$i" = "\"Build-platform-master-test.js.all\"," ]; then
+		masterjs=$((index + 6))
+	fi
+	if [[ $index -eq $masterjs ]]; then
+		masterjs_status="#[fg=$i]masterjs " 
+	fi
+
+	if [[ "$i" = "\"Build-platform-release-$1-$1-pre-post\"," ]]; then
+		release=$((index + 6))
+	fi
+	if [[ $index -eq $release ]]; then
+		release_status="#[fg=$i]release$1 " 
+	fi
+	index=$((index + 1))
+done
+
+echo $master_status $masterjs_status $release_status | tr -d "\"" | sed 's/blue/green/g'
+

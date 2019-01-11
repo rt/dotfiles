@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+
+#read -p "This may overwrite existing files in your home directory. Are you sure? (y/n) " -n 1;
+#echo "";
+
+#some docker images have cp aliased
+unalias cp
+
+#if [[ $REPLY =~ ^[Yy]$ ]]; then
+
+  #git pull origin master;
+
+  profile=~/.extrafile
+  echo "" > $profile 
+
+  while read filepath; do
+
+    dir=${filepath%/*}
+    file=${filepath#*/}
+
+    if [ "$dir" = "dotfiles" ]; then
+      fbase=${file%_*}
+      #echo $fbase
+
+      if [[ -d $filepath ]]; then
+        echo "copying directory contents of $filepath to ~/.$fbase"
+        cp -r $filepath/* ~/.$fbase
+      elif [[ -f $filepath ]]; then
+        echo "copying file $filepath to ~/.$fbase"
+        cp $filepath ~/.$fbase
+      fi    
+
+    elif [ "$dir" = "bin" ]; then
+      #copy as is
+      cp -r $filepath ~/bin/
+
+    else 
+      echo "copying bash source file $filepath"
+      echo "" >> $profile
+      echo "#################  $filepath" >> $profile
+      cat $filepath >> $profile
+    fi
+  done < config/$1
+
+  source $profile 
+  echo "done!"
+#fi;
+
+

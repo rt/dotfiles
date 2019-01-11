@@ -1,0 +1,890 @@
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Specify a directory for plugins
+" - For Neovim: ~/.local/share/nvim/plugged
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+Plug 'junegunn/vim-easy-align'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
+Plug 'tomtom/tcomment_vim'
+Plug 'plasticboy/vim-markdown'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-repeat'
+Plug 'majutsushi/tagbar'
+Plug 'elzr/vim-json'
+Plug 'chriskempson/base16-vim'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-fireplace'
+Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'edkolev/promptline.vim'
+Plug 'edkolev/tmuxline.vim'
+Plug 'chrisbra/Colorizer'
+Plug 'sjl/gundo.vim'
+Plug 'nelstrom/vim-visual-star-search'
+Plug 'tpope/vim-abolish'
+Plug 'tommcdo/vim-exchange'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'machakann/vim-highlightedyank'
+Plug 'w0rp/ale'
+Plug 'gregsexton/gitv'
+"Plug 'tpope/vim-sensible'
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'shumphrey/fugitive-gitlab.vim'
+Plug 'tommcdo/vim-fubitive'
+Plug 'alvan/vim-closetag'
+Plug 'ap/vim-css-color'
+" Plug 'sheerun/vim-polyglot'
+Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
+Plug 'mustache/vim-mustache-handlebars'
+Plug 'andreshazard/vim-freemarker'
+Plug 'Konfekt/FastFold'
+
+" Initialize plugin system
+call plug#end()
+
+" ----------------------------------------------------------------------------
+" General Settings
+" ----------------------------------------------------------------------------
+
+set nocompatible
+set fileformats=unix,dos,mac
+set encoding=utf-8
+
+" give external clipboard everything from vim (quotestar), the system
+" clipboard becomes the default register
+set clipboard=unnamed
+
+set hidden                     " allow switching buffers without having to save them
+set nowrap                     " don't wrap lines (for softwrapping see Wrap below)
+set backspace=indent,eol,start " allow backspacing over everything in insert mode
+set ignorecase                 " ignore case when searching
+set smartcase                  " ignore case if search pattern is all lowercase, case-sensitive otherwise
+set showmatch                  " show matching braces
+set spelllang=en_us
+set autoindent                 " always set autoindenting on
+set smartindent
+"set copyindent                 " copy the previous indentation on autoindenting
+"set spell                      " do toggle instead
+
+" dont prompt when file is changed externally (just warn)
+set autoread
+autocmd FileChangedShellPost * echohl WarningMsg | echo "Buffer changed!" | echohl None
+
+" Turn gui toolbar off
+set guioptions-=m  "remove menu bar
+set guioptions-=T  "remove toolbar
+set guioptions-=r  "remove right-hand scroll bar
+set guioptions-=L  "remove left-hand scroll bar
+
+set wildignore=*'
+  \*/coldfusion/client-assets/*,*/coldfusion/images_w/*,
+  \*/target/*,*/.build/*,
+  \*/node_modules/*,*/bower_components/*,*/coverage/*
+
+set path+=$PWD/**  "so that gf can find things
+
+let mapleader=","
+
+
+"""""" Abbreviations
+iabbrev teh the 
+"To do this for Abolish should define in  .vim/after/plugin/abolish.vim
+cabbrev gitv Gitv
+
+
+"""""" Syntax Highlighting
+syntax on 
+set hlsearch  " highlight search hits
+set incsearch " show search matches as you type
+
+
+"""""" Line Numbers
+" https://jeffkreeftmeijer.com/vim-number/
+set number relativenumber    " show line numbers
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+augroup END
+
+
+"""""" Session Management
+let g:sessions_dir = '~/projects/dotfiles/vim-sessions'
+exec 'nnoremap <Leader>ss :mks! ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
+exec 'nnoremap <Leader>sr :so ' . g:sessions_dir. '/*.vim<C-D><BS><BS><BS><BS><BS>'
+set sessionoptions-=options  " Don't save options
+
+"""""" Java
+let java_comment_strings=1
+let java_highlight_all=1
+let java_highlight_debug=1
+let java_ignore_javadoc=1
+let java_highlight_functions = 'style'
+let java_minlines = 150
+
+
+"""""" Netrw
+let g:netrw_list_hide= '.*\.swp$'
+let g:netrw_hide = 1
+let g:netrw_banner = 0
+
+""""" Color
+set t_Co=256 
+set background=dark
+"let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-flat
+
+" Needed these to get background color in Idea
+highlight Normal ctermbg=NONE
+highlight nonText ctermbg=NONE
+
+
+"""""" Tags
+"tags:look in current dir then upwards until home
+set tags=./tags,tags;$HOME
+
+
+"""""" Auto Completion 
+" pull from keywords in the current file, other buffers (closed or still open), and from the current tags file
+set complete=.,b,u,]
+set wildmode=longest,list:longest
+"set completeopt=longest,menuone
+set completeopt=menu,preview
+" make Enter select instead of return
+inoremap <expr> <CR> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+
+
+"""""" Default Tabbing http://vimcasts.org/episodes/tabs-and-spaces/ 
+" shiftwidth, softabstop, tabstop, expandtab
+" set smarttab                   " insert tabs on the start of a line according to shiftwidth, not tabstop
+set ts=2 sts=2 sw=2 expandtab
+
+"""""" AutoCmd for FileTypes, BufRead, etc
+
+" Only do this part when compiled with support for autocommands
+if has("autocmd")
+  " Enable file type detection
+  filetype plugin indent on
+  set omnifunc=syntaxcomplete#Complete
+
+  " Could wrap all this in augroup so it doesn't get read twice when sourced
+  " (but we dont really have this problem, vimrc doesn't get resourced much)
+  "augroup some_name
+  "  autocmd! "clear previous
+
+  " Syntax of these languages is fussy over tabs Vs spaces
+  autocmd FileType make setlocal ts=8 sts=8 sw=8 expandtab
+  autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType vim setlocal ts=2 sts=2 sw=2 expandtab "vimrc
+
+  " Customisations based on house-style (arbitrary)
+  autocmd FileType html setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType html.handlebars setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType css setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType json setlocal ts=2 sts=2 sw=2 expandtab
+  autocmd FileType javascript setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType javascript.jsx setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType java setlocal ts=4 sts=4 sw=4 expandtab
+  autocmd FileType cf setlocal ts=4 sts=4 sw=4 expandtab
+
+  " Treat .rss files as XML
+  autocmd BufNewFile,BufRead *.rss,*.atom setfiletype xml
+  autocmd BufNewFile,BufRead *.pre setlocal ft=sql
+  autocmd BufNewFile,BufRead *.post setlocal ft=sql
+  "autocmd BufNewFile,BufRead *.ftl setlocal ft=html
+
+  " Auto change directory to current file's directory
+  "autocmd BufEnter * lcd %:p:h
+
+  " Remembers where you were the last time you edited the file, and returns to the same position.
+  autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+
+  "Trim trailing whitespace in javascript files
+  autocmd BufWritePre *.js normal m`:%s/\s\+$//e ``
+  
+  " Auto Format before each write
+  "autocmd BufWritePre *.js :normal gg=G
+
+  " Source the vimrc file after saving it
+  "autocmd BufWritePost .vimrc source $MYVIMRC
+
+  " Prevents fugitive buffers from getting out of control
+  autocmd BufReadPost fugitive://* set bufhidden=delete
+
+  " shortcut for navigating upward in git sha
+	autocmd User fugitive 
+		\ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+		\   nnoremap <buffer> .. :edit %:h<CR> |
+		\ endif
+
+  " open quickfix after grep
+  autocmd QuickFixCmdPost *grep* cwindow
+
+
+  " pandoc sample format implementation (brew install pandoc)
+  "let pandoc_pipeline  = "pandoc --from=html --to=markdown"
+  "let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
+  "autocmd FileType html let &l:formatprg=pandoc_pipeline
+
+  "augroup END
+endif
+
+
+" gf jump with no file extention 
+augroup suffixes
+  autocmd!
+  let associations = [
+        \["html", ".hbs"],
+        \["javascript", ".js,.javascript,.es,.esx,.json"],
+        \["python", ".py,.pyw"]
+        \]
+  for ft in associations
+    execute "autocmd FileType " . ft[0] . " setlocal suffixesadd=" . ft[1]
+  endfor
+augroup END
+
+
+"""""" Folding 
+set foldmethod=syntax  "This make editing large js files very slow (using FastFold to fix this)
+set foldlevelstart=20
+
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+"let xml_syntax_folding=1      " XML (this breaks jsx indenting, uncomment if working with xml)
+
+nnoremap <Space> za         
+
+
+
+" ------------------------------- PLUGINS ------------------------------------
+
+
+" ----------------------------------------------------------------------------
+" NerdTree
+" ----------------------------------------------------------------------------
+" Close vim if the only win left open is vim
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+
+" ----------------------------------------------------------------------------
+" EaryAlign
+" ----------------------------------------------------------------------------
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+" ----------------------------------------------------------------------------
+" Fugitive
+" ----------------------------------------------------------------------------
+" fugitive gitlab
+let g:fugitive_gitlab_domains = ['https://gitlab.corp.ezrez']
+
+" DiffRev was a workaround but I think this might be handled by GMerge now ...
+" (not being used)
+let s:git_status_dictionary = {
+            \ "A": "Added",
+            \ "B": "Broken",
+            \ "C": "Copied",
+            \ "D": "Deleted",
+            \ "M": "Modified",
+            \ "R": "Renamed",
+            \ "T": "Changed",
+            \ "U": "Unmerged",
+            \ "X": "Unknown"
+            \ }
+function! s:get_diff_files(rev)
+  let list = map(split(system(
+              \ 'git diff --name-status '.a:rev), '\n'),
+              \ '{"filename":matchstr(v:val, "\\S\\+$"),"text":s:git_status_dictionary[matchstr(v:val, "^\\w")]}'
+              \ )
+  call setqflist(list)
+  copen
+endfunction
+
+command! -nargs=1 DiffRev call s:get_diff_files(<q-args>)
+
+
+" ----------------------------------------------------------------------------
+" UltiSnips
+" ----------------------------------------------------------------------------
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+"set runtimepath +=~/.vim/snipplets
+"let g:UltiSnipsSnippetDirectories = ['.vim/snipplets']
+" This is all good if you put your custom snipples in ~/.vim/ultisnips/
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+
+" ----------------------------------------------------------------------------
+" Gundo
+" ----------------------------------------------------------------------------
+
+" Gundo to see change history tree
+if has('python3')
+    let g:gundo_prefer_python3 = 1          
+endif
+
+
+" ----------------------------------------------------------------------------
+" FZF
+" ----------------------------------------------------------------------------
+"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+
+" ack
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
+set runtimepath+=/usr/local/opt/fzf
+
+" Augmenting Ag command using fzf#vim#with_preview function
+"   * fzf#vim#with_preview([[options], preview window, [toggle keys...]])
+"     * For syntax-highlighting, Ruby and any of the following tools are required:
+"       - Highlight: http://www.andre-simon.de/doku/highlight/en/highlight.php
+"       - CodeRay: http://coderay.rubychan.de/
+"       - Rouge: https://github.com/jneen/rouge
+"
+"   :Ag  - Start fzf with hidden preview window that can be enabled with "?" key
+"   :Ag! - Start fzf in fullscreen and display the preview window above
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>,
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir Files
+  \ call fzf#vim#files(<q-args>, 
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+  \                 <bang>0)
+
+" Likewise, Files command with preview window
+command! -bang -nargs=? -complete=dir GFiles
+  \ call fzf#vim#gitfiles(<q-args>, 
+  \                 <bang>0 ? fzf#vim#with_preview('up:60%')
+  \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
+	\									<bang>0)
+
+""" input mode
+
+" Insert mode completion
+"imap <c-x><c-k> <plug>(fzf-complete-word)
+"imap <c-x><c-f> <plug>(fzf-complete-path)
+"imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+"imap <c-x><c-l> <plug>(fzf-complete-line)
+
+inoremap <expr> <c-x><c-t> fzf#complete('get_translation_names.sh')
+inoremap <expr> <c-x><c-m> fzf#complete('get_component_names.sh')
+
+
+" ----------------------------------------------------------------------------
+" Goyo Limelight
+" ----------------------------------------------------------------------------
+let g:goyo_width=120  " default: 80
+let g:goyo_height='85%' " default: 85%
+let g:goyo_linenr=0   " default: 0
+
+"autocmd! User GoyoEnter Limelight
+"autocmd! User GoyoLeave Limelight!
+
+function! s:goyo_enter()
+  silent !tmux set status off
+  silent !tmux list-panes -F '\#F' | grep -q Z || tmux resize-pane -Z
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  Limelight
+  " ...
+endfunction
+
+function! s:goyo_leave()
+  silent !tmux set status on
+  silent !tmux list-panes -F '\#F' | grep -q Z && tmux resize-pane -Z
+  set showmode
+  set showcmd
+  set scrolloff=5
+  Limelight!
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+" ----------------------------------------------------------------------------
+" Tmux Integration
+" ----------------------------------------------------------------------------
+
+" when triggering this command, vim will grab your path and line location and pass it along
+map <Leader>tt :call RemoteSendCommand(TestLineCommand(expand("%:p"), line(".")))<CR>
+map <Leader>tpc :call RemoteSendCommand(QueryClientDb(expand("%:p")))<CR>
+
+function! QueryClientDb(path)
+  let cmd = join(["psql -U postgres -h localhost -d rtsunoda_client_185 -f ", a:path], "")
+  return cmd
+endfunction
+
+function! TestLineCommand(path, line_number)
+  let cmd = join(["npm test --only", " line:", a:line_number, " ", a:path], "")
+  return cmd
+endfunction
+
+function! RemoteSendCommand(cmd)
+  execute "! tmux send-keys -t 2 \"" . a:cmd . "\" C-j"
+endfunction
+
+
+" tmux (from https://github.com/junegunn/dotfiles/blob/master/vimrc)
+" I dont use these but maybe can use for reference when making work specific stuff
+"function! s:tmux_send(content, dest) range
+  "let dest = empty(a:dest) ? input('To which pane? ') : a:dest
+  "let tempfile = tempname()
+  "call writefile(split(a:content, "\n", 1), tempfile, 'b')
+  "call system(printf('tmux load-buffer -b vim-tmux %s \; paste-buffer -d -b vim-tmux -t %s',
+        "\ shellescape(tempfile), shellescape(dest)))
+  "call delete(tempfile)
+"endfunction
+
+"function! s:tmux_map(key, dest)
+  "execute printf('nnoremap <silent> %s "tyy:call <SID>tmux_send(@t, "%s")<cr>', a:key, a:dest)
+  "execute printf('xnoremap <silent> %s "ty:call <SID>tmux_send(@t, "%s")<cr>gv', a:key, a:dest)
+"endfunction
+
+"call s:tmux_map('<Leader>tt', '')
+"call s:tmux_map('<Leader>th', '.left')
+"call s:tmux_map('<Leader>tj', '.bottom')
+"call s:tmux_map('<Leader>tk', '.top')
+"call s:tmux_map('<Leader>tl', '.right')
+"call s:tmux_map('<Leader>ty', '.top-left')
+"call s:tmux_map('<Leader>to', '.top-right')
+"call s:tmux_map('<Leader>tn', '.bottom-left')
+"call s:tmux_map('<Leader>t.', '.bottom-right')
+
+" ----------------------------------------------------------------------------
+" Mustache
+" ----------------------------------------------------------------------------
+let g:mustache_abbreviations = 1
+
+" ----------------------------------------------------------------------------
+" Man Pages
+" ----------------------------------------------------------------------------
+
+runtime! ftplugin/man.vim
+
+" ----------------------------------------------------------------------------
+" Closetag
+" ----------------------------------------------------------------------------
+
+" filenames like *.xml, *.html, *.xhtml, ...
+" Then after you press > in these files, this plugin will try to close the
+" current tag.
+let g:closetag_filenames = '*.html,*.xhtml,*.phtml,*.js,*.hbs,*.ftl'
+" filenames like *.xml, *.xhtml, ...
+" This will make the list of non closing tags self closing in the specified
+" files.
+let g:closetag_xhtml_filenames = '*.xhtml,*.jsx'
+" integer value [0|1]
+" This will make the list of non closing tags case sensitive (e.g. `<Link>`
+" will be closed while `<link>` won't.)
+let g:closetag_emptyTags_caseSensitive = 1
+" Shortcut for closing tags, default is '>'
+let g:closetag_shortcut = '>'
+" Add > at current position without closing the current tag, default is ''
+let g:closetag_close_shortcut = '<Leader>>'
+
+
+
+" ----------------------------------------------------------------------------
+" vim-jsx
+" ----------------------------------------------------------------------------
+"vim-jsx: this is to get jsx highlighting in .js files as well as .jsx
+" if this value is 1, then js indentation is fine but you get now jsx
+" highlighting in the code 
+" if this value is 1, then jsx highlighting/indentation is great but js isn't
+" quite right
+" let g:jsx_ext_required = 1
+
+
+" ----------------------------------------------------------------------------
+" General Functions
+" ----------------------------------------------------------------------------
+
+" Useful file browse lists
+function! s:get_file_list(dirPath, fullscreen)
+	if a:fullscreen
+		call fzf#vim#files(a:dirPath, fzf#vim#with_preview('up:60%'), a:fullscreen)
+	else 
+		call fzf#vim#files(a:dirPath, fzf#vim#with_preview('right:50%:hidden', '?'), a:fullscreen)
+	endif
+endfunction
+
+  
+function! HandleURL()
+  let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
+  echo s:uri
+  if s:uri != ""
+    silent exec "!open '".s:uri."'"
+  else
+    echo "No URI found in line."
+  endif
+endfunction
+
+function! <SID>SynStack()
+  if !exists("*synstack")
+    return
+  endif
+  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
+endfunc
+
+function! s:git_pickaxe(cword)
+  execute 'Glog -S' . a:cword . ' --'
+endfunction
+
+function! s:git_pickaxe_current_file(cword)
+  execute 'Glog -S' . a:cword . ' -- %'
+endfunction
+
+function! s:git_grep(cword)
+  execute 'Ag ' . a:cword 
+endfunction
+
+function! s:git_grep_master(cword)
+  execute 'Ggrep ' . a:cword . ' master'
+endfunction
+
+" ----------------------------------------------------------------------------
+" Work Functions
+" ----------------------------------------------------------------------------
+
+function! s:get_simple_shopping_list(subdir, fullscreen)
+	let dirPath = '/Users/rtsunoda/dev/repos/dev/core-webapp/src/main/webapp/resources/shopping/' . a:subdir
+	if a:fullscreen
+		call fzf#vim#gitfiles(dirPath, fzf#vim#with_preview('up:60%'), a:fullscreen)
+	else 
+		call fzf#vim#gitfiles(dirPath, fzf#vim#with_preview('right:50%:hidden', '?'), a:fullscreen)
+	endif
+endfunction
+
+" get_component (from component/controller)
+function! s:get_component(cfile)
+	let filename = substitute(a:cfile, "^#", "", "")
+	echom 'CFILE: ' . filename
+	call fzf#run(fzf#wrap(fzf#vim#with_preview({'source': 'get_component.sh ' . filename}, 'right:50%:hidden', '?')))
+
+endfunction
+
+" get_templates (from component/controller)
+function! s:get_templates(path)
+  let val = system('get_templates.sh ' .  a:path)
+  let [dirPath, query]=split(val)
+  call fzf#vim#gitfiles(dirPath, fzf#vim#with_preview({'options': ['--query', query]}, 'right:50%:hidden', '?'))
+endfunction
+
+" get_backing_file (from hbs)
+function! s:get_backing_file(path)
+  let filename = system('get_backing_file.sh ' .  a:path) 
+  execute 'edit ' filename
+endfunction
+
+" get_test_component (from component/controller)
+function! s:get_test_component(cfile)
+  let filename = system('get_test_component.sh ' .  a:cfile)
+  execute 'edit ' filename
+endfunction
+
+" get_test 
+function! s:get_test(path)
+  let filename = system('get_test.sh ' .  a:path) 
+  execute 'edit ' filename
+endfunction
+
+" get_module_usages (of current file)
+function! s:get_module_usages(path)
+  let val = system('get_module_usages.sh ' .  a:path)
+  let [dirPath, query]=split(val)
+	echom "dirPath: " . dirPath . " query: " . query
+  call fzf#vim#ag_raw(query . ' ' . dirPath, fzf#vim#with_preview('right:50%:hidden', '?'))
+endfunction
+
+" get_module_usages_cursor (cursor)
+function! s:get_module_usages_cursor(path, cfile)
+	echom "path" . a:path
+	echom "cfile" . a:cfile
+  let val = system('get_module_usages_cursor.sh ' .  a:path . ' ' . a:cfile)
+	echom val
+  let [dirPath, query]=split(val)
+	echom "dirPath: " . dirPath . " query: " . query
+  call fzf#vim#ag_raw(query . ' ' . dirPath, fzf#vim#with_preview('right:50%:hidden', '?'))
+endfunction
+
+" get_confluence_usages_cursor (cursor)
+function! s:get_confluence_usages_cursor(path, cfile)
+  echom "cfile: " . a:cfile
+  call fzf#vim#ag_raw(a:cfile . ' ' . '/Users/rtsunoda/projects/work/puppeteer/confluence', fzf#vim#with_preview('right:50%:hidden', '?'))
+endfunction
+
+" get_impl 
+function! s:get_impl(query)
+  call fzf#vim#gitfiles('/Users/rtsunoda/dev/repos/dev', fzf#vim#with_preview({'options': ['--query', a:query]}, 'right:50%:hidden', '?'))
+endfunction
+
+" get usages of automation selector in test-automation (from outside module)
+function! s:get_automation_tag(path, cfile)
+  call fzf#vim#ag_raw(a:cfile . ' ' . 'test-automation', fzf#vim#with_preview({'options': ['--query', a:cfile]}, 'right:50%:hidden', '?'))
+endfunction
+
+" get_migrations (browsing, keep preview open from the beginning) 
+function! s:get_migrations(shareOrClient)
+  let val = system('get_release_version.sh dot')
+	let [releaseVersion]=split(val)
+	echom 'migrations/' . a:shareOrClient . '/scripts/v' . releaseVersion
+	call fzf#vim#files('migrations/' . a:shareOrClient . '/scripts/v' .  releaseVersion, fzf#vim#with_preview({'options': ['--query', '']}))
+endfunction
+
+" TP
+function! s:goto_tp(tp)
+  let s:uri = 'https://tp.switchfly.com/entity/' . a:tp
+	silent exec "!open '".s:uri."'"
+endfunction
+
+" Confluence Search
+function! s:search_confluence(tp)
+  let s:uri = 'https://confluence.switchfly.com/dosearchsite.action?queryString=' . a:tp
+	silent exec "!open '".s:uri."'"
+endfunction
+
+
+" ----------------------------------------------------------------------------
+" Maps (or variable changes that create a map)
+" ----------------------------------------------------------------------------
+
+" map simple ctrl keys for split/window movement and sizing (colemak)
+nnoremap <C-N> <C-W>j
+nnoremap <C-E> <C-W>k
+nnoremap <C-M> <C-W>h
+nnoremap <C-I> <C-W>l
+
+xnoremap dp :diffput<cr>
+xnoremap do :diffget<cr>
+
+"select pasted area"
+nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
+
+
+" http://vimcasts.org/episodes/creating-mappings-that-accept-a-count/ Allow count with mapping for 'n.' using macro and expresssion register
+"nnoremap Q @='n.'<CR>
+" Although this is a little nicer using :normal
+nnoremap Q :normal n.<CR>
+
+" http://vimcasts.org/episodes/bubbling-text/
+" Bubble single lines requires unimpaired
+" These are <Alt-e> and <Alt-n> characters on Mac
+nmap ´ [e
+nmap ˜ ]e
+" Bubble multiple lines
+vmap ´ [egv
+vmap ˜ ]egv
+
+set pastetoggle=<F3>
+" ----------------------------------------------------------------------------
+" Leaders
+" ----------------------------------------------------------------------------
+
+"""""" general
+
+" Toggle spell
+nmap <silent> <Leader>s :set spell!<CR>
+
+"change to window current working dir
+nnoremap <Leader>cd :lcd %:p:h<CR>
+
+" http://vimcasts.org/episodes/the-edit-command/ 
+cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
+map <Leader>ew :e %%
+map <Leader>es :sp %%
+map <Leader>ev :vsp %%
+map <Leader>et :tabe %%
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <Leader>ev :e $MYVIMRC<CR>
+nmap <silent> <Leader>sv :so $MYVIMRC<CR>
+
+nnoremap <Leader>d :NERDTreeToggle<CR>
+nnoremap <Leader>n :NERDTreeFind<CR>
+
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+"Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
+nmap <Leader>l :set list!<CR>
+
+nnoremap <Leader>c :cclose<bar>lclose<cr>
+nmap <Leader>bb :e ~/bin/bash.txt<CR>:Goyo<CR>
+nmap <Leader>kl :e ~/projects/qmk_firmware/users/ryan/ryan.h<CR>:Goyo<CR>
+map <Leader>u :call HandleURL()<cr>
+
+" Show syntax highlighting groups for word under cursor
+nmap <Leader>pp :call <SID>SynStack()<CR>
+
+" format json
+nnoremap <Leader>pj :%!python -mjson.tool<CR>
+
+
+"""""" fzf
+nmap t :Buffers<CR>
+nmap <Leader>t :GFiles<CR>
+nmap <Leader>f :Files<CR>
+nmap <Leader>r :Tags<CR>
+nmap <Leader><tab> <plug>(fzf-maps-n)
+nmap <Leader>k   :Ag<space>
+" this doesn't work, why?
+"nmap <Leader>K   :Ag! "<cword>" <CR>
+nmap <Leader>K   :Ggrep! "<cword>" <CR>
+
+"""""" tmux
+nmap <Leader>tr :!tmux send-keys -t 2 C-p C-j <CR><CR>
+" specify exact session.window.pan
+nmap <Leader>tb :!tmux send-keys -t forward:dotfiles.2 source\ \./bootstrap\.sh\ rtsunoda C-j<CR><CR>
+
+"""""" Fugitive 
+nnoremap <Leader>gs :Gstatus<CR>
+nnoremap <Leader>gd :Gdiff<CR>
+nnoremap <Leader>gdm :Gdiff master:%<CR>
+nnoremap <Leader>gb :Gblame<CR>
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>ge :Gedit<CR>
+nnoremap <Leader>gem :Gedit master:%<CR>
+nnoremap <Leader>gm :Gmerge<CR>
+nnoremap <Leader>gl :Glog -10<CR><CR>
+nnoremap <Leader>glf :Glog -10 --reverse<CR><CR>
+nnoremap <Leader>gll :Glog -10 --<CR><CR>
+nnoremap <Leader>gllt :Glog -10 -- %<CR><CR>
+nnoremap <Leader>glm :Glog -10 --author=rtsunoda --<CR><CR>
+
+"""""" goyo
+nnoremap <Leader>G :Goyo<CR>
+
+"""""" tabularize
+if exists(":Tabularize")
+  nmap <Leader>a= :Tabularize /=<CR>
+  vmap <Leader>a= :Tabularize /=<CR>
+  nmap <Leader>a: :Tabularize /:\zs<CR>
+  vmap <Leader>a: :Tabularize /:\zs<CR>
+  "nmap <Leader>a\| :Tabularize /\|<CR>
+  "vmap <Leader>a\| :Tabularize /\|<CR>
+  nmap <Leader>a// :Tabularize /\/\/<CR>
+  vmap <Leader>a// :Tabularize /\/\/<CR>
+endif
+
+"""""" Work (if you run out of keyboard space)
+
+
+
+" ----------------------------------------------------------------------------
+" Commands
+" ----------------------------------------------------------------------------
+
+"""""" general
+
+" Softwrapping (:Wrap) Probably will go into this mode to write doc stuff (use gj gk ..)
+" Usually, this is for writing an email where you want a paragraph to be just one line.
+" Programming with line by line diffs, you'll usually want hard wrap (nowrap),
+" and just use gqip to format paragraphs.
+command! -nargs=* Wrap set wrap linebreak nolist
+command! -nargs=* NoWrap set nowrap nolinebreak 
+
+command! -bang -nargs=* ShowAliases call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/bash_profile', 1)
+command! -bang -nargs=* PickAxe call <SID>git_pickaxe(expand('<cword>'))
+command! -bang -nargs=* PickAxeCurrentFile call <SID>git_pickaxe_current_file(expand('<cword>'))
+command! -bang -nargs=* GrepWorking call <SID>git_grep(expand('<cword>'))
+command! -bang -nargs=* GrepMaster call <SID>git_grep_master(expand('<cword>'))
+
+"""""" Work
+command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/switchfly', 1)
+command! -bang -nargs=* WorkShowScripts call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/bin/work', 1)
+
+command! -nargs=* WorkGotoComponent call <SID>get_component(expand('<cfile>'))
+command! -nargs=* WorkGetComponentTemplates call <SID>get_templates(expand('%'))
+command! -nargs=* WorkGetBackingFile call <SID>get_backing_file(expand('%'))
+command! -nargs=* WorkGetTestComponent call <SID>get_test_component(expand('%'))
+command! -nargs=* WorkGotoTest call <SID>get_test(expand('%'))
+command! -nargs=* WorkGetModuleUsages call <SID>get_module_usages(expand('%'))
+command! -nargs=* WorkGetModuleUsagesCursorFile call <SID>get_module_usages_cursor(expand('%'), expand('<cfile>'))
+command! -nargs=* WorkGetModuleUsagesCursorWord call <SID>get_module_usages_cursor(expand('%'), expand('<cword>'))
+command! -nargs=* WorkGetConfluenceUsagesCursorFile call <SID>get_confluence_usages_cursor(expand('%'), expand('<cfile>'))
+command! -nargs=* WorkGetConfluenceUsagesCursorWord call <SID>get_confluence_usages_cursor(expand('%'), expand('<cword>'))
+command! -nargs=* WorkGetImpl call <SID>get_impl(expand('%:t:r'))
+command! -nargs=* WorkGetImplWord call <SID>get_impl(expand('<cword>'))
+command! -nargs=* WorkGetAutomationTag call <SID>get_automation_tag(expand('%'), expand('<cfile>'))
+command! -nargs=* WorkGetMigrationsShared call <SID>get_migrations('shared')
+command! -nargs=* WorkGetMigrationsClient call <SID>get_migrations('client')
+
+command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
+command! -nargs=* WorkSearchConfluence call <SID>search_confluence(expand('<cword>'))
+
+" go to template definition (gf): no work required
+" go to js definitions (ctags): no work required
+" Useful file browse lists
+command! -bang -nargs=* WorkListRoutes call <SID>get_simple_shopping_list('scripts/routes', <bang>0)
+command! -bang -nargs=* WorkListControllers call <SID>get_simple_shopping_list('scripts/controllers', <bang>0)
+command! -bang -nargs=* WorkListComponents call <SID>get_simple_shopping_list('scripts/components', <bang>0)
+command! -bang -nargs=* WorkListHandlebarHelpers call <SID>get_simple_shopping_list('scripts/handlebars_helpers', <bang>0)
+command! -bang -nargs=* WorkListTemplates call <SID>get_simple_shopping_list('templates', <bang>0)
+command! -bang -nargs=* WorkListActions call <SID>get_simple_shopping_list('scripts/liquid/actions', <bang>0)
+command! -bang -nargs=* WorkListModels call <SID>get_simple_shopping_list('scripts/liquid/models', <bang>0)
+command! -bang -nargs=* WorkListStores call <SID>get_simple_shopping_list('scripts/liquid/stores', <bang>0)
+command! -bang -nargs=* WorkListStyles call <SID>get_simple_shopping_list('styles', <bang>0)
+
+" notes: filters/interceptors
+command! -bang WorkFiltersAndInterceptors call fzf#run(fzf#wrap(
+			\ fzf#vim#with_preview({'source': 'get_filters_and_interceptors.sh'}, 'right:50%:hidden', '?'), <bang>0))
+
+" notes: spring application context/configs
+command! -bang WorkSpringConfigs call fzf#run(fzf#wrap(
+			\ fzf#vim#with_preview({'source': 'get_spring_configs.sh'}, 'right:50%:hidden', '?'), <bang>0))
+
+
+" ----------------------------------------------------------------------------
+" Status line (this needed to be at the bottom of this file)
+" ----------------------------------------------------------------------------
+"add git branch to status line
+set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
+set statusline+=%#warningmsg#
+set statusline+=%*
+
+""""" status/tabline vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1 "automatically populate the g:airline_symbols dictionary with the powerline symbols.
+
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
+
