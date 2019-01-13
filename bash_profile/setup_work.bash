@@ -1,5 +1,5 @@
 
-setup_switchfly() {
+setup_work() {
 
   sess=${PWD##*/}
 
