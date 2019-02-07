@@ -2,7 +2,7 @@ bash_profile/base.bash
 bash_profile/utils.bash
 bash_profile/install_mac.bash
 bash_profile/setup_skeleton.bash
-bash_profile/setup_switchfly.bash
+bash_profile/setup_work.bash
 bash_profile/get_vim_bundles.bash
 bash_profile/setup_mac.bash
 bash_profile/chrome.bash
@@ -27,4 +27,3 @@ bin/git-completion.bash
 bin/chrome_bookmarks
 bin/clean_docker
 bin/work
-/Users/rtsunoda/projects/playground/linux/src/app_convert_static_website/functions.sh
