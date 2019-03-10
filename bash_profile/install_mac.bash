@@ -8,7 +8,9 @@ install_mac() {
   brew install tree
   brew install vim
   brew install grip
-  brew install ctags
+  # brew install ctags
+  brew tap universal-ctags/universal-ctags
+  brew install --HEAD universal-ctags
   brew install the_silver_searcher #there are other fast grep like tools (ripgrep)
   brew install wget
   brew install pandoc
@@ -24,5 +26,6 @@ install_mac() {
   brew install highlight
 
   gem install cani
+
 }
 

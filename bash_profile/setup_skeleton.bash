@@ -49,7 +49,8 @@ setup_skeleton() {
   tmux new-window -t $sess -n qmk
   tmux send-keys -t $sess:qmk "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:qmk "cd ~/projects/qmk_firmware" Enter
-  tmux send-keys -t $sess:qmk "vim -S ~/projects/dotfiles/vim-sessions/qmk_firmware.vim" Enter
+  # tmux send-keys -t $sess:qmk "vim -S ~/projects/dotfiles/vim-sessions/qmk_firmware.vim" Enter
+  tmux send-keys -t $sess:qmk "vim users/ryan/ryan.h users/ryan/ryan.c" Enter
 
   tmux split-window -v -l 24 -t $sess:qmk
   tmux send-keys -t $sess:qmk.2 "cd ~/projects/qmk_firmware" Enter

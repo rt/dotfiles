@@ -1,0 +1,50 @@
+snippet workflow 
+---
+title: ${1:Workflow Title}
+date: ${2:`date +%Y-%m-%d`}
+---
+# $1
+
+${4:Descrition}
+
+\`\`\`
+$0
+\`\`\`
+endsnippet
+
+
+snippet code 
+\`\`\`${1:bash}
+${0:${VISUAL:code...}}
+\`\`\`
+endsnippet
+
+
+snippet link 
+[${1:${VISUAL:name}}](${0:${VISUAL:url}})
+endsnippet
+
+
+snippet table
+| ${1:Header1} | ${2:Header2} | ${3:Header3} |
+| ---          | :---:        | ---:         |
+| ${4:Data1}   | ${5:Data2}   | ${0:Data3}   |
+endsnippet
+
+snippet youtube
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=${1:VIDEO_ID}
+" target="_blank"><img src="http://img.youtube.com/vi/$1/0.jpg"
+alt="${0:Image Alt Text}" width="240" height="180" border="10" /></a>
+endsnippet
+
+
+
+
+
+snippet test
+${1:Change this snippet line to have the text "True" (without quotes).}
+This line is always present. `!p
+if t[1]=="True":
+    snip += "A line displayed when $1 has the text True."
+`
+endsnippet

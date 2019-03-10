@@ -11,6 +11,13 @@ alias wpl="find ~/dev/repos/dev/core-webapp/src/main/webapp/resources/ -name pac
 alias wnm="find ~/dev/repos/dev/core-webapp/src/main/webapp/resources/ -name node_modules -maxdepth  2 -type dir | xargs rm -rf"
 
 
+work_clear_coverage() {
+  cd ~/dev/repos/dev/core-webapp/src/main/webapp/resources/shopping/scripts 
+  rm -rf coverage HeadlessChrome*
+  rm *.xml
+  cd -
+}
+
 
 alias wps="ant package.all.shopping"
 alias wmi="mvn clean install -Pdependencies -DskipTests"
