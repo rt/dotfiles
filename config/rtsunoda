@@ -19,6 +19,7 @@ bash_profile/work.bash
 bash_profile/completion.bash
 bash_profile/prompt_mb.bash
 dotfiles/vimrc_rtsunoda
+dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda
 dotfiles/vim_rtsunoda
 dotfiles/tmux.conf_rtsunoda
