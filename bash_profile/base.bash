@@ -1,6 +1,7 @@
 
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/bin/work:$PATH";
+export PATH="$HOME/bin/vim:$PATH";
 
 export NODE_PATH=/usr/lib/nodejs
 

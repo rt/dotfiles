@@ -21,6 +21,8 @@ install_mac() {
   brew install gradle
   brew install ripgrep
 
+  brew install teensy_loader_cli
+
   # highlighting in vim fzf preview: need to do this manually if you want the latest hightlighting
   #sudo easy_install Pygments
   brew install highlight

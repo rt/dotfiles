@@ -28,3 +28,4 @@ bin/git-completion.bash
 bin/chrome_bookmarks
 bin/clean_docker
 bin/work
+bin/vim

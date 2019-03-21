@@ -13,6 +13,9 @@ unalias cp
   profile=~/.extrafile
   echo "" > $profile 
 
+  rm -rf ~/bin
+  mkdir ~/bin
+  chmod 755 ~/bin
   while read filepath; do
 
     dir=${filepath%/*}

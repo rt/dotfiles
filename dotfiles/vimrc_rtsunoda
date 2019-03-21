@@ -55,6 +55,7 @@ Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'andreshazard/vim-freemarker'
 Plug 'Konfekt/FastFold'
+Plug 'ton/vim-bufsurf'
 
 " Initialize plugin system
 call plug#end()
@@ -229,10 +230,14 @@ if has("autocmd")
   autocmd BufReadPost fugitive://* set bufhidden=delete
 
   " shortcut for navigating upward in git sha
-	autocmd User fugitive 
-		\ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+  autocmd User fugitive 
+		\ if get(b:, 'fugitive_type()', '') =~# '^\%(tree\|blob\)$' |
 		\   nnoremap <buffer> .. :edit %:h<CR> |
 		\ endif
+	" autocmd User fugitive 
+	" 	\ if fugitive#buffer().type() =~# '^\%(tree\|blob\)$' |
+	" 	\   nnoremap <buffer> .. :edit %:h<CR> |
+	" 	\ endif
 
   " open quickfix after grep
   autocmd QuickFixCmdPost *grep* cwindow
@@ -396,7 +401,7 @@ command! -bang -nargs=? -complete=dir GFiles
 
 """ input mode
 
-" Insert mode completion
+" Insert mode completion (need to hit them quickly!)
 "imap <c-x><c-k> <plug>(fzf-complete-word)
 "imap <c-x><c-f> <plug>(fzf-complete-path)
 "imap <c-x><c-j> <plug>(fzf-complete-file-ag)
@@ -605,7 +610,7 @@ endfunction
 function! s:get_templates(path)
   let val = system('get_templates.sh ' .  a:path)
   let [dirPath, query]=split(val)
-  call fzf#vim#gitfiles(dirPath, fzf#vim#with_preview({'options': ['--query', query]}, 'right:50%:hidden', '?'))
+  call fzf#vim#gitfiles(getcwd() . "/" . dirPath, fzf#vim#with_preview({'options': ['--query', query]}, 'right:50%:hidden', '?'))
 endfunction
 
 " get_backing_file (from hbs)
@@ -626,23 +631,19 @@ function! s:get_test(path)
   execute 'edit ' filename
 endfunction
 
-" get_module_usages (of current file)
-function! s:get_module_usages(path)
-  let val = system('get_module_usages.sh ' .  a:path)
+" get_usages_by_current_file (of current file)
+function! s:get_usages_by_current_file(path)
+  let val = system('get_usages_by_current_file.sh ' .  a:path)
   let [dirPath, query]=split(val)
 	echom "dirPath: " . dirPath . " query: " . query
   call fzf#vim#ag_raw(query . ' ' . dirPath, fzf#vim#with_preview('right:50%:hidden', '?'))
 endfunction
 
 " get_module_usages_cursor (cursor)
-function! s:get_module_usages_cursor(path, cfile)
-	echom "path" . a:path
-	echom "cfile" . a:cfile
-  let val = system('get_module_usages_cursor.sh ' .  a:path . ' ' . a:cfile)
-	echom val
-  let [dirPath, query]=split(val)
-	echom "dirPath: " . dirPath . " query: " . query
-  call fzf#vim#ag_raw(query . ' ' . dirPath, fzf#vim#with_preview('right:50%:hidden', '?'))
+function! s:get_module_usages_cursor(cfile)
+  " using cfile because it works for both symbols and names with hyphens
+	" echom "cfile" . a:cfile
+  call fzf#vim#ag_raw(a:cfile . ' ' . getcwd(), fzf#vim#with_preview('right:50%:hidden', '?'))
 endfunction
 
 " get_confluence_usages_cursor (cursor)
@@ -653,12 +654,7 @@ endfunction
 
 " get_impl 
 function! s:get_impl(query)
-  call fzf#vim#gitfiles('/Users/rtsunoda/dev/repos/dev', fzf#vim#with_preview({'options': ['--query', a:query]}, 'right:50%:hidden', '?'))
-endfunction
-
-" get usages of automation selector in test-automation (from outside module)
-function! s:get_automation_tag(path, cfile)
-  call fzf#vim#ag_raw(a:cfile . ' ' . 'test-automation', fzf#vim#with_preview({'options': ['--query', a:cfile]}, 'right:50%:hidden', '?'))
+  call fzf#vim#gitfiles('.', fzf#vim#with_preview({'options': ['--query', a:query]}, 'right:50%:hidden', '?'))
 endfunction
 
 " get_migrations (browsing, keep preview open from the beginning) 
@@ -826,8 +822,12 @@ command! -bang -nargs=* ShowAliases call <SID>get_file_list('/Users/rtsunoda/pro
 command! -bang -nargs=* ShowWorkflows call <SID>get_file_list('/Users/rtsunoda/projects/work/workflows', 1)
 command! -bang -nargs=* PickAxe call <SID>git_pickaxe(expand('<cword>'))
 command! -bang -nargs=* PickAxeCurrentFile call <SID>git_pickaxe_current_file(expand('<cword>'))
-command! -bang -nargs=* GrepWorking call <SID>git_grep(expand('<cword>'))
+command! -bang -nargs=* GrepWorking call <SID>git_grep(expand('<cfile>'))
 command! -bang -nargs=* GrepMaster call <SID>git_grep_master(expand('<cword>'))
+command! -nargs=* GotoTest call <SID>get_test(expand('%'))
+command! -nargs=* GetUsagesByCurrentFile call <SID>get_usages_by_current_file(expand('%:p'))
+command! -nargs=* GetImpl call <SID>get_impl(expand('%:t:r'))
+command! -nargs=* GetImplWord call <SID>get_impl(expand('<cword>'))
 
 """""" Work
 command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/switchfly', 1)
@@ -837,15 +837,8 @@ command! -nargs=* WorkGotoComponent call <SID>get_component(expand('<cfile>'))
 command! -nargs=* WorkGetComponentTemplates call <SID>get_templates(expand('%'))
 command! -nargs=* WorkGetBackingFile call <SID>get_backing_file(expand('%'))
 command! -nargs=* WorkGetTestComponent call <SID>get_test_component(expand('%'))
-command! -nargs=* WorkGotoTest call <SID>get_test(expand('%'))
-command! -nargs=* WorkGetModuleUsages call <SID>get_module_usages(expand('%'))
-command! -nargs=* WorkGetModuleUsagesCursorFile call <SID>get_module_usages_cursor(expand('%'), expand('<cfile>'))
-command! -nargs=* WorkGetModuleUsagesCursorWord call <SID>get_module_usages_cursor(expand('%'), expand('<cword>'))
 command! -nargs=* WorkGetConfluenceUsagesCursorFile call <SID>get_confluence_usages_cursor(expand('%'), expand('<cfile>'))
 command! -nargs=* WorkGetConfluenceUsagesCursorWord call <SID>get_confluence_usages_cursor(expand('%'), expand('<cword>'))
-command! -nargs=* WorkGetImpl call <SID>get_impl(expand('%:t:r'))
-command! -nargs=* WorkGetImplWord call <SID>get_impl(expand('<cword>'))
-command! -nargs=* WorkGetAutomationTag call <SID>get_automation_tag(expand('%'), expand('<cfile>'))
 command! -nargs=* WorkGetMigrationsShared call <SID>get_migrations('shared')
 command! -nargs=* WorkGetMigrationsClient call <SID>get_migrations('client')
 
