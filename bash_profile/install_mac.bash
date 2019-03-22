@@ -23,6 +23,8 @@ install_mac() {
 
   brew install teensy_loader_cli
 
+  # install https://www.iterm2.com
+
   # highlighting in vim fzf preview: need to do this manually if you want the latest hightlighting
   #sudo easy_install Pygments
   brew install highlight

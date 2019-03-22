@@ -590,7 +590,7 @@ endfunction
 " ----------------------------------------------------------------------------
 
 function! s:get_simple_shopping_list(subdir, fullscreen)
-	let dirPath = '/Users/rtsunoda/dev/repos/dev/core-webapp/src/main/webapp/resources/shopping/' . a:subdir
+	let dirPath = 'core-webapp/src/main/webapp/resources/shopping/' . a:subdir
 	if a:fullscreen
 		call fzf#vim#gitfiles(dirPath, fzf#vim#with_preview('up:60%'), a:fullscreen)
 	else 
@@ -616,6 +616,12 @@ endfunction
 " get_backing_file (from hbs)
 function! s:get_backing_file(path)
   let filename = system('get_backing_file.sh ' .  a:path) 
+  execute 'edit ' filename
+endfunction
+
+" get_style_file
+function! s:get_style_file(path)
+  let filename = system('get_style_file.sh ' .  a:path) 
   execute 'edit ' filename
 endfunction
 
@@ -655,6 +661,12 @@ endfunction
 " get_impl 
 function! s:get_impl(query)
   call fzf#vim#gitfiles('.', fzf#vim#with_preview({'options': ['--query', a:query]}, 'right:50%:hidden', '?'))
+endfunction
+
+" get_project_path 
+function! s:get_project_path(rpath)
+  let dir = system('get_project_path.sh ' . a:rpath)
+  execute 'lcd ' . dir 
 endfunction
 
 " get_migrations (browsing, keep preview open from the beginning) 
@@ -829,6 +841,8 @@ command! -nargs=* GetUsagesByCurrentFile call <SID>get_usages_by_current_file(ex
 command! -nargs=* GetImpl call <SID>get_impl(expand('%:t:r'))
 command! -nargs=* GetImplWord call <SID>get_impl(expand('<cword>'))
 
+command! -nargs=* GetStyleFile call <SID>get_style_file(expand('%'))
+
 """""" Work
 command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/switchfly', 1)
 command! -bang -nargs=* WorkShowScripts call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/bin/work', 1)
@@ -841,6 +855,17 @@ command! -nargs=* WorkGetConfluenceUsagesCursorFile call <SID>get_confluence_usa
 command! -nargs=* WorkGetConfluenceUsagesCursorWord call <SID>get_confluence_usages_cursor(expand('%'), expand('<cword>'))
 command! -nargs=* WorkGetMigrationsShared call <SID>get_migrations('shared')
 command! -nargs=* WorkGetMigrationsClient call <SID>get_migrations('client')
+
+command! -nargs=* CdRoot call <SID>get_project_path('')
+command! -nargs=* CdDeploy call <SID>get_project_path('deploy')
+command! -nargs=* CdDevTools call <SID>get_project_path('devtools')
+command! -nargs=* CdClient call <SID>get_project_path('client')
+command! -nargs=* CdServer call <SID>get_project_path('server')
+command! -nargs=* CdData call <SID>get_project_path('data')
+command! -nargs=* CdFeResources call <SID>get_project_path('core-webapp/src/main/webapp/resources')
+command! -nargs=* CdShopping call <SID>get_project_path('core-webapp/src/main/webapp/resources/shopping')
+command! -nargs=* CdAuto call <SID>get_project_path('test-automation')
+command! -nargs=* CdMigrations call <SID>get_project_path('migrations')
 
 command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
 command! -nargs=* WorkSearchConfluence call <SID>search_confluence(expand('<cword>'))
