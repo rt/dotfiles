@@ -1,7 +1,9 @@
 bash_profile/base.bash
+bash_profile/ls.bash
+bash_profile/cd.bash
+bash_profile/tree.bash
+bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash
-bash_profile/setup_student_rpi.bash
-bash_profile/get_vim_bundles.bash
 bash_profile/chrome.bash
 bash_profile/network.bash
 bash_profile/file.bash
@@ -22,3 +24,5 @@ dotfiles/gitconfig_rtsunoda
 bin/git-completion.bash
 bin/chrome_bookmarks
 bin/clean_docker
+setup/setup_student_rpi.bash
+setup/get_vim_bundles.bash

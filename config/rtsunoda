@@ -1,10 +1,10 @@
 bash_profile/base.bash
+bash_profile/ls.bash
+bash_profile/cd.bash
+bash_profile/tree.bash
+bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash
 bash_profile/install_mac.bash
-bash_profile/setup_skeleton.bash
-bash_profile/setup_work.bash
-bash_profile/get_vim_bundles.bash
-bash_profile/setup_mac.bash
 bash_profile/chrome.bash
 bash_profile/network.bash
 bash_profile/file.bash
@@ -29,3 +29,7 @@ bin/chrome_bookmarks
 bin/clean_docker
 bin/work
 bin/vim
+setup/setup_skeleton.bash
+setup/setup_work.bash
+setup/get_vim_bundles.bash
+setup/install_mac.bash
