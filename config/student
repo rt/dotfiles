@@ -25,4 +25,3 @@ bin/git-completion.bash
 bin/chrome_bookmarks
 bin/clean_docker
 setup/setup_student_rpi.bash
-setup/get_vim_bundles.bash

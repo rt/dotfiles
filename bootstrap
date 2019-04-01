@@ -15,6 +15,7 @@ unalias cp
 
   rm -rf ~/bin
   mkdir ~/bin
+
   chmod 755 ~/bin
   while read filepath; do
 
