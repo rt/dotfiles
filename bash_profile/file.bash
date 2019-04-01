@@ -1,6 +1,5 @@
 #### FZF
 
-
 # export FZF_DEFAULT_COMMAND='ag -g ""'
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
