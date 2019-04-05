@@ -7,6 +7,9 @@ Create VMs on Host Network
 
 ```bash
 brew cask install virtualbox
+vboxmanage --version
+
+#vboxmanage setproperty machinefolder /app_store/virtual_machines
 ```
 
 ## Create Host Network

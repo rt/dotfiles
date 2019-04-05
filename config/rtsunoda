@@ -25,7 +25,6 @@ dotfiles/tmux.conf_rtsunoda
 dotfiles/gitconfig_rtsunoda
 bin/git-completion.bash
 bin/chrome_bookmarks
-bin/clean_docker
 bin/work
 bin/vim
 setup/setup_skeleton.bash

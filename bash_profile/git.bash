@@ -10,6 +10,14 @@ if [ $? -eq 0 ]; then
     }
 fi;
 
+git_line_count() {
+	if [ -z "$1" ]; then
+    git ls-files | xargs cat | wc -l
+  else
+    git ls-files | grep "\.$1$" | xargs cat | wc -l
+  fi
+}
+
 # Show churn for whole repo:
 #   $ git-churn
 #
