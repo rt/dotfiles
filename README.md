@@ -104,11 +104,13 @@ git clone https://github.com/korzhyk/base16-terminal-app.git
 
 ## CI/CD Prototype
 
-The first goal would be to have ,
+The first goal would be to have,
 
 - one GitLab instance on docker
 - CI/CD tests run on GitLab instance
+- test on Kubernetes Cluster (Runners)
 - push to Kubernetes Cluster (prod)
+- push to CDN
 
 Future goals might be running GitLab and/or tests on a Kubernetes Cluster as well.
 https://docs.gitlab.com/ee/user/project/clusters/
@@ -118,28 +120,30 @@ https://docs.gitlab.com/ee/user/project/clusters/
 
 Possibly could use vagrant to separate systems ...
 - GitLab
-- Test Env
+- Test Runners
 - Prod
 
 *Others*
-- Dns Server
-- Nexus
 - Selenium Grid
+- Dns Server
 - Keroberos
+- Nexus
 
 #### GitLab
 
 https://docs.gitlab.com/omnibus/docker/#install-gitlab-using-docker-compose
 
 ```
+mkdir -p ~/mount/gitlab
 docker run --detach \
-  --hostname gitlab.example.com \
-  --publish 443:443 --publish 80:80 --publish 22:22 \
+  --publish 443:443 \
+  --publish 80:80 \
+  --publish 22:22 \
   --name gitlab \
   --restart always \
-  --volume /srv/gitlab/config:/etc/gitlab \
-  --volume /srv/gitlab/logs:/var/log/gitlab \
-  --volume /srv/gitlab/data:/var/opt/gitlab \
+  --volume ~/mount/gitlab/config:/etc/gitlab \
+  --volume ~/mount/gitlab/logs:/var/log/gitlab \
+  --volume ~/mount/gitlab/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest
 ```
 
@@ -202,6 +206,23 @@ kubectl config current-context
 kubectl config view
 ```
 
+*Basic Pod*
+
+pod.yaml
+```
+kind: Pod
+apiVersion: v1
+metadata:
+  name: example-pod
+spec:
+  containers:
+    - image: nginx
+      name: example-container
+```
+
+```
+kubectl create -f pod.yaml
+kubectl get pods
 ```
 kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/v1.10.1/src/deploy/recommended/kubernetes-dashboard.yaml
 kubectl proxy
