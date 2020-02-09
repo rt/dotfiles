@@ -140,6 +140,7 @@ docker run --detach \
   --publish 80:80 \
   --publish 22:22 \
   --name gitlab \
+  --env GITLAB_OMNIBUS_CONFIG="external_url 'http://192.168.86.22';" \
   --restart always \
   --volume ~/mount/gitlab/config:/etc/gitlab \
   --volume ~/mount/gitlab/logs:/var/log/gitlab \
@@ -154,20 +155,6 @@ sudo docker exec -it gitlab /bin/bash
 vim /etc/gitlab/gitlab.rb
 ...
 sudo docker restart gitlab
-```
-
-Or, configure on the run command (GITLAB_OMNIBUS)
-```
-sudo docker run --detach \
-  --hostname gitlab.example.com \
-  --env GITLAB_OMNIBUS_CONFIG="external_url 'http://my.domain.com/'; gitlab_rails['lfs_enabled'] = true;" \
-  --publish 443:443 --publish 80:80 --publish 22:22 \
-  --name gitlab \
-  --restart always \
-  --volume /srv/gitlab/config:/etc/gitlab \
-  --volume /srv/gitlab/logs:/var/log/gitlab \
-  --volume /srv/gitlab/data:/var/opt/gitlab \
-  gitlab/gitlab-ce:latest
 ```
 
 *upgrade*
@@ -195,6 +182,94 @@ sudo docker run --detach \
   --volume /srv/gitlab/data:/var/opt/gitlab \
   gitlab/gitlab-ce:latest
 ```
+
+#### Set up a Runner
+
+*Stanalone*
+Admin > Runners it'll give you a registration token
+
+Linux: kubectl cp kube-apiserver-docker-desktop:run/config/pki/ca.crt -n kube-system ca.crt
+
+https://docs.gitlab.com/runner/install/linux-repository.html
+
+
+Mac, use binary https://docs.gitlab.com/runner/install/osx.html
+```
+sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.s3.amazonaws.com/latest/binaries/gitlab-runner-darwin-amd64
+sudo chmod +x /usr/local/bin/gitlab-runner
+```
+
+register the runner https://docs.gitlab.com/runner/register/index.html
+```
+#sudo gitlab-runner register 
+#this only worked for me NOT using sudo and the config file is in only your home directory
+gitlab-runner register
+# Answer the questions with what appeared in the UI
+```
+
+Install the runner as a service and start
+```
+cd ~
+gitlab-runner install
+gitlab-runner start
+```
+
+*Kubernetes*
+TODO
+
+#### Setting up Kubernetes in GitLab (deploy to prod)
+
+https://edenmal.moe/post/2018/GitLab-Kubernetes-Using-GitLab-CIs-Kubernetes-Cluster-feature/
+
+*Create Namespace*
+By creating the namespace it allows us to get the default ServiceAccount (not necessarily good, see reference)
+```
+$ kubectl create -f manifests/namespace.yaml
+```
+
+*Get ServiceAccount Token*
+```
+$ kubectl get -n presentation-gitlab-k8s secret
+```
+
+Get the NAME outputted from the above command to get the encoded token
+```
+kubectl get -n presentation-gitlab-k8s secret <NAME> -o yaml
+```
+
+Look for data > token: and decode it
+```
+echo YOUR_TOKEN_HERE | base64 -d
+```
+
+*Get Kubernetes CA Certificate*
+
+For docker-desktop you can do the following
+```
+kubectl cp kube-apiserver-docker-desktop:run/config/pki/ca.crt -n kube-system ca.crt
+```
+
+As noted in the reference, if you have a kubernetes provider it might be in `/.kube/config` under `certificate-authority`
+
+*API URL*
+
+```
+$ kubectl cluster-info | grep 'Kubernetes master' | awk '/http/ {print $NF}'
+# https://kubernetes.docker.internal:6443
+```
+There will be a validation error you need allow request from the local network in GitLab
+Admin -> Settings -> Network -> Outbound Requests -> Allow requests to the local network from hooks and services
+
+
+Now you can Add Kubernetes Cluster in GitLab
+- Kubernetes cluster name: skeleton prod (any name)
+- Environment scope: *
+- API URL: from above
+- CA Certificate: from above (full copy PEM format)
+- Token: from above decoded token
+-
+
+
 
 #### Kubernetes (Server Prod)
 
