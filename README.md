@@ -199,13 +199,32 @@ sudo curl --output /usr/local/bin/gitlab-runner https://gitlab-runner-downloads.
 sudo chmod +x /usr/local/bin/gitlab-runner
 ```
 
+```
+docker run -d --name gitlab-runner --restart always \
+-v /srv/gitlab-runner/config:/etc/gitlab-runner \
+-v /var/run/docker.sock:/var/run/docker.sock \
+gitlab/gitlab-runner:latest
+```
+
+On macOS, use /Users/Shared instead of /srv.
+
+
 register the runner https://docs.gitlab.com/runner/register/index.html
+
+https://docs.gitlab.com/ee/ci/docker/using_docker_build.html
+
+Inside of the container 
+```
+gitlab-runner register -n --url http://192.168.86.22 --registration-token U4ewExycnodqyyyzsjX_ --executor docker --docker-image docker:19.03.1 --description "My Runner" --docker-volumes /var/run/docker.sock:/var/run/docker.sock
+```
+
 ```
 #sudo gitlab-runner register 
 #this only worked for me NOT using sudo and the config file is in only your home directory
 gitlab-runner register
 # Answer the questions with what appeared in the UI
 ```
+Note: depending on where you grabbed your token from you may be registering a specific or shared runner. see https://docs.gitlab.com/ee/ci/runners/
 
 Install the runner as a service and start
 ```
@@ -214,7 +233,31 @@ gitlab-runner install
 gitlab-runner start
 ```
 
-*Kubernetes*
+
+I had to use privileged = true, and cache_dir = "cache" in config.toml otherwise could build docker in the release stage
+```
+concurrent = 1
+check_interval = 0
+
+
+[[runners]]
+  name = "#####"
+  url = "#####"
+  token = "#####"
+  executor = "docker"
+  privileged = true
+  cache_dir = "cache"
+  [runners.docker]
+    tls_verify = false
+    image = "docker:latest"
+    privileged = true
+    disable_cache = false
+    volumes = ["/cache"]
+  [runners.cache]
+
+```
+
+*Kubernetes Executor*
 TODO
 
 #### Setting up Kubernetes in GitLab (deploy to prod)
