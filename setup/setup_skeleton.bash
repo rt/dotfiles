@@ -56,16 +56,6 @@ setup_skeleton() {
   tmux send-keys -t $sess:qmk.2 "cd ~/projects/qmk_firmware" Enter
   tmux select-pane -t $sess:qmk.1
 
-  #----- work
-  tmux new-window -t $sess -n work
-  tmux send-keys -t $sess:work "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:work "cd ~/projects/work" Enter
-  tmux send-keys -t $sess:work "vim" Enter
-
-  tmux split-window -v -l 24 -t $sess:work
-  tmux send-keys -t $sess:work.2 "cd ~/projects/work" Enter
-  tmux select-pane -t $sess:work.1
-
   #----- clib
   tmux new-window -t $sess -n clib
   tmux send-keys -t $sess:clib "printf '\033]2;%s\033\\' '$1'; '$@';" Enter

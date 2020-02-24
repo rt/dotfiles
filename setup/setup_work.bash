@@ -22,26 +22,15 @@ setup_work() {
   tmux send-keys -t $sess:shop-fe.2 "ctags_javascript scripts/" Enter
   tmux select-pane -t $sess:shop-fe.1
 
-  # shop-be
-  tmux new-window -t $sess -n shop-be
-  tmux send-keys -t $sess:shop-be "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:shop-be "cd webapp-spring/src/main/java/com/switchfly/apps/shopping/$1" Enter
-  tmux send-keys -t $sess:shop-be "vim" Enter
+  # work
+  tmux new-window -t $sess -n work
+  tmux send-keys -t $sess:work "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:work "cd ~/projects/work" Enter
+  tmux send-keys -t $sess:work "vim" Enter
 
-  tmux split-window -v -l 12 -t $sess:shop-be
-  tmux send-keys -t $sess:shop-be.2 "cd core-webapp/$1" Enter
-  tmux select-pane -t $sess:shop-be.1
-
-  # e2e
-  tmux new-window -t $sess -n e2e
-  tmux send-keys -t $sess:e2e "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:e2e "cd test-automation" Enter
-  tmux send-keys -t $sess:e2e "vim pom.xml" Enter
-
-  tmux split-window -v -l 12 -t $sess:test-automation
-  tmux send-keys -t $sess:e2e.2 "cd test-automation" Enter
-  tmux send-keys -t $sess:e2e.2 "ctags -R --language-force=java -f tags src/" Enter
-  tmux select-pane -t $sess:e2e.1
+  tmux split-window -v -l 12 -t $sess:work
+  tmux send-keys -t $sess:work.2 "cd core-webapp/$1" Enter
+  tmux select-pane -t $sess:work.1
 
   # migrations
   tmux new-window -t $sess -n migrations
