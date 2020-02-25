@@ -17,6 +17,7 @@ bash_profile/macos.bash
 bash_profile/work.bash
 bash_profile/completion.bash
 bash_profile/prompt_mb.bash
+bash_profile/kubernetes.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda

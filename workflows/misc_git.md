@@ -2,6 +2,8 @@
 
 ## workflows
 
+*use the commit message of the soft reset*
+git commit -C HEAD@{1}
 
 ## Basic workflow
 
