@@ -40,7 +40,7 @@ setup_work() {
 
   tmux split-window -v -l 12 -t $sess:migrations
   tmux send-keys -t $sess:migrations.2 "cd migrations" Enter
-  tmux send-keys -t $sess:migrations.2 "ctags -R --language-force=java -f tags src/" Enter
+  tmux send-keys -t $sess:migrations.2 "psql -U postgres -h localhost" Enter
   tmux select-pane -t $sess:migrations.1
 
   ### system
