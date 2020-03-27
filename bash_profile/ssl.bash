@@ -38,7 +38,7 @@ function get_cert_names() {
     fi;
 }
 
-function add_self_signed_cert() {
+# function add_self_signed_cert() {
   # probably possible to grab this by hitting the server
 
   # example (self-signed: gitlab.pebblefields.com.crt)
@@ -48,7 +48,7 @@ function add_self_signed_cert() {
   # update-ca-certificates
 
   # that will create it in /etc/ssl/certs/ as a official name ie. /etc/ssl/certs/ca-cert-gitlab.pebblefields.com.pem
-}
+# }
 
 
 

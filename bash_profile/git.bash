@@ -1,6 +1,8 @@
 
 alias g="git"
 
+# add another remote
+# git remote set-url --add --push origin https://gitlab.pebblefields.com/root/skeleton-client-webapp.git
 
 # Use Git’s colored diff when available
 hash git &>/dev/null;

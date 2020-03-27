@@ -22,6 +22,9 @@ function digga() {
 # whois 8.8.8.8
 # whois 9.9.9.9
 
+### curl ...
+# curl -u user:password -X GET ...
+
 # Hosts file changes shouldn't need network restart
 
 

@@ -309,7 +309,7 @@ nmap ga <Plug>(EasyAlign)
 " Fugitive
 " ----------------------------------------------------------------------------
 " fugitive gitlab
-let g:fugitive_gitlab_domains = ['https://gitlab.corp.ezrez']
+let g:fugitive_gitlab_domains = ['https://gitlab.corp.switchfly.com']
 
 " DiffRev was a workaround but I think this might be handled by GMerge now ...
 " (not being used)
@@ -860,15 +860,7 @@ command! -nargs=* WorkGetMigrationsShared call <SID>get_migrations('shared')
 command! -nargs=* WorkGetMigrationsClient call <SID>get_migrations('client')
 
 command! -nargs=* CdRoot call <SID>get_project_path('')
-command! -nargs=* CdDeploy call <SID>get_project_path('deploy')
-command! -nargs=* CdDevTools call <SID>get_project_path('devtools')
-command! -nargs=* CdClient call <SID>get_project_path('client')
-command! -nargs=* CdServer call <SID>get_project_path('server')
-command! -nargs=* CdData call <SID>get_project_path('data')
-command! -nargs=* CdFeResources call <SID>get_project_path('core-webapp/src/main/webapp/resources')
 command! -nargs=* CdShopping call <SID>get_project_path('core-webapp/src/main/webapp/resources/shopping')
-command! -nargs=* CdAuto call <SID>get_project_path('test-automation')
-command! -nargs=* CdMigrations call <SID>get_project_path('migrations')
 
 command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
 command! -nargs=* WorkSearchConfluence call <SID>search_confluence(expand('<cword>'))
