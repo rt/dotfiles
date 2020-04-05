@@ -1,3 +1,29 @@
+
+# remove everything but using find
+#find . ! -name 'file.txt' -type f -exec rm -f {} +
+#find . -type f -not -name '*.gz'-delete
+#find . -type f -not -name '*gz' -print0 | xargs -0  -I {} rm -v {}
+
+# remove with extglob
+#shopt -s extglob  # to enable extglob
+#rm -v !("filename")
+#rm -v !("filename1"|"filename2") 
+#rm -rf !("tags")
+#cp !(b*) new_dir/
+#shopt -u extglob  # disable
+
+# copy with rsync
+# rsync -aP /folder1/* /folder/2
+# rsync -aP --exclude=x /folder1/* /folder2/
+# rsync --recursive -P --exclude=x /folder1/* /folder2/
+
+# copy with grep 
+#cp -R $(ls | grep -v '^subdir$') subdir/
+#ls | grep -v file.txt | xargs rm
+
+
+
+
 #### FZF
 
 # export FZF_DEFAULT_COMMAND='ag -g ""'

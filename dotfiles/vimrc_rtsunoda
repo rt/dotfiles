@@ -49,14 +49,13 @@ Plug 'shumphrey/fugitive-gitlab.vim'
 Plug 'tommcdo/vim-fubitive'
 Plug 'alvan/vim-closetag'
 Plug 'ap/vim-css-color'
-" Plug 'sheerun/vim-polyglot'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx', { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'andreshazard/vim-freemarker'
 Plug 'Konfekt/FastFold'
 Plug 'ton/vim-bufsurf'
-Plug 'arcticicestudio/nord-vim'
+Plug  'fatih/vim-go'
 
 " Initialize plugin system
 call plug#end()
@@ -152,7 +151,6 @@ set t_Co=256
 set background=dark
 "let base16colorspace=256  " Access colors present in 256 colorspace
 colorscheme base16-flat
-" colorscheme nord
 
 " Needed these to get background color in Idea
 highlight Normal ctermbg=NONE
@@ -309,7 +307,7 @@ nmap ga <Plug>(EasyAlign)
 " Fugitive
 " ----------------------------------------------------------------------------
 " fugitive gitlab
-let g:fugitive_gitlab_domains = ['https://gitlab.corp.switchfly.com']
+let g:fugitive_gitlab_domains = ['https://gitlab.corp.ezrez']
 
 " DiffRev was a workaround but I think this might be handled by GMerge now ...
 " (not being used)
