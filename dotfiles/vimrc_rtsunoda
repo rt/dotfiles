@@ -307,7 +307,7 @@ nmap ga <Plug>(EasyAlign)
 " Fugitive
 " ----------------------------------------------------------------------------
 " fugitive gitlab
-let g:fugitive_gitlab_domains = ['https://gitlab.corp.ezrez']
+let g:fugitive_gitlab_domains = ['https://gitlab.corp.switchfly.com']
 
 " DiffRev was a workaround but I think this might be handled by GMerge now ...
 " (not being used)
@@ -450,10 +450,16 @@ autocmd! User GoyoLeave nested call <SID>goyo_leave()
 
 " when triggering this command, vim will grab your path and line location and pass it along
 map <Leader>tt :call RemoteSendCommand(TestLineCommand(expand("%:p"), line(".")))<CR>
-map <Leader>tpc :call RemoteSendCommand(QueryClientDb(expand("%:p")))<CR>
+map <Leader>tpc :call RemoteSendCommand(QueryWithinPsql(expand("%:p")))<CR>
 
+" This would be better done as a bash script so you could pass the dbname (db, sqlfile)
 function! QueryClientDb(path)
   let cmd = join(["psql -U postgres -h localhost -d rtsunoda_client_185 -f ", a:path], "")
+  return cmd
+endfunction
+
+function! QueryWithinPsql(path)
+  let cmd = join(["\\i ", a:path], "")
   return cmd
 endfunction
 
@@ -468,30 +474,29 @@ endfunction
 
 
 " tmux (from https://github.com/junegunn/dotfiles/blob/master/vimrc)
-" I dont use these but maybe can use for reference when making work specific stuff
-"function! s:tmux_send(content, dest) range
-  "let dest = empty(a:dest) ? input('To which pane? ') : a:dest
-  "let tempfile = tempname()
-  "call writefile(split(a:content, "\n", 1), tempfile, 'b')
-  "call system(printf('tmux load-buffer -b vim-tmux %s \; paste-buffer -d -b vim-tmux -t %s',
-        "\ shellescape(tempfile), shellescape(dest)))
-  "call delete(tempfile)
-"endfunction
+function! s:tmux_send(content, dest) range
+  let dest = empty(a:dest) ? input('To which pane? ') : a:dest
+  let tempfile = tempname()
+  call writefile(split(a:content, "\n", 1), tempfile, 'b')
+  call system(printf('tmux load-buffer -b vim-tmux %s \; paste-buffer -d -b vim-tmux -t %s',
+        \ shellescape(tempfile), shellescape(dest)))
+  call delete(tempfile)
+endfunction
 
-"function! s:tmux_map(key, dest)
-  "execute printf('nnoremap <silent> %s "tyy:call <SID>tmux_send(@t, "%s")<cr>', a:key, a:dest)
-  "execute printf('xnoremap <silent> %s "ty:call <SID>tmux_send(@t, "%s")<cr>gv', a:key, a:dest)
-"endfunction
+function! s:tmux_map(key, dest)
+  execute printf('nnoremap <silent> %s "tyy:call <SID>tmux_send(@t, "%s")<cr>', a:key, a:dest)
+  execute printf('xnoremap <silent> %s "ty:call <SID>tmux_send(@t, "%s")<cr>gv', a:key, a:dest)
+endfunction
 
-"call s:tmux_map('<Leader>tt', '')
-"call s:tmux_map('<Leader>th', '.left')
-"call s:tmux_map('<Leader>tj', '.bottom')
-"call s:tmux_map('<Leader>tk', '.top')
-"call s:tmux_map('<Leader>tl', '.right')
-"call s:tmux_map('<Leader>ty', '.top-left')
-"call s:tmux_map('<Leader>to', '.top-right')
-"call s:tmux_map('<Leader>tn', '.bottom-left')
-"call s:tmux_map('<Leader>t.', '.bottom-right')
+call s:tmux_map('<Leader>tt', '')
+call s:tmux_map('<Leader>th', '.left')
+call s:tmux_map('<Leader>tj', '.bottom')
+call s:tmux_map('<Leader>tk', '.top')
+call s:tmux_map('<Leader>tl', '.right')
+call s:tmux_map('<Leader>ty', '.top-left')
+call s:tmux_map('<Leader>to', '.top-right')
+call s:tmux_map('<Leader>tn', '.bottom-left')
+call s:tmux_map('<Leader>t.', '.bottom-right')
 
 " ----------------------------------------------------------------------------
 " Mustache

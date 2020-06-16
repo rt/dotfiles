@@ -5,6 +5,7 @@
 - "Ayy                      // add to register
 
 - :global/patt/yank A       // or, could do this
+    qaq:g/pattern/y A
 
 
 

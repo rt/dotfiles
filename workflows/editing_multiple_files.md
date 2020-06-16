@@ -13,6 +13,9 @@
 - `cdo %s/patt/replacement/ge` : do replacement against the quickfix list
 - `cdo update`                 : update only changes files
 
+- `cdo g/patt/d`                : delete lines containing
+-
+- `cdo g/patt/-1d`              : supply a range (delete the line preceeding the pattern)
 
 
 

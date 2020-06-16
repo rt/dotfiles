@@ -37,6 +37,7 @@ brew install jq
 #sudo easy_install Pygments
 brew install highlight
 brew install pandoc
+brew install reattach-to-user-namespace
 ```
 
 ```bash

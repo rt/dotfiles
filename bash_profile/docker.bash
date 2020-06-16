@@ -14,6 +14,13 @@ function listRegistry() {
   curl -kX GET https://$1/v2/_catalog
   # curl -X GET http://$1/v2/_catalog
   # curl -X GET https://myregistry:5000/v2/ubuntu/tags/list
+
+}
+
+function listRegistryRepo() {
+  curl -kX GET https://$1/v2/$2/tags/list
+
+  # curl -X GET https://registry.com/v2/application/tags/list
 }
 
 alias docker.registry.ls="listRegistry"

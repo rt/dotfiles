@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 setup_skeleton() {
 
@@ -38,22 +38,22 @@ setup_skeleton() {
   #----- liquid
   tmux new-window -t $sess -n liquid
   tmux send-keys -t $sess:liquid "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:liquid "cd ~/projects/kabuda-liquid" Enter
+  tmux send-keys -t $sess:liquid "cd ~/projects/kabuda/kabuda-liquid" Enter
   tmux send-keys -t $sess:liquid "vim" Enter
 
   tmux split-window -v -l 24 -t $sess:liquid
-  tmux send-keys -t $sess:liquid.2 "cd ~/projects/kabuda-liquid" Enter
+  tmux send-keys -t $sess:liquid.2 "cd ~/projects/kabuda/kabuda-liquid" Enter
   tmux send-keys -t $sess:liquid.2 "npm test" Enter
   tmux select-pane -t $sess:liquid.1
 
   #----- clib
   tmux new-window -t $sess -n clib
   tmux send-keys -t $sess:clib "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:clib "cd ~/projects/kabuda-component-library" Enter
+  tmux send-keys -t $sess:clib "cd ~/projects/kabuda/kabuda-component-library" Enter
   tmux send-keys -t $sess:clib "vim" Enter
 
   tmux split-window -v -l 24 -t $sess:clib
-  tmux send-keys -t $sess:clib.2 "cd ~/projects/kabuda-component-library" Enter
+  tmux send-keys -t $sess:clib.2 "cd ~/projects/kabuda/kabuda-component-library" Enter
   tmux select-pane -t $sess:clib.1
 
   #----- betsy

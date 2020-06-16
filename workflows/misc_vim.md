@@ -1,5 +1,24 @@
 ## misc
 
+
+```
+:[range]g/pattern/cmd
+:g/^\s*$/d
+:g/^$/d
+:g/this\|that/d
+:g!/this\|that/d
+:v/this\|that/d
+```
+
+similar to sed (this is good if you are working with files)
+```
+sed -i '/green/d' colors   #dry run
+sed -i.bak '/green\|violet/d' colors
+sed '/green/d' colors
+sed '/green/!d' colors
+sed '/green\|violet/d' colors
+```
+
 ```text
 [{  beg code block
 ]}  end code block
