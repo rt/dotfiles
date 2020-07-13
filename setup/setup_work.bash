@@ -8,19 +8,23 @@ setup_work() {
   tmux new-session -s $sess -d -n root
   tmux send-keys -t $sess:root "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:root "ctags -R --language-force=java -f tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
+  tmux send-keys -t $sess:root "nvm use v8.10.0" Enter
   
   #tmux split-window -h -l 85 -t $sess:root
   tmux split-window -v -l 12 -t $sess:root
+  tmux send-keys -t $sess:root.2 "nvm use v8.10.0" Enter
 
   # shop-fe
   tmux new-window -t $sess -n shop-fe
   tmux send-keys -t $sess:shop-fe "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:shop-fe "cd core-webapp/src/main/webapp/resources/$1" Enter
+  tmux send-keys -t $sess:shop-fe "nvm use v8.10.0" Enter
   tmux send-keys -t $sess:shop-fe "vim" Enter
 
   tmux split-window -v -l 12 -t $sess:shop-fe
   tmux send-keys -t $sess:shop-fe.2 "cd core-webapp/src/main/webapp/resources/$1" Enter
   tmux send-keys -t $sess:shop-fe.2 "ctags_javascript scripts/" Enter
+  tmux send-keys -t $sess:shop-fe.2 "nvm use v8.10.0" Enter
   tmux select-pane -t $sess:shop-fe.1
 
   # work

@@ -80,6 +80,11 @@ brew install teensy_loader_cli
 
 https://www.vagrantup.com/downloads.html
 
+*flutter*
+```bash
+git clone https://github.com/flutter/flutter.git -b stable --depth 1
+flutter doctor # after adding to path
+```
 
 *projects*
 

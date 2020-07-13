@@ -3,11 +3,11 @@
 # source <(kubectl completion bash) 
 
 # add autocomplete permanently to your bash shell.
-echo "source <(kubectl completion bash)" >> ~/.bashrc 
+# echo "source <(kubectl completion bash)" >> ~/.bashrc 
 
 # alias and allow completion to work with it
-alias k=kubectl
-complete -F __start_kubectl k
+# alias k=kubectl
+# complete -F __start_kubectl k
 
 
 # zsh
