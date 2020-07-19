@@ -688,13 +688,6 @@ function! s:goto_tp(tp)
 	silent exec "!open '".s:uri."'"
 endfunction
 
-" Confluence Search
-function! s:search_confluence(tp)
-  let s:uri = 'https://confluence.switchfly.com/dosearchsite.action?queryString=' . a:tp
-	silent exec "!open '".s:uri."'"
-endfunction
-
-
 " ----------------------------------------------------------------------------
 " Maps (or variable changes that create a map)
 " ----------------------------------------------------------------------------
@@ -866,7 +859,6 @@ command! -nargs=* CdRoot call <SID>get_project_path('')
 command! -nargs=* CdShopping call <SID>get_project_path('core-webapp/src/main/webapp/resources/shopping')
 
 command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
-command! -nargs=* WorkSearchConfluence call <SID>search_confluence(expand('<cword>'))
 
 " go to template definition (gf): no work required
 " go to js definitions (ctags): no work required

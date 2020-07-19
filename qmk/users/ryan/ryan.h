@@ -113,8 +113,6 @@ enum custom_keycodes {
   VIM_CHANGE_NEXT,
   VIM_CHANGE_LAST,
   VIM_DISPATCH_NPM,
-  VIM_METHOD_PREV,
-  VIM_METHOD_NEXT,
   VIM_SHOW_ALIASES,
   VIM_SHOW_WORKFLOWS,
   VIM_ONLY,
@@ -127,7 +125,6 @@ enum custom_keycodes {
   VIM_NERD_DEL,
   VIM_ULTISNIPS_TRIGGER,
   VIM_WORK_DIR_ROOT,
-  VIM_WORK_DIR_FE_SHOPPING,
   VIM_WORK_SHOW_NOTES,
   VIM_WORK_SHOW_SCRIPTS,
   VIM_WORK_GOTO_COMPONENT,
@@ -141,7 +138,6 @@ enum custom_keycodes {
   VIM_WORK_GET_MIGRATIONS_SHARED,
   VIM_WORK_GET_MIGRATIONS_CLIENT,
   VIM_WORK_GOTO_TP,
-  VIM_WORK_SEARCH_CONFLUENCE,
   VIM_WORK_LIST_ROUTES,
   VIM_WORK_LIST_CONTROLLERS,
   VIM_WORK_LIST_COMPONENTS,
@@ -544,7 +540,7 @@ enum custom_keycodes {
  * |      |      | Mute | Vol- | Vol+ |SetSnd|  -   |  1   |  2   |  3   |  .   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      | Bspc |  ,   | Del  |      |      |      |
- * `-----------------------------------------------------------------------------------'
+* `-----------------------------------------------------------------------------------'
  */
 #define ADJ_L00     XXXXXXX
 #define ADJ_L01     XXXXXXX
@@ -603,9 +599,9 @@ enum custom_keycodes {
  * ,-----------------------------------------------------------------------------------.
  * |      |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |Zm0   |ZmOut |TSCRLL| PgUp | Home | Left | Down |  Up  |Right |      |      |
+ * |      |      |      |TSCRLL| PgUp | Home | Left | Down |  Up  |Right |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |FlScrn|ZmIn  |AppWin|PgDown| End  |WkspL |WordL |WordR |WkspR |      |      |
+ * |      |FlScrn|      |AppWin|PgDown| End  |WkspL |WordL |WordR |WkspR |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |TZMTOG|Enter | Bspc |AltBk | Del  |      |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -617,14 +613,14 @@ enum custom_keycodes {
 #define NAV_L04     _______
 #define NAV_L05     LGUI(KC_TAB)
 #define NAV_L10     _______
-#define NAV_L11     LGUI(KC_0)
-#define NAV_L12     LGUI(KC_MINS)
+#define NAV_L11     _______
+#define NAV_L12     _______
 #define NAV_L13     TMUX_SCROLL
 #define NAV_L14     KC_PGUP
 #define NAV_L15     KC_HOME
 #define NAV_L20     _______
 #define NAV_L21     LCTL(LGUI(KC_F))
-#define NAV_L22     LGUI(KC_PLUS)
+#define NAV_L22     _______
 #define NAV_L23     LGUI(KC_GRV)
 #define NAV_L24     KC_PGDOWN
 #define NAV_L25     KC_END
@@ -869,7 +865,7 @@ enum custom_keycodes {
 #define VWNAV_L00     _______
 #define VWNAV_L01     VIM_WORK_SHOW_SCRIPTS
 #define VWNAV_L02     VIM_WORK_SHOW_NOTES
-#define VWNAV_L03     VIM_WORK_SEARCH_CONFLUENCE
+#define VWNAV_L03     _______
 #define VWNAV_L04     VIM_WORK_GOTO_TP
 #define VWNAV_L05     _______
 #define VWNAV_L10     _______
@@ -894,7 +890,7 @@ enum custom_keycodes {
 #define VWNAV_R00     _______
 #define VWNAV_R01     VIM_WORK_DIR_ROOT
 #define VWNAV_R02     _______
-#define VWNAV_R03     VIM_WORK_DIR_FE_SHOPPING
+#define VWNAV_R03     _______
 #define VWNAV_R04     _______
 #define VWNAV_R05     _______
 #define VWNAV_R10     _______

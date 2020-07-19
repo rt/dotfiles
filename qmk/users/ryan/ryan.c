@@ -193,16 +193,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING("]C");
       }
         break;
-    case VIM_METHOD_NEXT:
-      if (record->event.pressed) {
-        SEND_STRING("]m");
-      }
-        break;
-    case VIM_METHOD_PREV:
-      if (record->event.pressed) {
-        SEND_STRING("[m");
-      }
-        break;
     case VIM_EXCHANGE_LINE_BELOW:
       if (record->event.pressed) {
         SEND_STRING("]e");
@@ -395,11 +385,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":CdRoot"SS_TAP(X_ENTER));
       }
         break;
-    case VIM_WORK_DIR_FE_SHOPPING:
-      if (record->event.pressed) {
-        SEND_STRING(":CdShopping"SS_TAP(X_ENTER));
-      }
-        break;
     case VIM_WORK_GOTO_COMPONENT:
       if (record->event.pressed) {
         SEND_STRING(":WorkGotoComponent"SS_TAP(X_ENTER));
@@ -453,11 +438,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_WORK_GOTO_TP:
       if (record->event.pressed) {
         SEND_STRING(":WorkGotoTp"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_SEARCH_CONFLUENCE:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkSearchConfluence"SS_TAP(X_ENTER));
       }
         break;
     case VIM_WORK_LIST_ROUTES:
