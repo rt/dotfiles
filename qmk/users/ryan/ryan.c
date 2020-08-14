@@ -425,66 +425,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":GetImplWord"SS_TAP(X_ENTER));
       }
         break;
-    case VIM_WORK_GET_MIGRATIONS_SHARED:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkGetMigrationsShared"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_GET_MIGRATIONS_CLIENT:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkGetMigrationsClient"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_GOTO_TP:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkGotoTp"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_ROUTES:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListRoutes"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_CONTROLLERS:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListControllers"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_COMPONENTS:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListComponents"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_HANDLEBAR_HELPERS:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListHandlebarHelpers"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_TEMPLATES:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListTemplates"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_ACTIONS:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListActions"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_MODELS:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListModels"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_STORES:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListStores"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_LIST_STYLES:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkListStyles"SS_TAP(X_ENTER));
-      }
-        break;
     case TMUX_PANE_NEXT:
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL("bj"));

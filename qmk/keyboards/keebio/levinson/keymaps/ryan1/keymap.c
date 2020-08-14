@@ -10,25 +10,37 @@
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   CD_SHOP,
+  VIM_WORK_LIST_ROUTES,
+  VIM_WORK_LIST_CONTROLLERS,
+  VIM_WORK_LIST_COMPONENTS,
+  VIM_WORK_LIST_TEMPLATES,
+  VIM_WORK_LIST_STYLES,
+  VIM_WORK_LIST_HANDLEBAR_HELPERS,
+  VIM_WORK_LIST_STORES,
+  VIM_WORK_LIST_MODELS,
+  VIM_WORK_LIST_ACTIONS,
+  VIM_WORK_GET_MIGRATIONS_SHARED,
+  VIM_WORK_GET_MIGRATIONS_CLIENT,
+  VIM_WORK_GOTO_TP,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * | Tab  |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  | Bksp |
+ * |Zoom0 |Zoom- |Zoom+ |      |      |Reset |Zoom0 |Zoom- |Zoom+ |      |      |Reset |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * | Esc  |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |  "   |
+ * |Routes|Ctrlrs|Compts|Tmplts|Styles|      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
+ * |Stores|Models|Actns |MigSh |MigCl |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * |Adjust| Ctrl | Alt  | GUI  |Lower |Space |Space |Raise | Left | Down |  Up  |Right |
+ * |CdShop|      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12( \
-  LGUI(KC_0),  LGUI(KC_MINS),    LGUI(KC_PLUS),    XXXXXXX,    XXXXXXX,    RESET,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    RESET, \
-  XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, \
-  XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, \
+  LGUI(KC_0),  LGUI(KC_MINS),    LGUI(KC_PLUS),    XXXXXXX,    XXXXXXX,    RESET,  LGUI(KC_0),  LGUI(KC_MINS),    LGUI(KC_PLUS),    XXXXXXX,    XXXXXXX,    RESET, \
+  VIM_WORK_LIST_ROUTES,  VIM_WORK_LIST_CONTROLLERS,    VIM_WORK_LIST_COMPONENTS,    VIM_WORK_LIST_TEMPLATES,    VIM_WORK_LIST_STYLES,    VIM_WORK_LIST_HANDLEBAR_HELPERS,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, \
+  VIM_WORK_LIST_STORES,  VIM_WORK_LIST_MODELS,    VIM_WORK_LIST_ACTIONS,    VIM_WORK_GET_MIGRATIONS_SHARED,    VIM_WORK_GET_MIGRATIONS_CLIENT,    XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, \
   CD_SHOP,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,  CD_SHOP,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX \
 ),
 
@@ -50,6 +62,66 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case CD_SHOP:
       if (record->event.pressed) {
         SEND_STRING(":CdShopping"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_ROUTES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListRoutes"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_CONTROLLERS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListControllers"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_COMPONENTS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListComponents"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_HANDLEBAR_HELPERS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListHandlebarHelpers"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_TEMPLATES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListTemplates"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_ACTIONS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListActions"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_MODELS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListModels"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_STORES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListStores"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_LIST_STYLES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListStyles"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_GET_MIGRATIONS_SHARED:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGetMigrationsShared"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_GET_MIGRATIONS_CLIENT:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGetMigrationsClient"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_WORK_GOTO_TP:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGotoTp"SS_TAP(X_ENTER));
       }
         break;
   }

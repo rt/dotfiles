@@ -135,18 +135,6 @@ enum custom_keycodes {
   VIM_GET_USAGES_BY_CURRENT_FILE,
   VIM_GET_IMPL,
   VIM_GET_IMPL_CURSOR_WORD,
-  VIM_WORK_GET_MIGRATIONS_SHARED,
-  VIM_WORK_GET_MIGRATIONS_CLIENT,
-  VIM_WORK_GOTO_TP,
-  VIM_WORK_LIST_ROUTES,
-  VIM_WORK_LIST_CONTROLLERS,
-  VIM_WORK_LIST_COMPONENTS,
-  VIM_WORK_LIST_HANDLEBAR_HELPERS,
-  VIM_WORK_LIST_TEMPLATES,
-  VIM_WORK_LIST_ACTIONS,
-  VIM_WORK_LIST_MODELS,
-  VIM_WORK_LIST_STORES,
-  VIM_WORK_LIST_STYLES,
 };
 
 /* Qwerty: This is to help others understand 40% keyboards
@@ -331,7 +319,7 @@ enum custom_keycodes {
 #define COLE_R25     XXXXXXX
 #define COLE_R30     LT(_RAISE,KC_SPC)
 #define COLE_R31     OSL(_SFT)
-#define COLE_R32     KC_ESC
+#define COLE_R32     KC_CAPSLOCK
 #define COLE_R33     XXXXXXX
 #define COLE_R34     XXXXXXX
 #define COLE_R35     XXXXXXX
@@ -853,11 +841,11 @@ enum custom_keycodes {
 /* VWNAV 
  * Vim: Work specific navigation
  * ,-----------------------------------------------------------------------------------.
- * |      |SCRPTS|NOTES |SrchC | TP   |      |CDAUTO|CDROOT|CDFETP|CDSHOP|      |      |
+ * |      |SCRPTS|NOTES |      |      |      |      |CDROOT|      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |Routes|Ctrlrs|Compts|Tmplts|Styles|      |      |      |Fltrs |SprCnf|      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |Stores|Models|Actns |      |      |CDMIG |MigSh |MigCl |      |      |      |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -866,18 +854,18 @@ enum custom_keycodes {
 #define VWNAV_L01     VIM_WORK_SHOW_SCRIPTS
 #define VWNAV_L02     VIM_WORK_SHOW_NOTES
 #define VWNAV_L03     _______
-#define VWNAV_L04     VIM_WORK_GOTO_TP
+#define VWNAV_L04     _______
 #define VWNAV_L05     _______
 #define VWNAV_L10     _______
-#define VWNAV_L11     VIM_WORK_LIST_ROUTES
-#define VWNAV_L12     VIM_WORK_LIST_CONTROLLERS
-#define VWNAV_L13     VIM_WORK_LIST_COMPONENTS
-#define VWNAV_L14     VIM_WORK_LIST_TEMPLATES
-#define VWNAV_L15     VIM_WORK_LIST_STYLES
+#define VWNAV_L11     _______
+#define VWNAV_L12     _______
+#define VWNAV_L13     _______
+#define VWNAV_L14     _______
+#define VWNAV_L15     _______
 #define VWNAV_L20     _______
-#define VWNAV_L21     VIM_WORK_LIST_STORES
-#define VWNAV_L22     VIM_WORK_LIST_MODELS
-#define VWNAV_L23     VIM_WORK_LIST_ACTIONS
+#define VWNAV_L21     _______
+#define VWNAV_L22     _______
+#define VWNAV_L23     _______
 #define VWNAV_L24     _______
 #define VWNAV_L25     _______
 #define VWNAV_L30     _______
@@ -901,8 +889,8 @@ enum custom_keycodes {
 #define VWNAV_R15     _______
 #define VWNAV_R20     _______
 #define VWNAV_R21     _______
-#define VWNAV_R22     VIM_WORK_GET_MIGRATIONS_CLIENT
-#define VWNAV_R23     VIM_WORK_GET_MIGRATIONS_SHARED
+#define VWNAV_R22     _______
+#define VWNAV_R23     _______
 #define VWNAV_R24     _______
 #define VWNAV_R25     _______
 #define VWNAV_R30     _______
@@ -1000,8 +988,8 @@ enum custom_keycodes {
 #define INAV_L00     _______
 #define INAV_L01     LALT(KC_HOME)
 #define INAV_L02     LCTL(LSFT(KC_F))
-#define INAV_L03     LGUI(KC_N)
-#define INAV_L04     LGUI(LSFT(KC_N))
+#define INAV_L03     LGUI(KC_O)
+#define INAV_L04     LGUI(LSFT(KC_O))
 #define INAV_L05     LSFT(KC_F11)
 #define INAV_L10     _______
 #define INAV_L11     LGUI(LSFT(KC_A))         // shared run command
@@ -1025,7 +1013,7 @@ enum custom_keycodes {
 #define INAV_R00     KC_F10                       //F11 didn't work, mapped to F10 in Idea
 #define INAV_R01     LALT(KC_F1)
 #define INAV_R02     LGUI(KC_F12)
-#define INAV_R03     LSFT(LALT(LGUI(KC_N)))
+#define INAV_R03     LALT(LGUI(KC_O))
 #define INAV_R04     _______
 #define INAV_R05     _______
 #define INAV_R10     LGUI(LALT(KC_LEFT))
