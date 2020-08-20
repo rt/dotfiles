@@ -28,7 +28,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 /* Qwerty
  * ,-----------------------------------------------------------------------------------.
- * |Zoom0 |Zoom- |Zoom+ |      |      |Reset |Zoom0 |Zoom- |Zoom+ |      |      |Reset |
+ * |      |      |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |Routes|Ctrlrs|Compts|Tmplts|Styles|      |      |      |      |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
@@ -38,7 +38,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_ortho_4x12( \
-  LGUI(KC_0),  LGUI(KC_MINS),    LGUI(KC_PLUS),    XXXXXXX,    XXXXXXX,    RESET,  LGUI(KC_0),  LGUI(KC_MINS),    LGUI(KC_PLUS),    XXXXXXX,    XXXXXXX,    RESET, \
+  XXXXXX,  XXXXXX,    XXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXX,  XXXXXX,  XXXXXX,    XXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXX, \
   VIM_WORK_LIST_ROUTES,  VIM_WORK_LIST_CONTROLLERS,    VIM_WORK_LIST_COMPONENTS,    VIM_WORK_LIST_TEMPLATES,    VIM_WORK_LIST_STYLES,    VIM_WORK_LIST_HANDLEBAR_HELPERS,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, \
   VIM_WORK_LIST_STORES,  VIM_WORK_LIST_MODELS,    VIM_WORK_LIST_ACTIONS,    VIM_WORK_GET_MIGRATIONS_SHARED,    VIM_WORK_GET_MIGRATIONS_CLIENT,    XXXXXXX,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX, \
   CD_SHOP,  XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,  CD_SHOP,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX,    XXXXXXX \

@@ -269,7 +269,7 @@ enum custom_keycodes {
  * |------+------+------+------+------+-------------+------+------+------+------+------|
  * |      |  A   |   R  |_NAV/S|Ctl/T |_CHR/G|_CHR/M|Ctl/N |_NAV/E|   I  |  O   |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |Gui/Z |Alt/X |MISC/C|_IDE/D|_VHM/V|_VHM/K|_IDE/H|MISC/,|Alt/. |Gui/' |      |
+ * |      |Gui/Z |Alt/X |  C   |_IDE/D|_VHM/V|_VHM/K|_IDE/H|  ,   |Alt/. |Gui/' |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT | _ADJ |      |      |      |
  * `-----------------------------------------------------------------------------------'
@@ -289,7 +289,7 @@ enum custom_keycodes {
 #define COLE_L20     XXXXXXX
 #define COLE_L21     MT(MOD_LGUI,KC_Z)
 #define COLE_L22     MT(MOD_LALT,KC_X)
-#define COLE_L23     LT(_MISC,KC_C)
+#define COLE_L23     KC_C
 #define COLE_L24     LT(_IDEA,KC_D)
 #define COLE_L25     LT(_VHOME,KC_V)
 #define COLE_L30     XXXXXXX
@@ -313,13 +313,13 @@ enum custom_keycodes {
 #define COLE_R15     XXXXXXX 
 #define COLE_R20     LT(_VHOME,KC_K)
 #define COLE_R21     LT(_IDEA,KC_H)
-#define COLE_R22     LT(_MISC,KC_COMM)
+#define COLE_R22     KC_COMM
 #define COLE_R23     MT(MOD_LALT,KC_DOT)
 #define COLE_R24     MT(MOD_LGUI,KC_QUOT)
 #define COLE_R25     XXXXXXX
 #define COLE_R30     LT(_RAISE,KC_SPC)
 #define COLE_R31     OSL(_SFT)
-#define COLE_R32     KC_CAPSLOCK
+#define COLE_R32     _MISC
 #define COLE_R33     XXXXXXX
 #define COLE_R34     XXXXXXX
 #define COLE_R35     XXXXXXX
@@ -521,29 +521,29 @@ enum custom_keycodes {
 /* Adjust
  * Global: System and Numpad
  * ,-----------------------------------------------------------------------------------.
- * |      |      | Play | Prev | Next |      |  *   |  7   |  8   |  9   |  /   |      |
+ * |      |Zoom+ | Play | Prev | Next |      |  *   |  7   |  8   |  9   |  /   |      |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      | Reset|Colemk|Qwerty|ScrnSh|  +   |  4   |  5   |  6   |  0   |      |
+ * |      |Zoom- | Reset|Colemk|Qwerty|ScrnSh|  +   |  4   |  5   |  6   |  0   |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
- * |      |      | Mute | Vol- | Vol+ |SetSnd|  -   |  1   |  2   |  3   |  .   |      |
+ * |      |Zoom0 | Mute | Vol- | Vol+ |SetSnd|  -   |  1   |  2   |  3   |  .   |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      | Bspc |  ,   | Del  |      |      |      |
 * `-----------------------------------------------------------------------------------'
  */
 #define ADJ_L00     XXXXXXX
-#define ADJ_L01     XXXXXXX
+#define ADJ_L01     LGUI(KC_PLUS)
 #define ADJ_L02     KC_MPLY
 #define ADJ_L03     KC_MRWD
 #define ADJ_L04     KC_MFFD
 #define ADJ_L05     XXXXXXX
 #define ADJ_L10     XXXXXXX
-#define ADJ_L11     XXXXXXX
+#define ADJ_L11     LGUI(KC_MINS)
 #define ADJ_L12     RESET
 #define ADJ_L13     COLEMAKDH                       //""
 #define ADJ_L14     QWERTY                          //custom keycode, so song can be played
 #define ADJ_L15     LSFT(LGUI(KC_4))
 #define ADJ_L20     XXXXXXX
-#define ADJ_L21     XXXXXXX
+#define ADJ_L21     LGUI(KC_0)
 #define ADJ_L22     KC_MUTE
 #define ADJ_L23     KC_VOLD
 #define ADJ_L24     KC_VOLU
@@ -987,7 +987,7 @@ enum custom_keycodes {
  */
 #define INAV_L00     _______
 #define INAV_L01     LALT(KC_HOME)
-#define INAV_L02     LCTL(LSFT(KC_F))
+#define INAV_L02     LSFT(LGUI(KC_F))
 #define INAV_L03     LGUI(KC_O)
 #define INAV_L04     LGUI(LSFT(KC_O))
 #define INAV_L05     LSFT(KC_F11)
