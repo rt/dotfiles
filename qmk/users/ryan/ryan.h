@@ -42,7 +42,7 @@ enum custom_layers {
   _NAV=5,
   _VHOME=6,
   _VHNAV=7,
-  _VWORK=8,
+  _OTHER=8,
   _VWNAV=9,
   _INAV=10,
   _CHROME=11,
@@ -145,7 +145,7 @@ enum custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------|
  * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
  * |------+------+------+------+------+------+------+------+------+------|
- * | Alt  | Gui  | _ADJ | _VWK | Enter| Spc  | _VWK | Left | Down |  Up  |
+ * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT | _ADJ |      |      |
  * `---------------------------------------------------------------------'
  */
 #define QWER_L01     KC_Q
@@ -163,11 +163,11 @@ enum custom_keycodes {
 #define QWER_L23     KC_C
 #define QWER_L24     KC_V
 #define QWER_L25     KC_B
-#define QWER_L31     KC_LALT
-#define QWER_L32     KC_LGUI
+#define QWER_L31     _______
+#define QWER_L32     _______
 #define QWER_L33     OSL(_ADJUST)
-#define QWER_L34     OSL(_VWORK)
-#define QWER_L35     KC_ENTER
+#define QWER_L34     OSL(_LOWER)
+#define QWER_L35     LT(_GIT,KC_ENTER)
 
 #define QWER_R01     KC_Y
 #define QWER_R02     KC_U
@@ -184,66 +184,11 @@ enum custom_keycodes {
 #define QWER_R23     KC_COMM
 #define QWER_R24     KC_DOT
 #define QWER_R25     KC_SLSH
-#define QWER_R31     KC_SPC
-#define QWER_R32     OSL(_VWORK)
-#define QWER_R33     KC_LEFT
-#define QWER_R34     KC_DOWN
-#define QWER_R35     KC_UP
-
-
-
-/* QWERTY Helper : Give example with minimal one layer (excluding system)
- * ,---------------------------------------------------------------------.
- * |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |   1  |   2  |   3  |   4  |   5  |   6  |   7  |   8  |   9  |   0  |
- * |------+------+------+------+------|------+------+------+------+------|
- * |  F2  |  F3  |  F4  |  F5  |  F6  |      |   -  |   =  |   [  |   ]  |
- * |------+------+------+------+------+------+------+------+------+------|
- * |  F8  |  F9  |  F10 |  F11 |  F12 |      |   _  |   +  |   {  |   }  |
- * `---------------------------------------------------------------------'
- */
-#define VWORK_L01     KC_EXLM
-#define VWORK_L02     KC_AT
-#define VWORK_L03     KC_HASH
-#define VWORK_L04     KC_DLR
-#define VWORK_L05     KC_PERC
-#define VWORK_L11     KC_1
-#define VWORK_L12     KC_2
-#define VWORK_L13     KC_3
-#define VWORK_L14     KC_4
-#define VWORK_L15     KC_5
-#define VWORK_L21     KC_F2
-#define VWORK_L22     KC_F3
-#define VWORK_L23     KC_F4
-#define VWORK_L24     KC_F5
-#define VWORK_L25     KC_F6
-#define VWORK_L31     KC_F8
-#define VWORK_L32     KC_F9
-#define VWORK_L33     KC_F10
-#define VWORK_L34     KC_F11
-#define VWORK_L35     KC_F12
-
-#define VWORK_R01     KC_CIRC
-#define VWORK_R02     KC_AMPR
-#define VWORK_R03     KC_ASTR
-#define VWORK_R04     KC_LPRN
-#define VWORK_R05     KC_RPRN
-#define VWORK_R11     KC_6
-#define VWORK_R12     KC_7
-#define VWORK_R13     KC_8
-#define VWORK_R14     KC_9
-#define VWORK_R15     KC_0
-#define VWORK_R21     XXXXXXX
-#define VWORK_R22     KC_MINS
-#define VWORK_R23     KC_EQL
-#define VWORK_R24     KC_LBRC
-#define VWORK_R25     KC_RBRC
-#define VWORK_R31     XXXXXXX
-#define VWORK_R32     KC_UNDS
-#define VWORK_R33     KC_PLUS
-#define VWORK_R34     KC_LCBR
-#define VWORK_R35     KC_RCBR
+#define QWER_R31     LT(_RAISE,KC_SPC)
+#define QWER_R32     OSL(_SFT)
+#define QWER_R33     _MISC
+#define QWER_R34     _______
+#define QWER_R35     _______
 
 
 
@@ -1032,6 +977,62 @@ enum custom_keycodes {
 #define MISC_R33     _______
 #define MISC_R34     _______
 #define MISC_R35     _______
+
+
+
+
+/* Other 
+ * ,---------------------------------------------------------------------.
+ * |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+-------------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------|------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |
+ * |------+------+------+------+------+------+------+------+------+------|
+ * |      |      |      |      |      |      |      |      |      |      |
+ * `---------------------------------------------------------------------'
+ */
+#define OTHER_L01     _______
+#define OTHER_L02     _______
+#define OTHER_L03     _______
+#define OTHER_L04     _______
+#define OTHER_L05     _______
+#define OTHER_L11     _______
+#define OTHER_L12     _______
+#define OTHER_L13     _______
+#define OTHER_L14     _______
+#define OTHER_L15     _______
+#define OTHER_L21     _______
+#define OTHER_L22     _______
+#define OTHER_L23     _______
+#define OTHER_L24     _______
+#define OTHER_L25     _______
+#define OTHER_L31     _______
+#define OTHER_L32     _______
+#define OTHER_L33     _______
+#define OTHER_L34     _______
+#define OTHER_L35     _______
+
+#define OTHER_R01     _______
+#define OTHER_R02     _______
+#define OTHER_R03     _______
+#define OTHER_R04     _______
+#define OTHER_R05     _______
+#define OTHER_R11     _______
+#define OTHER_R12     _______
+#define OTHER_R13     _______
+#define OTHER_R14     _______
+#define OTHER_R15     _______
+#define OTHER_R21     _______
+#define OTHER_R22     _______
+#define OTHER_R23     _______
+#define OTHER_R24     _______
+#define OTHER_R25     _______
+#define OTHER_R31     _______
+#define OTHER_R32     _______
+#define OTHER_R33     _______
+#define OTHER_R34     _______
+#define OTHER_R35     _______
 
 
 

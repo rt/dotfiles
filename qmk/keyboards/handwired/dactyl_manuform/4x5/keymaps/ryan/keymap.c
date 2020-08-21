@@ -95,12 +95,12 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                       XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,                                           \
                                       XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX
 ),
-[_VWORK] =  LAYOUT( \
-  VWORK_L01, VWORK_L02, VWORK_L03, VWORK_L04, VWORK_L05, VWORK_R01, VWORK_R02, VWORK_R03, VWORK_R04, VWORK_R05,  \
-  VWORK_L11, VWORK_L12, VWORK_L13, VWORK_L14, VWORK_L15, VWORK_R11, VWORK_R12, VWORK_R13, VWORK_R14, VWORK_R15,  \
-  VWORK_L21, VWORK_L22, VWORK_L23, VWORK_L24, VWORK_L25, VWORK_R21, VWORK_R22, VWORK_R23, VWORK_R24, VWORK_R25,  \
-              XXXXXXX, VWORK_L33,                                                   VWORK_R33, XXXXXXX,    \
-                                      VWORK_L34, VWORK_L35,  VWORK_R31, VWORK_R32,                                          \
+[_OTHER] =  LAYOUT( \
+  OTHER_L01, OTHER_L02, OTHER_L03, OTHER_L04, OTHER_L05, OTHER_R01, OTHER_R02, OTHER_R03, OTHER_R04, OTHER_R05,  \
+  OTHER_L11, OTHER_L12, OTHER_L13, OTHER_L14, OTHER_L15, OTHER_R11, OTHER_R12, OTHER_R13, OTHER_R14, OTHER_R15,  \
+  OTHER_L21, OTHER_L22, OTHER_L23, OTHER_L24, OTHER_L25, OTHER_R21, OTHER_R22, OTHER_R23, OTHER_R24, OTHER_R25,  \
+              XXXXXXX, OTHER_L33,                                                   OTHER_R33, XXXXXXX,    \
+                                      OTHER_L34, OTHER_L35,  OTHER_R31, OTHER_R32,                                          \
                                       XXXXXXX,  XXXXXXX,   XXXXXXX,  XXXXXXX,                                           \
                                       XXXXXXX,   XXXXXXX,    XXXXXXX, XXXXXXX
 ),
