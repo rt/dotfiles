@@ -49,11 +49,11 @@ setup_skeleton() {
   #----- clib
   tmux new-window -t $sess -n clib
   tmux send-keys -t $sess:clib "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:clib "cd ~/projects/kabuda/kabuda-component-library" Enter
+  tmux send-keys -t $sess:clib "cd ~/projects/skeleton/component-library" Enter
   tmux send-keys -t $sess:clib "vim" Enter
 
   tmux split-window -v -l 24 -t $sess:clib
-  tmux send-keys -t $sess:clib.2 "cd ~/projects/kabuda/kabuda-component-library" Enter
+  tmux send-keys -t $sess:clib.2 "cd ~/projects/skeleton/component-library" Enter
   tmux select-pane -t $sess:clib.1
 
   #----- betsy
