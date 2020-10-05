@@ -12,7 +12,7 @@ setup_work() {
   
   #tmux split-window -h -l 85 -t $sess:root
   tmux split-window -v -l 12 -t $sess:root
-  tmux send-keys -t $sess:root.2 "nvm use v8.10.0" Enter
+  # tmux send-keys -t $sess:root.2 "nvm use v8.10.0" Enter
 
   # shop-fe
   tmux new-window -t $sess -n shop-fe
@@ -65,6 +65,15 @@ setup_work() {
   tmux split-window -v -l 12 -t $sess:deploy
   tmux send-keys -t $sess:deploy.2 "cd ~/dev/repos/deploy" Enter
   tmux select-pane -t $sess:deploy.1
+
+  ### enrichment
+  tmux new-window -t $sess -n enrichment
+  tmux send-keys -t $sess:enrichment "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:enrichment "cd ~/dev/repos/enrichment" Enter
+
+  tmux split-window -v -l 12 -t $sess:enrichment
+  tmux send-keys -t $sess:enrichment.2 "cd ~/dev/repos/enrichment" Enter
+  tmux select-pane -t $sess:enrichment.1
 
 
   #select first

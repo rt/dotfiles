@@ -27,7 +27,11 @@ brew install vim
 brew install tree
 brew install the_silver_searcher 
 brew install ripgrep
+
 brew install fzf
+# To install useful key bindings and fuzzy completion:
+$(brew --prefix)/opt/fzf/install
+
 brew tap universal-ctags/universal-ctags
 brew install --HEAD universal-ctags
 brew install shUnit2

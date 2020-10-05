@@ -4,6 +4,9 @@ alias g="git"
 # add another remote
 # git remote set-url --add --push origin https://gitlab.pebblefields.com/root/skeleton-client-webapp.git
 
+# by date
+# git checkout 'master@{2018-09-01 01:00:00}'
+
 # Use Git’s colored diff when available
 hash git &>/dev/null;
 if [ $? -eq 0 ]; then

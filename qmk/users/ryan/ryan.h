@@ -332,7 +332,7 @@ enum custom_keycodes {
 #define LOW_L25     KC_QUOT
 #define LOW_L31     XXXXXXX
 #define LOW_L32     XXXXXXX
-#define LOW_L33     _______
+#define LOW_L33     XXXXXXX
 #define LOW_L34     XXXXXXX
 #define LOW_L35     XXXXXXX
 
