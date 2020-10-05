@@ -2,7 +2,7 @@
 
 ## Find multiple files by searching content (and can replace)
 
-- `Ag` or other above: Simple but you can't work with the subset, unless you want to use buffers as the list container
+- `Ag` Simple but you can't work with the subset, unless you want to use buffers as the list container
 
 - `args ...` > `vimgrep /patt/g ##`: Put scope files in args then get subset with vimgrep to quickfix list
     or,
@@ -18,6 +18,11 @@
 - `cdo g/patt/-1d`              : supply a range (delete the line preceeding the pattern)
 
 
+## seach open buffers
+
+```
+bufdo vimgrepadd /foo/g % | cw
+```
 
 
 ## run a : command on every file in the argument list:
