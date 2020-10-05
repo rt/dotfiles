@@ -830,7 +830,7 @@ enum custom_keycodes {
 #define INAV_L02     LSFT(LGUI(KC_F))             // [*] Search project
 #define INAV_L03     LGUI(KC_O)                   // Go to class (could get this key back by just using "Go to file" then tabbing)
 #define INAV_L04     LGUI(LSFT(KC_O))             // [*] Go to file
-#define INAV_L05     LGUY(KC_F3)                  // [*] Marks
+#define INAV_L05     LGUI(KC_F3)                  // [*] Marks
 #define INAV_L11     LSFT(LGUI(KC_QUOT))          // Toggle tool min/max
 #define INAV_L12     LGUI(LSFT(KC_A))             // Find action
 #define INAV_L13     LGUI(KC_E)                   // [*] Recent files popup

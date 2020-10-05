@@ -32,3 +32,5 @@ bin/work
 bin/vim
 setup/setup_skeleton.bash
 setup/setup_work.bash
+setup/setup_ecom.bash
+setup/setup_betsy.bash

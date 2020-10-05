@@ -1,6 +1,6 @@
 #!/bin/bash
 
-setup_skeleton() {
+setup_ecom() {
 
   sess=forward
 
