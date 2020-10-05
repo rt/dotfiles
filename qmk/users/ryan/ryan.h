@@ -817,53 +817,53 @@ enum custom_keycodes {
  * Left side: Global Searching
  * Right side: Analysis, File based Searching
  * ,---------------------------------------------------------------------.
- * |NavBar|FindP |FindC |FindF |BkMrks|TogMrk| FnP  |FileHi|FindSy|      |
+ * |NavBar|FindP |FindC |FindF |Marks |      | FnP  |FileHi|FindSy|      |
  * |------+------+------+------+-------------+------+------+------+------|
- * |FindAc|RChngs|Recent|GotoTe|LastTo| Back | Decl | Impl | Fwd  |Usages|
+ * |TMnMx |FindAc|Recent|GotoTe|      | Back | Decl | Impl | Fwd  |Usages|
  * |------+------+------+------+------|------+------+------+------+------|
- * |      |StrctV|DebugV|ProjV | GitV |      |NxtErr|PrvErr|      |TMnMx |
+ * |      |StrctV|DebugV|ProjV | GitV |      |NxtErr|PrvErr|      |      |
  * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |CloseT|MaxMin| Term |SupMC |ParamI|      |      |      |
+ * |      |      |      |MaxMin| Term |SupMC |ParamI|      |      |      |
  * `---------------------------------------------------------------------'
  */
-#define INAV_L01     LALT(KC_HOME)
-#define INAV_L02     LSFT(LGUI(KC_F))
-#define INAV_L03     LGUI(KC_O)
-#define INAV_L04     LGUI(LSFT(KC_O))
-#define INAV_L05     LSFT(KC_F11)
-#define INAV_L11     LGUI(LSFT(KC_A))         // shared run command
-#define INAV_L12     LGUI(LSFT(KC_BSPC))
-#define INAV_L13     LGUI(KC_E)
-#define INAV_L14     LSFT(LGUI(KC_T))
-#define INAV_L15     KC_F12
+#define INAV_L01     LALT(KC_HOME)                // Show navigation bar
+#define INAV_L02     LSFT(LGUI(KC_F))             // [*] Search project
+#define INAV_L03     LGUI(KC_O)                   // Go to class (could get this key back by just using "Go to file" then tabbing)
+#define INAV_L04     LGUI(LSFT(KC_O))             // [*] Go to file
+#define INAV_L05     LGUY(KC_F3)                  // [*] Marks
+#define INAV_L11     LSFT(LGUI(KC_QUOT))          // Toggle tool min/max
+#define INAV_L12     LGUI(LSFT(KC_A))             // Find action
+#define INAV_L13     LGUI(KC_E)                   // [*] Recent files popup
+#define INAV_L14     LSFT(LGUI(KC_T))             // Go to test
+#define INAV_L15     _______
 #define INAV_L21     _______
-#define INAV_L22     LGUI(KC_7)
-#define INAV_L23     LGUI(KC_5)
-#define INAV_L24     LGUI(KC_1)
-#define INAV_L25     LGUI(KC_9)
+#define INAV_L22     LGUI(KC_7)                   // [*] Project Structure View
+#define INAV_L23     LGUI(KC_5)                   // Debug View
+#define INAV_L24     LGUI(KC_1)                   // Project Files View
+#define INAV_L25     LGUI(KC_9)                   // VCS View
 #define INAV_L31     _______
 #define INAV_L32     _______
-#define INAV_L33     LSFT(LGUI(KC_F4))
-#define INAV_L34     LGUI(LSFT(KC_F12))
-#define INAV_L35     LALT(KC_F12)
+#define INAV_L33     _______
+#define INAV_L34     LGUI(LSFT(KC_F12))           // Toggle maximizing editor
+#define INAV_L35     LALT(KC_F12)                 // Terminal View
 
-#define INAV_R01     KC_F10                       //F11 didn't work, mapped to F10 in Idea
-#define INAV_R02     LALT(KC_F1)
-#define INAV_R03     LGUI(KC_F12)
-#define INAV_R04     LALT(LGUI(KC_O))
-#define INAV_R05     _______
-#define INAV_R11     LGUI(LALT(KC_LEFT))
-#define INAV_R12     LGUI(KC_B)
-#define INAV_R13     LALT(LGUI(KC_B))
-#define INAV_R14     LGUI(LALT(KC_RIGHT))
-#define INAV_R15     LALT(KC_F7)
+#define INAV_R01     _______
+#define INAV_R02     LALT(KC_F1)                  // Select current file (or symbol) in any view
+#define INAV_R03     LGUI(KC_F12)                 // File structure popup
+#define INAV_R04     LALT(LGUI(KC_O))             // Go to symbol
+#define INAV_R05     LGUI(LSFT(KC_DEL))           // Go to last edit location
+#define INAV_R11     LGUI(LALT(KC_LEFT))          // Navigate back
+#define INAV_R12     LGUI(KC_B)                   // Go to declaration
+#define INAV_R13     LALT(LGUI(KC_B))             // Go to implementation
+#define INAV_R14     LGUI(LALT(KC_RIGHT))         // Navigate forward
+#define INAV_R15     LALT(KC_F7)                  // Find Usages
 #define INAV_R21     _______
-#define INAV_R22     KC_F2
-#define INAV_R23     LSFT(KC_F2)
+#define INAV_R22     KC_F2                        // Next highlighted error
+#define INAV_R23     LSFT(KC_F2)                  // Previous highlighted error
 #define INAV_R24     _______
-#define INAV_R25     LSFT(LGUI(KC_QUOT))
-#define INAV_R31     LGUI(KC_U)
-#define INAV_R32     LGUI(KC_P)
+#define INAV_R25     _______
+#define INAV_R31     LGUI(KC_U)                   // Go to super-method/super-class
+#define INAV_R32     LGUI(KC_P)                   // Parameter info
 #define INAV_R33     _______
 #define INAV_R34     _______
 #define INAV_R35     _______
@@ -876,50 +876,50 @@ enum custom_keycodes {
  * |------+------+------+------+-------------+------+------+------+------|
  * |ExtSel|Surnd |Commnt|Format|Suggst|BrkPts|PlyRes| Over |  In  |  Out |
  * |------+------+------+------+------|------+------+------+------+------|
- * |ImplM |OverM |GenCd |LiveT |      |TogBrk| Eval |CmpFi |CmpPrj|CallHi|
+ * |OverM |ImplM |GenCd |LiveT |      |TogBrk| Eval |CmpFi |CmpPrj|CallHi|
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |StatCm|CodeCm|Debug |DebugL| RunL |      |      |
  * `---------------------------------------------------------------------'
  */
-#define IDEA_L01     _______
-#define IDEA_L02     LSFT(KC_F6)
-#define IDEA_L03     LGUI(KC_F6)
-#define IDEA_L04     LGUI(LALT(KC_M))
-#define IDEA_L05     LGUI(LALT(KC_V))
-#define IDEA_L11     LGUI(KC_W)
-#define IDEA_L12     LALT(LGUI(KC_T))               // shared Comment selected
-#define IDEA_L13     LGUI(KC_SLSH)                  // shared Format selected 
-#define IDEA_L14     LALT(LGUI(KC_L))
-#define IDEA_L15     LALT(KC_ENTER)
-#define IDEA_L21     LCTL(KC_O)
-#define IDEA_L22     LCTL(KC_I)
-#define IDEA_L23     LCTL(KC_ENTER)
-#define IDEA_L24     LGUI(KC_J)                     // shared Live Templates
+#define IDEA_L01     LALT(LGUI(KC_UP))            // Extend selection
+#define IDEA_L02     LSFT(KC_F6)                  // Rename
+#define IDEA_L03     LGUI(KC_F6)                  // Change signature
+#define IDEA_L04     LGUI(LALT(KC_M))             // Extract method
+#define IDEA_L05     LGUI(LALT(KC_V))             // Extract variable
+#define IDEA_L11     LALT(LGUI(KC_DOWN))          // Shrink selection
+#define IDEA_L12     LALT(LGUI(KC_T))             // Surround with ... 
+#define IDEA_L13     LGUI(KC_SLSH)                // [*] Comment/uncomment
+#define IDEA_L14     LALT(LGUI(KC_L))             // [*] Format
+#define IDEA_L15     LALT(KC_ENTER)               // Show intention actions and quick-fixes
+#define IDEA_L21     LCTL(KC_O)                   // Override methods
+#define IDEA_L22     LCTL(KC_I)                   // Implement methods
+#define IDEA_L23     LGUI(KC_N)                   // Generate code
+#define IDEA_L24     LGUI(KC_J)                   // [*] Insert live templates
 #define IDEA_L25     _______
 #define IDEA_L31     _______
 #define IDEA_L32     _______
 #define IDEA_L33     _______
-#define IDEA_L34     LGUI(LSFT(KC_ENTER))           // shared statement complete
-#define IDEA_L35     LCTL(LSFT(KC_SPC))             // shared code complet
+#define IDEA_L34     LGUI(LSFT(KC_ENTER))         // [*] Statement complete
+#define IDEA_L35     LCTL(LSFT(KC_SPC))           // [*] Code complet
 
-#define IDEA_R01     LCTL(LSFT(KC_N))
-#define IDEA_R02     LCTL(KC_N)
-#define IDEA_R03     KC_F5
-#define IDEA_R04     KC_F6
-#define IDEA_R05     KC_DEL
-#define IDEA_R11     LGUI(LSFT(KC_F8))
-#define IDEA_R12     KC_F9
-#define IDEA_R13     KC_F8
-#define IDEA_R14     KC_F7
-#define IDEA_R15     LSFT(KC_F7)
-#define IDEA_R21     LGUI(KC_F8)
-#define IDEA_R22     LALT(KC_F8)                  // shared debug play
-#define IDEA_R23     LSFT(LGUI(KC_F9))            // shared debug over
-#define IDEA_R24     LGUI(KC_F9)                  // shared debug in
-#define IDEA_R25     LCTL(LALT(KC_H))             // shared debug out
-#define IDEA_R31     LSFT(LGUI(KC_F9))            // compile current file
-#define IDEA_R32     LCTL(LSFT(KC_F9))
-#define IDEA_R33     LCTL(LSFT(KC_F10))
+#define IDEA_R01     LCTL(LGUI(KC_N))             // New scratch
+#define IDEA_R02     LALT(KC_INS)                 // [*] New
+#define IDEA_R03     KC_F5                        // [*] Copy
+#define IDEA_R04     KC_F6                        // [*] Move
+#define IDEA_R05     KC_DEL                       // [*] Delete
+#define IDEA_R11     LGUI(LSFT(KC_F8))            // Breakpoints
+#define IDEA_R12     LALT(LGUI(KC_R))             // [*] Play/Pause
+#define IDEA_R13     KC_F8                        // [*] Step over
+#define IDEA_R14     KC_F7                        // [*] Step into
+#define IDEA_R15     LSFT(KC_F8)                  // [*] Step out
+#define IDEA_R21     LGUI(KC_F8)                  // Toggle breakpoint
+#define IDEA_R22     LALT(KC_F8)                  // Evaluate expression
+#define IDEA_R23     LSFT(LGUI(KC_F9))            // Compile selected file
+#define IDEA_R24     LGUI(KC_F9)                  // Make project 
+#define IDEA_R25     LCTL(LALT(KC_H))             // Call hierarchy
+#define IDEA_R31     LALT(LSFT(KC_D))             // Debug current target at top
+#define IDEA_R32     LCTL(LSFT(KC_D))             // Debug context/cursor
+#define IDEA_R33     LCTL(LSFT(KC_R))             // Run context/cursor
 #define IDEA_R34     _______
 #define IDEA_R35     _______
 
