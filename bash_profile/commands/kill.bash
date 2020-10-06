@@ -1,7 +1,5 @@
+alias kill.find="fkill"
 
-alias j="jobs"
-
-##### Processes (FZF)
 # fkill - kill process
 fkill() {
   local pid

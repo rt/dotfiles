@@ -1,5 +1,19 @@
-
 alias g="git"
+alias g.branch.toggle="git checkout @{-1}"
+alias g.checkout.sha.all="fcoc"
+alias g.checkout.branch="fbr_local"
+alias g.checkout.all="fbr_all"
+alias g.commit.get_sha="fcs"
+alias g.show="fshow"
+alias g.stash.inspect="fstash"
+alias g.churn="git_churn"
+alias g.churn.month="git_churn --since='1 month ago' ."
+alias g.churn.year="git_churn --since='1 year ago' ."
+alias g.linecount="git_line_count"
+
+#alias gLog="git log | grep rtsunoda -B 1 -A 3 | head -n 50"
+alias gLog="git log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short"
+alias gLog2="git --no-pager log --oneline --all --decorate --graph -40 --pretty=format:'%h %ad | %s%d [%an]'"
 
 # add another remote
 # git remote set-url --add --push origin https://gitlab.pebblefields.com/root/skeleton-client-webapp.git
@@ -24,43 +38,34 @@ git_line_count() {
 }
 
 # Show churn for whole repo:
-#   $ git-churn
+#   $ git_churn
 #
 # Show churn for specific directories, or move to directory and use '.':
-#   $ git-churn ./app ./lib
+#   $ git_churn ./app ./lib
 #
 # Show churn for a time range:
-#   $ git-churn . --since='1 month ago'
+#   $ git_churn . --since='1 month ago'
 #
 # (These are all standard arguments to `git log`.)
-git-churn() {
+git_churn() {
   set -e
   git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count\tfile"} {print $1 "\t" $2}' | sort -g
 }
 
 
 ##### Git (FZF)
-# fbr - checkout git branch
-#fbr() {
-  #local branches branch
-  #branches=$(git branch -vv) &&
-  #branch=$(echo "$branches" | fzf +m) &&
-  #git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
-#}
-
-# fbr - checkout git branch (including remote branches)
-#fbr() {
-  #local branches branch
-  #branches=$(git branch --all | grep -v HEAD) &&
-  #branch=$(echo "$branches" |
-           #fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
-  #git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
-#}
-
-# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
-fbr() {
+# checkout git branch
+fbr_local() {
   local branches branch
-  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branches=$(git branch -vv) &&
+  branch=$(echo "$branches" | fzf +m) &&
+  git checkout $(echo "$branch" | awk '{print $1}' | sed "s/.* //")
+}
+
+# checkout git branch (including remote branches)
+fbr_all() {
+  local branches branch
+  branches=$(git branch --all | grep -v HEAD) &&
   branch=$(echo "$branches" |
            fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
   git checkout $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
@@ -116,32 +121,6 @@ fshow() {
                 xargs -I % sh -c 'git show --color=always % | less -R') << 'FZF-EOF'
                 {}
 FZF-EOF"
-}
-
-
-alias glNoGraph='git log --color=always --format="%C(auto)%h%d %s %C(black)%C(bold)%cr% C(auto)%an" "$@"'
-#local _gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-_gitLogLineToHash="echo {} | grep -o '[a-f0-9]\{7\}' | head -1"
-#local _viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
-_viewGitLogLine="$_gitLogLineToHash | xargs -I % sh -c 'git show --color=always % | diff-so-fancy'"
-
-# fcoc_preview - checkout git commit with previews
-fcoc_preview() {
-  local commit
-  commit=$( glNoGraph |
-    fzf --no-sort --reverse --tiebreak=index --no-multi \
-        --ansi --preview $_viewGitLogLine ) &&
-  git checkout $(echo "$commit" | sed "s/ .*//")
-}
-
-# fshow_preview - git commit browser with previews
-fshow_preview() {
-    glNoGraph |
-        fzf --no-sort --reverse --tiebreak=index --no-multi \
-            --ansi --preview $_viewGitLogLine \
-                --header "enter to view, alt-y to copy hash" \
-                --bind "enter:execute:$_viewGitLogLine   | less -R" \
-                --bind "alt-y:execute:$_gitLogLineToHash | xclip"
 }
 
 # fcs - get git commit sha

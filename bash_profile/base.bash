@@ -41,9 +41,4 @@ done;
 alias sudo='sudo '
 
 
-
 alias sp='source ~/.bash_profile'
-alias bp='less ~/.bash_profile'
-alias kk='vim ~/projects/qmk_firmware/users/ryan/ryan.h'
-alias cb='chrome_bookmarks'
-alias vrc='less ~/.vimrc'

@@ -1,7 +1,27 @@
 # dotfiles
 
+Just my personal dotfiles, not that great.
 
-## Mac DevEnv
+Things you might want to put in your shell profile.
+It's a 'buy in' system where you make a `config` file that contains the files you want to include.
+
+- bash_profile (env vars, aliases, functions)
+- bin (executables)
+- dotfiles (.vimrc, .tmux.conf, etc)
+
+**aliases**
+
+- command/<file>: set aliases for a command but also namespace alises with prefix of command for easier referencing
+- utils: 'other' aliases to utils, functions, etc
+
+The following command will put the files in $HOME/.extrafile, which you can source in your shell initializer (.bash_profile, etc)
+todo: should allow `config` to be anywhere
+
+```
+./boostrap config
+```
+
+## Mac DevEnv (todo: make Dockerfile)
 
 *.bash_profile*
 

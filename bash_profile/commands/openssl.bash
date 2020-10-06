@@ -1,3 +1,8 @@
+alias openssl.ssh-keygen="ssh-keygen" #ssh-keygen uses openssl and is the default way to create pubkey auth (~/.ssh)
+
+alias openssl.cert.view="view_cert"
+alias openssl.cert.getDomainNames="get_cert_names"
+alias openssl.cert.getRemoteCert="get_remote_cert"
 
 # param filename.crt
 view_cert() {
@@ -65,8 +70,3 @@ function get_remote_cert() {
 }
 
 
-alias ssl.ssh-keygen="ssh-keygen" #ssh-keygen uses openssl and is the default way to create pubkey auth (~/.ssh)
-
-alias ssl.cert.view="view_cert"
-alias ssl.cert.getDomainNames="get_cert_names"
-alias ssl.cert.getRemoteCert="get_remote_cert"

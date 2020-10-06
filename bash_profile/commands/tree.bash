@@ -1,3 +1,5 @@
+alias tree.pretty="tre"
+
 ##### tree
 
 # `tre` is a shorthand for `tree` with hidden files and color enabled, ignoring

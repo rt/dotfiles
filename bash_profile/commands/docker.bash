@@ -1,8 +1,4 @@
 
-
-
-# docker search redis
-
 # same as `docker container prune` ...
 alias docker.rm.exited="docker rm $(docker ps -a -q -f status=exited)"
 
