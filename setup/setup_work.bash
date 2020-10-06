@@ -7,24 +7,14 @@ setup_work() {
   # root
   tmux new-session -s $sess -d -n root
   tmux send-keys -t $sess:root "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:root "cd ~/dev/repos/dev" Enter
   tmux send-keys -t $sess:root "ctags -R --language-force=java -f tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
   
+  tmux split-window -v -l 14 -t $sess:root
+  tmux send-keys -t $sess:root.2 "cd core-webapp/src/main/webapp/resources/$1" Enter
+  tmux send-keys -t $sess:root.2 "ctags_javascript scripts/" Enter
+
   tmux select-pane -t $sess:root.1
-
-  # shop-fe
-  tmux new-window -t $sess -n shop-fe
-  tmux send-keys -t $sess:shop-fe.1 "cd core-webapp/src/main/webapp/resources/$1" Enter
-  tmux send-keys -t $sess:shop-fe.1 "ctags_javascript scripts/" Enter
-
-  tmux select-pane -t $sess:shop-fe.1
-
-  # devops
-  tmux new-window -t $sess -n devops
-  tmux send-keys -t $sess:devops "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:devops "cd ~/dev/repos/devops" Enter
-  tmux send-keys -t $sess:devops "vim" Enter
-
-  tmux select-pane -t $sess:devops.1
 
   # work
   tmux new-window -t $sess -n work
@@ -46,21 +36,6 @@ setup_work() {
   tmux send-keys -t $sess:system "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:system "cd platform/devenv" Enter
   tmux send-keys -t $sess:system "docker-compose up"
-
-  ### deploy
-  tmux new-window -t $sess -n deploy
-  tmux send-keys -t $sess:deploy "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:deploy "cd ~/dev/repos/deploy" Enter
-  
-  tmux select-pane -t $sess:deploy.1
-
-  ### enrichment
-  tmux new-window -t $sess -n enrichment
-  tmux send-keys -t $sess:enrichment "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:enrichment "cd ~/dev/repos/enrichment" Enter
-
-  tmux select-pane -t $sess:enrichment.1
-
 
   #select first
   tmux select-window -t $sess:root
