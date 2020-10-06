@@ -364,7 +364,7 @@ enum custom_keycodes {
  * ,---------------------------------------------------------------------.
  * |Alias |WRKFLW|      |      |      |      |      |      |  F11 |  F12 |
  * |------+------+------+------+-------------+------+------+------+------|
- * |CDDEPL|CDDATA|CDSERV|CDCLNT|CDDTLS|      |      |      |      |      |
+ * |CDDEPL|CDDATA|CDSERV|CDCLNT|CDDTLS|Insert|      |      |      |      |
  * |------+------+------+------+------|------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 | 
  * |------+------+------+------+------+------+------+------+------+------|
@@ -397,7 +397,7 @@ enum custom_keycodes {
 #define RAIS_R03     XXXXXXX
 #define RAIS_R04     KC_F11
 #define RAIS_R05     KC_F12
-#define RAIS_R11     XXXXXXX
+#define RAIS_R11     KC_INSERT
 #define RAIS_R12     XXXXXXX
 #define RAIS_R13     XXXXXXX
 #define RAIS_R14     XXXXXXX
@@ -835,7 +835,7 @@ enum custom_keycodes {
 #define INAV_L12     LGUI(LSFT(KC_A))             // Find action
 #define INAV_L13     LGUI(KC_E)                   // [*] Recent files popup
 #define INAV_L14     LSFT(LGUI(KC_T))             // Go to test
-#define INAV_L15     _______
+#define INAV_L15     LALT(LSFT(KC_SCLN))       // [*] Blame (custom keymap) .... didn't work
 #define INAV_L21     _______
 #define INAV_L22     LGUI(KC_7)                   // [*] Project Structure View
 #define INAV_L23     LGUI(KC_5)                   // Debug View
@@ -872,21 +872,21 @@ enum custom_keycodes {
 
 /* Idea 
  * ,---------------------------------------------------------------------.
- * |      |Rename|ChSig |ExtrtM|ExtrtV|Scrtch| New  | Copy | Move |Delete|
+ * | Sel+ |Rename|ChSig |ExtrtM|ExtrtV|Scrtch| New  | Copy | Move |Delete|
  * |------+------+------+------+-------------+------+------+------+------|
- * |ExtSel|Surnd |Commnt|Format|Suggst|BrkPts|PlyRes| Over |  In  |  Out |
+ * | Sel- |Surnd |Commnt|Format|Suggst|BrkPts|PlyRes| Over |  In  |  Out |
  * |------+------+------+------+------|------+------+------+------+------|
  * |OverM |ImplM |GenCd |LiveT |      |TogBrk| Eval |CmpFi |CmpPrj|CallHi|
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |StatCm|CodeCm|Debug |DebugL| RunL |      |      |
  * `---------------------------------------------------------------------'
  */
-#define IDEA_L01     LALT(LGUI(KC_UP))            // Extend selection
+#define IDEA_L01     LALT(KC_UP)            // Extend selection
 #define IDEA_L02     LSFT(KC_F6)                  // Rename
 #define IDEA_L03     LGUI(KC_F6)                  // Change signature
 #define IDEA_L04     LGUI(LALT(KC_M))             // Extract method
 #define IDEA_L05     LGUI(LALT(KC_V))             // Extract variable
-#define IDEA_L11     LALT(LGUI(KC_DOWN))          // Shrink selection
+#define IDEA_L11     LALT(KC_DOWN)          // Shrink selection
 #define IDEA_L12     LALT(LGUI(KC_T))             // Surround with ... 
 #define IDEA_L13     LGUI(KC_SLSH)                // [*] Comment/uncomment
 #define IDEA_L14     LALT(LGUI(KC_L))             // [*] Format

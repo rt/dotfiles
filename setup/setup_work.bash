@@ -8,24 +8,23 @@ setup_work() {
   tmux new-session -s $sess -d -n root
   tmux send-keys -t $sess:root "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:root "ctags -R --language-force=java -f tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
-  tmux send-keys -t $sess:root "nvm use v8.10.0" Enter
   
-  #tmux split-window -h -l 85 -t $sess:root
-  tmux split-window -v -l 12 -t $sess:root
-  # tmux send-keys -t $sess:root.2 "nvm use v8.10.0" Enter
+  tmux select-pane -t $sess:root.1
 
   # shop-fe
   tmux new-window -t $sess -n shop-fe
-  tmux send-keys -t $sess:shop-fe "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:shop-fe "cd core-webapp/src/main/webapp/resources/$1" Enter
-  tmux send-keys -t $sess:shop-fe "nvm use v8.10.0" Enter
-  tmux send-keys -t $sess:shop-fe "vim" Enter
+  tmux send-keys -t $sess:shop-fe.1 "cd core-webapp/src/main/webapp/resources/$1" Enter
+  tmux send-keys -t $sess:shop-fe.1 "ctags_javascript scripts/" Enter
 
-  tmux split-window -v -l 12 -t $sess:shop-fe
-  tmux send-keys -t $sess:shop-fe.2 "cd core-webapp/src/main/webapp/resources/$1" Enter
-  tmux send-keys -t $sess:shop-fe.2 "ctags_javascript scripts/" Enter
-  tmux send-keys -t $sess:shop-fe.2 "nvm use v8.10.0" Enter
   tmux select-pane -t $sess:shop-fe.1
+
+  # devops
+  tmux new-window -t $sess -n devops
+  tmux send-keys -t $sess:devops "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:devops "cd ~/dev/repos/devops" Enter
+  tmux send-keys -t $sess:devops "vim" Enter
+
+  tmux select-pane -t $sess:devops.1
 
   # work
   tmux new-window -t $sess -n work
@@ -33,37 +32,26 @@ setup_work() {
   tmux send-keys -t $sess:work "cd ~/projects/work/" Enter
   tmux send-keys -t $sess:work "vim" Enter
 
-  tmux split-window -v -l 12 -t $sess:work
-  tmux send-keys -t $sess:work.2 "cd ~/projects/work/" Enter
   tmux select-pane -t $sess:work.1
 
   # migrations
   tmux new-window -t $sess -n migrations
-  tmux send-keys -t $sess:migrations "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:migrations "cd migrations" Enter
-  tmux send-keys -t $sess:migrations "vim" Enter
+  tmux send-keys -t $sess:migrations.1 "cd migrations" Enter
+  tmux send-keys -t $sess:migrations.1 "psql -U postgres -h localhost"
 
-  tmux split-window -v -l 12 -t $sess:migrations
-  tmux send-keys -t $sess:migrations.2 "cd migrations" Enter
-  tmux send-keys -t $sess:migrations.2 "psql -U postgres -h localhost" Enter
   tmux select-pane -t $sess:migrations.1
 
   ### system
   tmux new-window -t $sess -n system
   tmux send-keys -t $sess:system "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:system "cd platform/devenv" Enter
-
-  tmux split-window -v -l 12 -t $sess:system
-  tmux send-keys -t $sess:system.2 "cd platform/devenv" Enter
-  tmux select-pane -t $sess:system.1
+  tmux send-keys -t $sess:system "docker-compose up"
 
   ### deploy
   tmux new-window -t $sess -n deploy
   tmux send-keys -t $sess:deploy "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:deploy "cd ~/dev/repos/deploy" Enter
-
-  tmux split-window -v -l 12 -t $sess:deploy
-  tmux send-keys -t $sess:deploy.2 "cd ~/dev/repos/deploy" Enter
+  
   tmux select-pane -t $sess:deploy.1
 
   ### enrichment
@@ -71,8 +59,6 @@ setup_work() {
   tmux send-keys -t $sess:enrichment "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:enrichment "cd ~/dev/repos/enrichment" Enter
 
-  tmux split-window -v -l 12 -t $sess:enrichment
-  tmux send-keys -t $sess:enrichment.2 "cd ~/dev/repos/enrichment" Enter
   tmux select-pane -t $sess:enrichment.1
 
 
