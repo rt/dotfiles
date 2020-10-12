@@ -14,6 +14,7 @@ bash_profile/commands/docker.bash
 bash_profile/commands/git.bash
 bash_profile/commands/kill.bash
 bash_profile/commands/jobs.bash
+bash_profile/commands/curl.bash
 bash_profile/commands/openssl.bash
 bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash

@@ -40,5 +40,4 @@ done;
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
 
-
 alias sp='source ~/.bash_profile'

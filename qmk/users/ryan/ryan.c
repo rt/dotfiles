@@ -450,6 +450,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(SS_LCTRL("b")"z");
       }
         break;
+    case TMUX_EVEN_HOR:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b")":select-layout even-horizontal"SS_TAP(X_ENTER));
+      }
+        break;
+    case TMUX_EVEN_VERT:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("b")":select-layout even-vertical"SS_TAP(X_ENTER));
+      }
+        break;
+        
   }
   return true;
 }

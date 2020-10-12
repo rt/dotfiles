@@ -21,7 +21,7 @@ todo: should allow `config` to be anywhere
 ./boostrap config
 ```
 
-## Mac DevEnv (todo: make Dockerfile)
+## Mac DevEnv
 
 *.bash_profile*
 
@@ -119,7 +119,6 @@ mkdir projects
 git clone https://github.com/rt/dotfiles.git
 cd dotfiles/
 ./bootstrap rtsunoda
-get_vim_bundles
 ```
 
 *themes/fonts*

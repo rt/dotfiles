@@ -1,5 +1,19 @@
 ### Diff two files
 
+**Terminal**
+
+Side by side
+```
+vimdiff file1 file2
+```
+
+Create a patch
+```
+diff file1 file2
+```
+
+**Vim**
+
 first get two files in two windows (:vsp)
 
 :windo diffthis

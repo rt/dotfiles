@@ -68,6 +68,8 @@ enum custom_keycodes {
   TMUX_WIN_NEXT,
   TMUX_SCROLL,
   TMUX_ZOOM_TOGGLE,
+  TMUX_EVEN_VERT,
+  TMUX_EVEN_HOR,
   VIM_PASTE_LAST_YANK,
   VIM_DIFF_TOGGLE,
   VIM_PICK_AXE,
@@ -476,7 +478,7 @@ enum custom_keycodes {
  * ,---------------------------------------------------------------------.
  * |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |      |
  * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |TSCRLL| PgUp | Home | Left | Down |  Up  |Right |      |
+ * |TEVENV|TEVENH|TSCRLL| PgUp | Home | Left | Down |  Up  |Right |      |
  * |------+------+------+------+------|------+------+------+------+------|
  * |FlScrn|      |AppWin|PgDown| End  |WkspL |WordL |WordR |WkspR |      |
  * |------+------+------+------+------+------+------+------+------+------|
@@ -488,8 +490,8 @@ enum custom_keycodes {
 #define NAV_L03     LCTL(KC_CIRC)
 #define NAV_L04     _______
 #define NAV_L05     LGUI(KC_TAB)
-#define NAV_L11     _______
-#define NAV_L12     _______
+#define NAV_L11     TMUX_EVEN_VERT
+#define NAV_L12     TMUX_EVEN_HOR
 #define NAV_L13     TMUX_SCROLL
 #define NAV_L14     KC_PGUP
 #define NAV_L15     KC_HOME
@@ -823,7 +825,7 @@ enum custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------|
  * |      |StrctV|DebugV|ProjV | GitV |      |NxtErr|PrvErr|      |      |
  * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |MaxMin| Term |SupMC |ParamI|      |      |      |
+ * |      |      |      |MaxMin| Term |SupMC |      |      |      |      |
  * `---------------------------------------------------------------------'
  */
 #define INAV_L01     LALT(KC_HOME)                // Show navigation bar
@@ -863,7 +865,7 @@ enum custom_keycodes {
 #define INAV_R24     _______
 #define INAV_R25     _______
 #define INAV_R31     LGUI(KC_U)                   // Go to super-method/super-class
-#define INAV_R32     LGUI(KC_P)                   // Parameter info
+#define INAV_R32     _______                       // Parameter info
 #define INAV_R33     _______
 #define INAV_R34     _______
 #define INAV_R35     _______
@@ -876,7 +878,7 @@ enum custom_keycodes {
  * |------+------+------+------+-------------+------+------+------+------|
  * | Sel- |Surnd |Commnt|Format|Suggst|BrkPts|PlyRes| Over |  In  |  Out |
  * |------+------+------+------+------|------+------+------+------+------|
- * |OverM |ImplM |GenCd |LiveT |      |TogBrk| Eval |CmpFi |CmpPrj|CallHi|
+ * |OverM |ImplM |GenCd |LiveT |ParamI|TogBrk| Eval |CmpFi |CmpPrj|CallHi|
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |StatCm|CodeCm|Debug |DebugL| RunL |      |      |
  * `---------------------------------------------------------------------'
@@ -895,7 +897,7 @@ enum custom_keycodes {
 #define IDEA_L22     LCTL(KC_I)                   // Implement methods
 #define IDEA_L23     LGUI(KC_N)                   // Generate code
 #define IDEA_L24     LGUI(KC_J)                   // [*] Insert live templates
-#define IDEA_L25     _______
+#define IDEA_L25     LGUI(KC_P)                   // Get param infor
 #define IDEA_L31     _______
 #define IDEA_L32     _______
 #define IDEA_L33     _______
