@@ -6,6 +6,7 @@ bash_profile/commands/tree.bash
 bash_profile/commands/grep.bash
 bash_profile/commands/vim.bash
 bash_profile/commands/git.bash
+bash_profile/setup/setup_student_rpi.bash
 bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash
 bash_profile/chrome.bash
@@ -25,4 +26,3 @@ dotfiles/gitconfig_rtsunoda
 bin/git-completion.bash
 bin/chrome_bookmarks
 bin/clean_docker
-setup/setup_student_rpi.bash

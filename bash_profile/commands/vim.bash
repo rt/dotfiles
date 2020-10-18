@@ -1,5 +1,5 @@
 alias vim.find="fe"
-alias vim.grep.keyword="vp"
+alias vim.grep.keyword="vg"
 # same thing but you type in the search
 alias vim.grep.input="ag --nobreak --nonumbers --noheading . | fzf"
 

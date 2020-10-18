@@ -32,7 +32,7 @@ RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
 # 
-RUN apt-get install universal-ctags
+RUN apt-get install -y universal-ctags
 
 # postgres
 RUN apt-get install -y postgresql
@@ -48,3 +48,5 @@ RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh
 # RUN source ~/.bashrc
 # RUN nvm use
 
+RUN git clone https://github.com/powerline/fonts.git
+RUN cd fonts/ && ./install.sh

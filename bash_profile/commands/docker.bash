@@ -10,7 +10,6 @@ function listRegistry() {
   curl -kX GET https://$1/v2/_catalog
   # curl -X GET http://$1/v2/_catalog
   # curl -X GET https://myregistry:5000/v2/ubuntu/tags/list
-
 }
 
 function listRegistryRepo() {
