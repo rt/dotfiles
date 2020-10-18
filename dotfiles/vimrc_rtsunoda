@@ -875,7 +875,7 @@ command! -bang -nargs=* WorkListStyles call <SID>get_simple_shopping_list('style
 
 " notes: filters/interceptors
 command! -bang WorkFiltersAndInterceptors call fzf#run(fzf#wrap(
-			\ fzf#vim#with_preview({'source': 'get_filters_and_interceptors.sh'}, 'right:50%:hidden', '?'), <bang>0))
+			\ fzf#vim#with_preview({'source': 'work.filters-and-interceptors'}, 'right:50%:hidden', '?'), <bang>0))
 
 " notes: spring application context/configs
 command! -bang WorkSpringConfigs call fzf#run(fzf#wrap(

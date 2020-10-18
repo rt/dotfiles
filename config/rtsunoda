@@ -16,6 +16,8 @@ bash_profile/commands/kill.bash
 bash_profile/commands/jobs.bash
 bash_profile/commands/curl.bash
 bash_profile/commands/openssl.bash
+bash_profile/commands/psql.bash
+bash_profile/commands/tmux.bash
 bash_profile/setup/setup_skeleton.bash
 bash_profile/setup/setup_ecom_client.bash
 bash_profile/setup/setup_ecom_server.bash

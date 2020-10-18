@@ -1,13 +1,13 @@
 #!/bin/bash
 
-setup.playground="setup_playground"
-setup.create.playground="structurePlayground";
+alias setup.playground="setup_playground"
+# alias setup.create.playground="structurePlayground";
 
-function structurePlayground() {
-  mkdir playground;
-  cd playground;
-  # for ...
-}
+# function structurePlayground() {
+#   mkdir playground;
+#   cd playground;
+#   # for ...
+# }
 
 setup_playground() {
 
