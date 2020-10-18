@@ -1,6 +1,6 @@
 export PATH="$HOME/bin:$PATH";
-export PATH="$HOME/bin/work:$PATH";
 export PATH="$HOME/bin/vim:$PATH";
+export PATH="$HOME/bin/vim/work:$PATH";
 export PATH="$HOME/projects/flutter/bin:$PATH";
 
 export NODE_PATH=/usr/lib/nodejs
