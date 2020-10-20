@@ -6,40 +6,39 @@ alias psql.getTableDefinition="get_table_definition"
 alias psql.showTableRelations="show_table_relations"
 
 show_columns() {
-db=$1
-tablename=$2
+  db=$1
+  tablename=$2
 
-read -r -d '' sql <<EOF
+  read -r -d '' sql <<EOF
 SELECT column_name FROM information_schema.columns WHERE table_name ='$tablename';
 EOF
 
-psql -U postgres -h localhost -qtA -d $db -c "$sql"
+  psql -U postgres -h localhost -qtA -d $db -c "$sql"
 }
 
 show_databases() {
-read -r -d '' sql <<"EOF"
+  read -r -d '' sql <<"EOF"
 SELECT datname FROM pg_database;
 EOF
 
-psql -U postgres -h localhost -qtA -c "$sql"
+  psql -U postgres -h localhost -qtA -c "$sql"
 }
 
 show_tables() {
+  db=$1
+  #filename=sql/show_tables.sql
 
-db=$1
-#filename=sql/show_tables.sql
+  #declare sql=$(<$filename)
 
-#declare sql=$(<$filename)
+  #SELECT
+  #tablename
+  #FROM
+  #pg_catalog.pg_tables
+  #WHERE
+  #schemaname != 'pg_catalog'
+  #AND schemaname != 'information_schema';
 
-#SELECT
- #tablename
-#FROM
- #pg_catalog.pg_tables
-#WHERE
- #schemaname != 'pg_catalog'
-#AND schemaname != 'information_schema';
-
-read -r -d '' sql <<"EOF"
+  read -r -d '' sql <<"EOF"
 SELECT 
   table_name 
 FROM 
@@ -49,15 +48,13 @@ WHERE
   OR table_schema = 'settings';
 EOF
 
-#echo $sql
-
-psql -U postgres -h localhost -qtA -d "$db" -c "$sql"
+  #echo $sql
+  psql -U postgres -h localhost -qtA -d "$db" -c "$sql"
 }
 
 get_table_data() {
-
-db=$1
-tablename=$2
+  db=$1
+  tablename=$2
 
 #filename=sql/table_data.sql
 #declare sql=$(<$filename)
@@ -66,14 +63,12 @@ read -r -d '' sql <<"EOF"
 SELECT * FROM <tablename>;
 EOF
 
-sql=${sql/<tablename>/$tablename}
+  sql=${sql/<tablename>/$tablename}
 
-psql -U postgres -h localhost -d $db -c "$sql"
-
+  psql -U postgres -h localhost -d $db -c "$sql"
 }
 
 get_table_definition() {
-
 db=$1
 tablename=$2
 
@@ -88,7 +83,7 @@ tablename=$2
 #FROM INFORMATION_SCHEMA.COLUMNS 
 #WHERE table_name = '<tablename>';
 
-read -r -d '' sql <<"EOF"
+  read -r -d '' sql <<"EOF"
 SELECT  
     f.attnum AS number,  
     f.attname AS name,  
@@ -129,19 +124,17 @@ WHERE c.relkind = 'r'::char
 ;
 EOF
 
-sql=${sql/<tablename>/$tablename}
+  sql=${sql/<tablename>/$tablename}
 
-psql -U postgres -h localhost -d $db -c "$sql"
-
+  psql -U postgres -h localhost -d $db -c "$sql"
 }
 
 show_table_relations() {
+  keyword=$1
 
-keyword=$1
-
-#filename=sql/table_relation.sql
-declare sql=$(<$filename)
-read -r -d '' sql <<"EOF"
+  #filename=sql/table_relation.sql
+  declare sql=$(<$filename)
+  read -r -d '' sql <<"EOF"
 -- select
     -- t.relname as table_name,
     -- i.relname as index_name,
@@ -187,8 +180,7 @@ order by
     i.relname;
 EOF
 
-sql=${sql/<keyword>/$keyword}
+  sql=${sql/<keyword>/$keyword}
 
-psql -U postgres -h localhost -d qaone -c "$sql"
-
+  psql -U postgres -h localhost -d qaone -c "$sql"
 }

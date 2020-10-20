@@ -2,9 +2,7 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-
-# similar to default fzf esc-c
-alias cd.fuzzy="fd"
+alias cd.fuzzy="fd" # similar to default fzf esc-c
 
 
 # fd - cd to selected directory

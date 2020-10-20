@@ -320,9 +320,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Dispatch npm run ");
       }
         break;
-    case VIM_SHOW_ALIASES:
+    case VIM_SHOW_QUICK_REF:
       if (record->event.pressed) {
-        SEND_STRING(":ShowAliases"SS_TAP(X_ENTER));
+        SEND_STRING(":ShowQuickReference"SS_TAP(X_ENTER));
       }
         break;
     case VIM_SHOW_WORKFLOWS:

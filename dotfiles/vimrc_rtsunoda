@@ -828,8 +828,8 @@ endif
 command! -nargs=* Wrap set wrap linebreak nolist
 command! -nargs=* NoWrap set nowrap nolinebreak 
 
-command! -bang -nargs=* ShowAliases call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/bash_profile', 1)
-command! -bang -nargs=* ShowWorkflows call <SID>get_file_list('/Users/rtsunoda/projects/work/workflows', 1)
+command! -bang -nargs=* ShowQuickReference call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/quick-reference', 1)
+command! -bang -nargs=* ShowWorkflows call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/workflows', 1)
 command! -bang -nargs=* PickAxe call <SID>git_pickaxe(expand('<cword>'))
 command! -bang -nargs=* PickAxeCurrentFile call <SID>git_pickaxe_current_file(expand('<cword>'))
 command! -bang -nargs=* UsagesCWord call <SID>git_grep(expand('<cword>'))

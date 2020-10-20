@@ -115,7 +115,7 @@ enum custom_keycodes {
   VIM_CHANGE_NEXT,
   VIM_CHANGE_LAST,
   VIM_DISPATCH_NPM,
-  VIM_SHOW_ALIASES,
+  VIM_SHOW_QUICK_REF,
   VIM_SHOW_WORKFLOWS,
   VIM_ONLY,
   VIM_COMMENT,
@@ -364,7 +364,7 @@ enum custom_keycodes {
 /* Raise
  * Global: Function Keys and Reference
  * ,---------------------------------------------------------------------.
- * |Alias |WRKFLW|      |      |      |      |      |      |  F11 |  F12 |
+ * |QkRef |WRKFLW|      |      |      |      |      |      |  F11 |  F12 |
  * |------+------+------+------+-------------+------+------+------+------|
  * |CDDEPL|CDDATA|CDSERV|CDCLNT|CDDTLS|Insert|      |      |      |      |
  * |------+------+------+------+------|------+------+------+------+------|
@@ -373,7 +373,7 @@ enum custom_keycodes {
  * |      |      |      | Tab  |GuiBk |      |      |      |      |      |
  * `---------------------------------------------------------------------'
  */
-#define RAIS_L01     VIM_SHOW_ALIASES
+#define RAIS_L01     VIM_SHOW_QUICK_REF
 #define RAIS_L02     VIM_SHOW_WORKFLOWS
 #define RAIS_L03     XXXXXXX
 #define RAIS_L04     XXXXXXX
@@ -476,9 +476,9 @@ enum custom_keycodes {
 /* NAV 
  * Global: System, Tmux, App, etc, Navigation
  * ,---------------------------------------------------------------------.
- * |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |      |
+ * |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |TEVENV|
  * |------+------+------+------+-------------+------+------+------+------|
- * |TEVENV|TEVENH|TSCRLL| PgUp | Home | Left | Down |  Up  |Right |      |
+ * |      |      |TSCRLL| PgUp | Home | Left | Down |  Up  |Right |TEVENH|
  * |------+------+------+------+------|------+------+------+------+------|
  * |FlScrn|      |AppWin|PgDown| End  |WkspL |WordL |WordR |WkspR |      |
  * |------+------+------+------+------+------+------+------+------+------|
@@ -490,8 +490,8 @@ enum custom_keycodes {
 #define NAV_L03     LCTL(KC_CIRC)
 #define NAV_L04     _______
 #define NAV_L05     LGUI(KC_TAB)
-#define NAV_L11     TMUX_EVEN_VERT
-#define NAV_L12     TMUX_EVEN_HOR
+#define NAV_L11     _______
+#define NAV_L12     _______
 #define NAV_L13     TMUX_SCROLL
 #define NAV_L14     KC_PGUP
 #define NAV_L15     KC_HOME
@@ -510,12 +510,12 @@ enum custom_keycodes {
 #define NAV_R02     TMUX_PANE_NEXT
 #define NAV_R03     _______
 #define NAV_R04     TMUX_WIN_NEXT
-#define NAV_R05     _______
+#define NAV_R05     TMUX_EVEN_VERT
 #define NAV_R11     KC_LEFT
 #define NAV_R12     KC_DOWN
 #define NAV_R13     KC_UP
 #define NAV_R14     KC_RIGHT
-#define NAV_R15     _______
+#define NAV_R15     TMUX_EVEN_HOR
 #define NAV_R21     LCTL(KC_LEFT)
 #define NAV_R22     LALT(KC_LEFT)
 #define NAV_R23     LALT(KC_RIGHT)
