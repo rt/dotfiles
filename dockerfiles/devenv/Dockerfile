@@ -3,6 +3,7 @@ ENV DEBIAN_FRONTEND noninteractive
 # RUN apt-get update && apt-get install -y ubuntu-server
 RUN apt-get update && \
   apt-get install -y coreutils && \
+  apt-get install -y iputils-ping && \
   apt-get install -y wget && \
   apt-get install -y curl && \
   apt-get install -y nmap && \
