@@ -2,7 +2,7 @@
 
 setup_work_devops() {
 
-  sess=devops
+  sess=ops
 
   # devops
   tmux new-session -s $sess -d -n devops
