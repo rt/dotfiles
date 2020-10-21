@@ -1,5 +1,12 @@
 alias tmux.session="tm"
 alias tmux.pane="tmp"
+alias tmux.colors="tm_colors"
+
+tm_colors() {
+  for i in {0..255}; do
+    printf "\x1b[38;5;${i}mcolour${i}\x1b[0m\n"
+  done
+}
 
 # tm - create new tmux session, or switch to existing one. Works from within tmux too. (@bag-man)
 # `tm` will allow you to select your tmux session via fzf.
