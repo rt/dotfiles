@@ -17,8 +17,12 @@ alias utils.httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: 
 alias utils.flushDns="flushDnsMac"
 alias utils.digga="digga"
 
-
-
+# $ ping -c4 www.google.com | awk '/---/,0'
+# --- www.google.com ping statistics ---
+# 4 packets transmitted, 4 packets received, 0.0% packet loss
+# round-trip min/avg/max/stddev = 87.110/92.619/98.271/3.955 ms
+#
+#
 # Trim new lines and copy to clipboard
 alias c="tr -d '\n' | pbcopy"
 
