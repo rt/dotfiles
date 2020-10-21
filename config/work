@@ -29,7 +29,6 @@ bash_profile/process.bash
 bash_profile/history.bash
 bash_profile/tmux.bash
 bash_profile/vim.bash
-bash_profile/macos.bash
 bash_profile/work.bash
 bash_profile/completion.bash
 bash_profile/prompt_mb.bash

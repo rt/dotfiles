@@ -1,4 +1,3 @@
-
 ##### GIT
 
 # Enable tab completion for `g` by marking it as an alias for `git`

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-alias ctags="`brew --prefix`/bin/ctags"
+# alias ctags="`brew --prefix`/bin/ctags"
 
 #for es6 use es-ctags https://github.com/okcompute/es-ctags
 ctags_javascript() {

@@ -243,7 +243,6 @@ if has("autocmd")
   autocmd QuickFixCmdPost *grep* cwindow
 
 
-  " pandoc sample format implementation (brew install pandoc)
   "let pandoc_pipeline  = "pandoc --from=html --to=markdown"
   "let pandoc_pipeline .= " | pandoc --from=markdown --to=html"
   "autocmd FileType html let &l:formatprg=pandoc_pipeline
