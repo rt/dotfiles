@@ -4,7 +4,7 @@
 #echo "";
 
 #some docker images have cp aliased
-unalias cp
+# unalias cp
 
 #if [[ $REPLY =~ ^[Yy]$ ]]; then
 

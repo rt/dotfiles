@@ -38,16 +38,21 @@ RUN apt-get install -y universal-ctags
 # postgres
 RUN apt-get install -y postgresql
 
-# RUN tmux new -s mysesh
-
 # fzf
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN ~/.fzf/install
 
 # nvm
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-# RUN source ~/.bashrc
-# RUN nvm use
 
-RUN git clone https://github.com/powerline/fonts.git
-RUN cd fonts/ && ./install.sh
+RUN cd ~ && git clone --depth 1 https://github.com/powerline/fonts.git
+RUN cd ~/fonts && ./install.sh
+
+RUN cd ~ && git clone --depth 1 https://github.com/rt/dotfiles.git
+RUN mkdir ~/.vim
+RUN cd ~/dotfiles/ && ./bootstrap work_linux
+RUN cd ~ && rm -rf dotfiles
+
+RUN echo "source ~/.extrafile" >> ~/.bash_profile 
+RUN echo "source ~/.bashrc" >> ~/.bash_profile
+
