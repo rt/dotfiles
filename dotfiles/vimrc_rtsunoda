@@ -56,6 +56,9 @@ Plug 'andreshazard/vim-freemarker'
 Plug 'Konfekt/FastFold'
 Plug 'ton/vim-bufsurf'
 Plug  'fatih/vim-go'
+" Plug 'pechorin/any-jump.vim'
+" Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
+
 
 " Initialize plugin system
 call plug#end()

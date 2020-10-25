@@ -41,4 +41,5 @@ dotfiles/tmux.conf_rtsunoda
 dotfiles/gitconfig_rtsunoda
 bin/git-completion.bash
 bin/chrome_bookmarks
+bin/lein
 bin/vim

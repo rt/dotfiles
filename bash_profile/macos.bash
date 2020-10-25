@@ -1,109 +1,91 @@
-# NOT IN USE (moving to cloud more ...)
-
-# Lock the screen (when going AFK)
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+alias mac.install.tools="install_mac_tools"
+alias mac.cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias mac.afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 
 # Empty the Trash on all mounted volumes and the main HDD
 # Also, clear Apple’s System Logs to improve shell startup speed
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
+alias mac.emptytrash="sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash; sudo rm -rfv /private/var/log/asl/*.asl"
 
 # https://www.tekrevue.com/tip/rebuild-launchservices-fix-duplicate-entries-os-xs-open-menu/
 # Clean up LaunchServices to remove duplicates in the “Open With” menu
-alias lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
-
-# Recursively delete `.DS_Store` files
-alias cleanup="find . -type f -name '*.DS_Store' -ls -delete"
+alias mac.lscleanup="/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder"
 
 # Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+alias mac.hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias mac.showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
 # Show/hide hidden files in Finder
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
+alias mac.show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
+alias mac.hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"
 # OS X has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
 
+# requires brew first
+install_mac_tools() {
+  brew update && brew tap caskroom/cask
+  brew install coreutils
+  brew install wget
+  brew install nmap
+  brew install ngrep
+  brew install git
+  brew install tmux
+  brew install vim
+  brew install tree
+  brew install the_silver_searcher 
+  brew install ripgrep
 
+  brew install fzf
+  # To install useful key bindings and fuzzy completion:
+  $(brew --prefix)/opt/fzf/install
 
+  brew tap universal-ctags/universal-ctags
+  brew install --HEAD universal-ctags
+  brew install shUnit2
+  brew install grip
+  brew install jq
+  # highlighting in vim fzf preview: need to do this manually if you want the latest hightlighting
+  #sudo easy_install Pygments
+  brew install highlight
+  brew install pandoc
+  brew install reattach-to-user-namespace #needed by tmux 
 
-##### Homebrew (FZF)
-# Install (one or multiple) selected application(s)
-# using "brew search" as source input
-# mnemonic [B]rew [I]nstall [P]lugin
-bip() {
-  local inst=$(brew search | fzf -m)
+  brew cask install caskroom/versions/java8
+  brew install gradle
+  brew install maven
+  brew install postgresql@9.4 
+  brew pin postgresql@9.4
+  brew install clojure/tools/clojure
+  brew cask install intellij-idea-ce
+  #brew cask install intellij-idea
+  brew cask install docker
+  brew cask install virtualbox
+  brew cask install openscad
+  brew cask install kicad
+  brew cleanup
 
-  if [[ $inst ]]; then
-    for prog in $(echo $inst);
-    do brew install $prog; done
-  fi
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+  source ~/.bashrc
+  nvm use
+
+  # themes/fonts
+  cd ~/projects
+  #powerline fonts for tmux themes and vim-airline
+  git clone https://github.com/powerline/fonts.git
+  cd fonts/
+  ./install.sh
+
+  # lein install
+  ~/bin/lein
+
+  #optional tmux themes
+  cd ~/projects
+  git clone https://github.com/jimeh/tmux-themepack.git
+
+  #osx base16 terminals
+  cd ~/projects
+  git clone https://github.com/korzhyk/base16-terminal-app.git
 }
-# Update (one or multiple) selected application(s)
-# mnemonic [B]rew [U]pdate [P]lugin
-bup() {
-  local upd=$(brew leaves | fzf -m)
-
-  if [[ $upd ]]; then
-    for prog in $(echo $upd);
-    do brew upgrade $prog; done
-  fi
-}
-# Delete (one or multiple) selected application(s)
-# mnemonic [B]rew [C]lean [P]lugin (e.g. uninstall)
-bcp() {
-  local uninst=$(brew leaves | fzf -m)
-
-  if [[ $uninst ]]; then
-    for prog in $(echo $uninst);
-    do brew uninstall $prog; done
-  fi
-}
-
-
-##### Homebrew Cask (FZF)
-# Install or open the webpage for the selected application 
-# using brew cask search as input source
-# and display a info quickview window for the currently marked application
-install() {
-    local token
-    token=$(brew cask search | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
-
-    if [ "x$token" != "x" ]
-    then
-        echo "(I)nstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "i" ] || [ $input = "I" ]; then
-            brew cask install $token
-        fi
-        if [ $input = "h" ] || [ $input = "H" ]; then
-            brew cask home $token
-        fi
-    fi
-}
-# Uninstall or open the webpage for the selected application 
-# using brew list as input source (all brew cask installed applications) 
-# and display a info quickview window for the currently marked application
-uninstall() {
-    local token
-    token=$(brew cask list | fzf-tmux --query="$1" +m --preview 'brew cask info {}')
-
-    if [ "x$token" != "x" ]
-    then
-        echo "(U)ninstall or open the (h)omepage of $token"
-        read input
-        if [ $input = "u" ] || [ $input = "U" ]; then
-            brew cask uninstall $token
-        fi
-        if [ $input = "h" ] || [ $token = "h" ]; then
-            brew cask home $token
-        fi
-    fi
-}
-
-# Link Homebrew casks in `/Applications` rather than `~/Applications`
-export HOMEBREW_CASK_OPTS="--appdir=/Applications";
 

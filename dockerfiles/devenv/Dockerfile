@@ -42,6 +42,12 @@ RUN apt-get install -y postgresql
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN ~/.fzf/install
 
+# clojure
+# RUN curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
+# RUN chmod +x linux-install-1.10.1.727.sh
+# RUN ./linux-install-1.10.1.727.sh
+
+
 # nvm
 RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
@@ -52,6 +58,9 @@ RUN cd ~ && git clone --depth 1 https://github.com/rt/dotfiles.git
 RUN mkdir ~/.vim
 RUN cd ~/dotfiles/ && ./bootstrap work_linux
 RUN cd ~ && rm -rf dotfiles
+
+# install lein
+# RUN ~/bin/lein
 
 RUN echo "source ~/.extrafile" >> ~/.bash_profile 
 RUN echo "source ~/.bashrc" >> ~/.bash_profile
