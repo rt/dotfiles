@@ -59,17 +59,6 @@ setup_skeleton() {
   tmux send-keys -t $sess:yoteam.2 "cd ~/projects/yoteam" Enter
   tmux select-pane -t $sess:yoteam.1
   
-  #----- playground
-  tmux new-window -t $sess -n playground
-  tmux send-keys -t $sess:playground "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:playground "cd ~/projects/playground" Enter
-  tmux send-keys -t $sess:playground "vim" Enter
-
-  tmux split-window -v -l 24 -t $sess:playground
-  tmux send-keys -t $sess:playground.2 "cd ~/projects/playground" Enter
-  tmux select-pane -t $sess:playground.1
-
-
   #select first
   tmux select-window -t $sess:skeleton
 

@@ -22,7 +22,7 @@ bash_profile/setup/setup_skeleton.bash
 bash_profile/setup/setup_ecom_client.bash
 bash_profile/setup/setup_ecom_server.bash
 bash_profile/setup/setup_betsy.bash
-bash_profile/setup/setup_playground.bash
+bash_profile/setup/setup_keyboards.bash
 bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash
 bash_profile/chrome.bash

@@ -20,7 +20,6 @@ bash_profile/commands/psql.bash
 bash_profile/commands/tmux.bash
 bash_profile/setup/setup_work.bash
 bash_profile/setup/setup_work_devops.bash
-bash_profile/setup/setup_playground.bash
 bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash
 bash_profile/chrome.bash
