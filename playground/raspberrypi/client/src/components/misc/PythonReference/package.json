@@ -1,0 +1,6 @@
+{
+    "name": "PythonReference",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./PythonReference.js"
+}

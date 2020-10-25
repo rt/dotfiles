@@ -1,0 +1,6 @@
+{
+    "name": "ConceptIntro",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./ConceptIntro.js"
+}

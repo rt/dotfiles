@@ -1,0 +1,6 @@
+{
+    "name": "ShiftRegister",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./ShiftRegister.js"
+}

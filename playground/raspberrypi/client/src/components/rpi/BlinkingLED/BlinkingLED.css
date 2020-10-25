@@ -1,0 +1,57 @@
+
+table {
+  width: 100%;
+
+  & thead {
+    font-weight: bold;
+
+  }
+
+  & td {
+    text-align: center;
+  }
+}
+.black {
+  background-color: black;
+  color: white;
+}
+.brown {
+  background-color: brown;
+  color: black;
+}
+.red {
+  background-color: red;
+  color: black;
+}
+.orange {
+  background-color: orange;
+  color: black;
+}
+.yellow {
+  background-color: yellow;
+  color: black;
+}
+.green {
+  background-color: green;
+  color: white;
+}
+.blue {
+  background-color: blue;
+  color: white;
+}
+.violet {
+  background-color: violet;
+  color: black;
+}
+.gold {
+  background-color: gold;
+  color: black;
+}
+.grey {
+  background-color: grey;
+  color: black;
+}
+.silver {
+  background-color: silver;
+  color: black;
+}

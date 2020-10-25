@@ -1,0 +1,6 @@
+{
+    "name": "PullUpDownResistor",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./PullUpDownResistor.js"
+}
