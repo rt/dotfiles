@@ -1,0 +1,19 @@
+#!/bin/bash
+
+#for f in src/tests/*.sh; do
+  ##bash "$f" || break
+  #bash "$f" 
+#done
+
+if [[ "$1" ]]; then
+  dir="src/$1"
+else
+  dir="src"
+fi
+
+printf "%s\n" $dir
+
+for f in $(find $dir -name *_test.sh); do
+  printf "========== %s ==========\n\n" $f
+  bash "$f" 
+done
