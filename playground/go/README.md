@@ -2,6 +2,10 @@
  
 Normally you would have a repo per module (ie. hello/) but here we have a bunch of modules to play with.
 
+```bash
+# GOPATH, PATH are set up at /go
+docker run -it --rm -v "$HOME/projects/dotfiles/playground/go":/go golang
+```
 
 ### Getting Started
 

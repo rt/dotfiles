@@ -1,6 +1,7 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 # RUN apt-get update && apt-get install -y ubuntu-server
+# RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y curl vim tmux less git build-essential
 RUN apt-get update && \
   apt-get install -y coreutils && \
   apt-get install -y iputils-ping && \
@@ -65,3 +66,16 @@ RUN cd ~ && rm -rf dotfiles
 RUN echo "source ~/.extrafile" >> ~/.bash_profile 
 RUN echo "source ~/.bashrc" >> ~/.bash_profile
 
+RUN /bin/bash -c "source ~/.bash_profile"
+
+# Setup local user
+#RUN groupadd -g 1100 remira && \
+    #useradd -ms /bin/bash -u 1100 -g 1100 remira && \
+    #mkdir /work && \
+    #chown remira.remira /work
+
+#WORKDIR /work/code
+#USER remira
+
+#ADD initialize.sh /work/initialize.sh
+#CMD ["bash", "/work/initialize.sh"]
