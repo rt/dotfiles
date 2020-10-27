@@ -18,29 +18,49 @@ setup_work() {
 
   # migrations
   tmux new-window -t $sess -n migrations
-  tmux send-keys -t $sess:migrations.1 "cd migrations" Enter
-  tmux send-keys -t $sess:migrations.1 "psql -U postgres -h localhost"
+  tmux send-keys -t $sess:migrations "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:migrations "cd migrations" Enter
+  tmux send-keys -t $sess:migrations "vim" Enter
+
+  tmux split-window -v -l 14 -t $sess:migrations
+  tmux send-keys -t $sess:migrations.2 "cd migrations" Enter
+  tmux send-keys -t $sess:migrations.2 "psql -U postgres -h localhost"
 
   tmux select-pane -t $sess:migrations.1
 
-  ### system
-  tmux new-window -t $sess -n system
-  tmux send-keys -t $sess:system "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:system "cd platform/devenv" Enter
-  tmux send-keys -t $sess:system "docker-compose up"
+  ### platform
+  tmux new-window -t $sess -n platform
+  tmux send-keys -t $sess:platform "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:platform "cd platform" Enter
+  tmux send-keys -t $sess:platform "vim" Enter
   
-  tmux select-pane -t $sess:system.1
+  tmux split-window -v -l 14 -t $sess:platform
+  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.2 "docker-compose up"
 
-  # devops
-  tmux new-window -t $sess -n devops
-  tmux send-keys -t $sess:devops "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:devops "cd ~/dev/repos/devops" Enter
-  tmux send-keys -t $sess:devops "vim" Enter
+  tmux select-pane -t $sess:platform.1
 
-  tmux split-window -v -l 14 -t $sess:devops
-  tmux send-keys -t $sess:devops.2 "cd ~/dev/repos/devops" Enter
+  ### hotelenrichment
+  tmux new-window -t $sess -n hotelenrichment
+  tmux send-keys -t $sess:hotelenrichment "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:hotelenrichment "cd ~/dev/repos/hotelenrichment" Enter
+  tmux send-keys -t $sess:hotelenrichment "vim" Enter
+  
+  tmux split-window -v -l 14 -t $sess:hotelenrichment
+  tmux send-keys -t $sess:hotelenrichment.2 "cd ~/dev/repos/hotelenrichment" Enter
 
-  tmux select-pane -t $sess:devops.1
+  tmux select-pane -t $sess:hotelenrichment.1
+
+  ### devops
+  tmux new-window -t $sess -n ops
+  tmux send-keys -t $sess:ops "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:ops "cd ~/dev/repos/devops" Enter
+  tmux send-keys -t $sess:ops "vim" Enter
+  
+  tmux split-window -v -l 14 -t $sess:ops
+  tmux send-keys -t $sess:ops.2 "cd ~/dev/repos/devops" Enter
+
+  tmux select-pane -t $sess:ops.1
 
   ### deploy (just for reference)
   tmux new-window -t $sess -n deploy
@@ -59,7 +79,25 @@ setup_work() {
   tmux split-window -v -l 14 -t $sess:work
   tmux send-keys -t $sess:work.2 "cd ~/projects/work" Enter
 
+  tmux split-window -v -l 14 -t $sess:work
+  tmux send-keys -t $sess:work.3 "cd ~/projects/work" Enter
+
   tmux select-pane -t $sess:work.1
+  
+  #----- dotfiles
+  tmux new-window -t $sess -n dotfiles
+  tmux send-keys -t $sess:dotfiles "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:dotfiles "cd ~/projects/dotfiles" Enter
+  tmux send-keys -t $sess:dotfiles "vim" Enter
+  
+  #tmux split-window -h -l 85 -t $sess:dotfiles
+  tmux split-window -v -l 14 -t $sess:dotfiles
+  tmux send-keys -t $sess:dotfiles.2 "cd ~/projects/dotfiles" Enter
+
+  tmux split-window -v -l 14 -t $sess:dotfiles
+  tmux send-keys -t $sess:dotfiles.3 "cd ~/projects/qmk_firmware" Enter
+
+  tmux select-pane -t $sess:dotfiles.1
 
   #select first
   tmux select-window -t $sess:root

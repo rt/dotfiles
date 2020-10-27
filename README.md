@@ -74,25 +74,14 @@ It's easier to just have my keyboard files here and copy them to a qmk_firmware 
 ```bash
 git clone https://github.com/qmk/qmk_firmware
 cd dotfiles/
-./copy_qmk_files
+./copy_qmk_files ../qmk_firmware/
 ```
 
-Before, I had to install qmk dependencies for the firmware build but I think
-qmk_firmware not does it for you (forces you to run and install script).
-The below is probably not needed.
-
-Check out the dependencies here
-
-https://github.com/qmk/qmk_toolbox
-
+**Dependencies**
+You won't be able to flash the first time, and there will be a warning.
 ```bash
-brew tap osx-cross/avr
-brew tap PX4/homebrew-px4
-brew install avr-gcc
-brew install dfu-programmer
-brew install gcc-arm-none-eabi
-brew install avrdude
-brew install teensy_loader_cli
+./util/qmk_install.sh
+make git-submodule
 ```
 
 ### Other installs
