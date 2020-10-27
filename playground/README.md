@@ -1,4 +1,4 @@
 # playground
 
-Use against docker so that you don't have to install and you can't change versions of the environment.
+Mostly, small modules to test, prove, etc. musings of a real project, something to do.
 

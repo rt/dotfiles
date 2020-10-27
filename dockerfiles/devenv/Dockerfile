@@ -63,6 +63,11 @@ RUN cd ~ && rm -rf dotfiles
 # install lein
 # RUN ~/bin/lein
 
+# golang (need to test)
+# RUN curl -O https://golang.org/doc/install?download=go1.15.3.linux-amd64.tar.gz
+# RUN tar -C /usr/local -xzf go1.15.3.linux-amd64.tar.gz
+# RUN export PATH=$PATH:/usr/local/go/bin
+
 RUN echo "source ~/.extrafile" >> ~/.bash_profile 
 RUN echo "source ~/.bashrc" >> ~/.bash_profile
 

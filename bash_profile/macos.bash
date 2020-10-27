@@ -37,6 +37,9 @@ install_mac_tools() {
   brew install the_silver_searcher 
   brew install ripgrep
 
+  brew install go
+  brew install clojure
+
   brew install fzf
   # To install useful key bindings and fuzzy completion:
   $(brew --prefix)/opt/fzf/install
