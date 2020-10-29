@@ -1,4 +1,5 @@
 bash_profile/base.bash
+bash_profile/linux.bash
 bash_profile/commands/ls.bash
 bash_profile/commands/cd.bash
 bash_profile/commands/du.bash

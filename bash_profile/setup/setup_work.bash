@@ -34,9 +34,21 @@ setup_work() {
   tmux send-keys -t $sess:platform "cd platform" Enter
   tmux send-keys -t $sess:platform "vim" Enter
   
-  tmux split-window -v -l 14 -t $sess:platform
+  tmux split-window -v -l 10 -t $sess:platform
   tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
   tmux send-keys -t $sess:platform.2 "docker-compose up"
+  
+  tmux split-window -v -l 5 -t $sess:platform
+  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_postgres_1 bash"
+
+  tmux split-window -v -l 5 -t $sess:platform
+  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_couchbase_1 bash"
+
+  tmux split-window -v -l 5 -t $sess:platform
+  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_apache_1 bash"
 
   tmux select-pane -t $sess:platform.1
 

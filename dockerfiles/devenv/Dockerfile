@@ -23,6 +23,8 @@ RUN apt-get update && \
   apt-get install -y openjdk-8-jdk && \
   apt-get install -y openjdk-11-jdk && \
   apt-get install -y openssh-server && \
+  apt-get install -y universal-ctags && \
+  apt-get install -y postgresql && \
   service ssh start 
 
 # docker
@@ -33,24 +35,19 @@ RUN add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubunt
 RUN apt-get update
 RUN apt-get install -y docker-ce docker-ce-cli containerd.io
 
-# 
-RUN apt-get install -y universal-ctags
-
-# postgres
-RUN apt-get install -y postgresql
-
 # fzf
 RUN git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 RUN ~/.fzf/install
+
+# nvm
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+
+# go?
 
 # clojure
 # RUN curl -O https://download.clojure.org/install/linux-install-1.10.1.727.sh
 # RUN chmod +x linux-install-1.10.1.727.sh
 # RUN ./linux-install-1.10.1.727.sh
-
-
-# nvm
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
 
 RUN cd ~ && git clone --depth 1 https://github.com/powerline/fonts.git
 RUN cd ~/fonts && ./install.sh

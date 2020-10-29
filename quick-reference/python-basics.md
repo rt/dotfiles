@@ -1,14 +1,4 @@
-*virtualenv/venv*
-
-virtualenv is used to manage Python packages for different projects. Using
-virtualenv allows you to avoid installing Python packages globally which could
-break system tools or other projects. You can install virtualenv using pip.
-
-```bash
-python3 -m pip install --user virtualenv
-```
-
-*creating a venv*
+### Creating a venv
 
 The second argument is the location to create the virtual environment.
 Generally, you can just create this in your project and call it env.
@@ -18,7 +8,8 @@ And, you should .gitignore it.
 python3 -m venv env
 ```
 
-*Activate virtual env*
+### Activate virtual env
+
 Before you can start installing or using packages in your virtual environment
 you’ll need to activate it. Activating a virtual environment will put the
 virtual environment-specific python and pip executables into your shell’s PATH.
@@ -28,6 +19,8 @@ source env/bin/activate
 which python
 ```
 
+### Install dependencies 
+
 ```bash
 pip install requests
 pip install requests==2.18.4
@@ -36,7 +29,7 @@ pip install --pre requests     # pre-release
 pip install requests[security] # some packages have option extras
 ```
 
-*Deactivate*
+### Deactivate
 
 ```bash
 # when you switch projects
