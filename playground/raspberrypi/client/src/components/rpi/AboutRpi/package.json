@@ -1,6 +1,0 @@
-{
-    "name": "AboutRpi",
-    "version": "0.0.0",
-    "private": true,
-    "main": "./AboutRpi.js"
-}

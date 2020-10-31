@@ -1,6 +1,0 @@
-{
-    "name": "Accelerometer",
-    "version": "0.0.0",
-    "private": true,
-    "main": "./Accelerometer.js"
-}

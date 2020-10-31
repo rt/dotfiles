@@ -1,6 +1,0 @@
-{
-    "name": "RgbLED",
-    "version": "0.0.0",
-    "private": true,
-    "main": "./RgbLED.js"
-}

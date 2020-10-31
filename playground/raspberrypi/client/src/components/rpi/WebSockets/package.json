@@ -1,6 +1,0 @@
-{
-    "name": "WebSockets",
-    "version": "0.0.0",
-    "private": true,
-    "main": "./WebSockets.js"
-}
