@@ -466,7 +466,7 @@ enum custom_keycodes {
 #define ADJ_R24     KC_3
 #define ADJ_R25     KC_DOT
 #define ADJ_R31     KC_BSPC
-#define ADJ_R32     KC_COMM
+#define ADJ_R32     KC_0
 #define ADJ_R33     KC_DEL
 #define ADJ_R34     XXXXXXX
 #define ADJ_R35     XXXXXXX
