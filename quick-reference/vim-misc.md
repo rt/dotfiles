@@ -18,6 +18,11 @@ sed '/green/!d' colors
 sed '/green\|violet/d' colors
 ```
 
+
+```bash
+:%s/\n/\r/g # same as,  sed -i 's/\\n/\n/g' input_filename
+```
+
 ```text
 [{  beg code block
 ]}  end code block
