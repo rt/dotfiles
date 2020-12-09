@@ -25,3 +25,10 @@ ALTER TABLE log OWNER TO postgres;
 
 
 ```
+
+
+See open connection, etc.
+
+```sql
+select * from pg_stat_activity where datname = 'mydatabasename';
+```
