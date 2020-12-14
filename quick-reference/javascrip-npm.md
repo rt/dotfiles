@@ -6,7 +6,8 @@ cd ~/some-dep/
 npm link # set global link
 
 cd ~/app/
-npm link some-dep
+npm link some-dep 
+#or, npm link ~/some-dep/
 
 # do work ...
 
