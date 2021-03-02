@@ -24,10 +24,12 @@ bash_profile/setup/setup_ecom_client.bash
 bash_profile/setup/setup_ecom_server.bash
 bash_profile/setup/setup_betsy.bash
 bash_profile/setup/setup_keyboards.bash
+bash_profile/setup/setup_work.bash
 bash_profile/syntax_highlighting.bash
 bash_profile/utils.bash
 bash_profile/chrome.bash
 bash_profile/fzf.bash
+bash_profile/work.bash
 bash_profile/history.bash
 bash_profile/tmux.bash
 bash_profile/vim.bash
@@ -38,6 +40,7 @@ dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda
 dotfiles/vim_rtsunoda
+dotfiles/lein_rtsunoda
 dotfiles/tmux.conf_rtsunoda
 dotfiles/gitconfig_rtsunoda
 bin/git-completion.bash

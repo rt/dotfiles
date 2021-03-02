@@ -38,7 +38,8 @@ Plug 'tommcdo/vim-exchange'
 " Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'machakann/vim-highlightedyank'
-Plug 'w0rp/ale'
+" Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'gregsexton/gitv'
 "Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf.vim'
@@ -61,6 +62,10 @@ Plug  'sirtaj/vim-openscad'
 " Plug 'liuchengxu/vim-clap', { 'do': ':Clap install-binary!' }
 Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
+Plug 'clojure-vim/async-clj-omni'
+Plug 'luochen1990/rainbow'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'bhurlow/vim-parinfer'
 
 
 " Initialize plugin system
@@ -290,7 +295,13 @@ nnoremap <Space> za
 
 " ------------------------------- PLUGINS ------------------------------------
 
-
+" ----------------------------------------------------------------------------
+" Ale
+" ----------------------------------------------------------------------------
+let g:ale_linters = {
+\   'javascript': ['eslint'],
+\   'clojure': ['clj-kondo'],
+\}
 " ----------------------------------------------------------------------------
 " NerdTree
 " ----------------------------------------------------------------------------

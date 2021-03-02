@@ -38,7 +38,6 @@ install_mac_tools() {
   brew install ripgrep
 
   brew install go
-  brew install clojure
 
   brew install fzf
   # To install useful key bindings and fuzzy completion:
@@ -72,6 +71,16 @@ install_mac_tools() {
   curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
   source ~/.bashrc
   nvm use
+
+  # https://github.com/clj-kondo/clj-kondo
+  curl -sLO https://raw.githubusercontent.com/clj-kondo/clj-kondo/master/script/install-clj-kondo
+  chmod +x install-clj-kondo
+  ./install-clj-kondo
+
+  clj-kondo --parallel --lint "$(lein classpath)"
+
+
+  # brew install borkdude/brew/clj-kondo
 
   # themes/fonts
   cd ~/projects

@@ -44,6 +44,9 @@ install_linux_tools() {
 
   # go?
   # clojure/lein?
+  curl -sLO https://raw.githubusercontent.com/clj-kondo/clj-kondo/master/script/install-clj-kondo
+  chmod +x install-clj-kondo
+  ./install-clj-kondo
   # idea ?
   # openscad?
   # kicad?
