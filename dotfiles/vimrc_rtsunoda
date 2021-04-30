@@ -769,8 +769,6 @@ set listchars=tab:▸\ ,eol:¬
 nmap <Leader>l :set list!<CR>
 
 nnoremap <Leader>c :cclose<bar>lclose<cr>
-nmap <Leader>bb :e ~/bin/bash.txt<CR>:Goyo<CR>
-nmap <Leader>kl :e ~/projects/qmk_firmware/users/ryan/ryan.h<CR>:Goyo<CR>
 map <Leader>u :call HandleURL()<cr>
 
 " Show syntax highlighting groups for word under cursor

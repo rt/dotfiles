@@ -60,7 +60,9 @@ enum custom_keycodes {
   EPRM,
   VRSN,
   RGB_SLD,
-  
+
+  VIM_QMK_KEYMAP, 
+
   VIM_QUIT,
   VIM_WRITE,
   TMUX_PANE_NEXT,
@@ -202,7 +204,7 @@ enum custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------|
  * |Gui/Z |Alt/X |  C   |_IDE/D|_VHM/V|_VHM/K|_IDE/H|  ,   |Alt/. |Gui/' |
  * |------+------+------+------+------+------+------+------+------+------|
- * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT | _ADJ |      |      |
+ * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT | Tab  |      |      |
  * `---------------------------------------------------------------------'
  */
 #define COLE_L01     MT(MOD_LSFT,KC_Q)
@@ -364,18 +366,18 @@ enum custom_keycodes {
 /* Raise
  * Global: Function Keys and Reference
  * ,---------------------------------------------------------------------.
- * |QkRef |WRKFLW|      |      |      |      |      |      |  F11 |  F12 |
+ * |QkRef |WRKFLW|Keymap|      |      |      |      |      |  F11 |  F12 |
  * |------+------+------+------+-------------+------+------+------+------|
- * |CDDEPL|CDDATA|CDSERV|CDCLNT|CDDTLS|Insert|      |      |      |      |
+ * |      |      |      |      |      |Insert|      |      |      |      |
  * |------+------+------+------+------|------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 | 
  * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      | Tab  |GuiBk |      |      |      |      |      |
+ * |      |      |      |      |GuiBk |      |      |      |      |      |
  * `---------------------------------------------------------------------'
  */
 #define RAIS_L01     VIM_SHOW_QUICK_REF
 #define RAIS_L02     VIM_SHOW_WORKFLOWS
-#define RAIS_L03     XXXXXXX
+#define RAIS_L03     VIM_QMK_KEYMAP
 #define RAIS_L04     XXXXXXX
 #define RAIS_L05     XXXXXXX
 #define RAIS_L11     XXXXXXX
@@ -390,8 +392,8 @@ enum custom_keycodes {
 #define RAIS_L25     KC_F5
 #define RAIS_L31     XXXXXXX
 #define RAIS_L32     XXXXXXX
-#define RAIS_L33     _______
-#define RAIS_L34     KC_TAB
+#define RAIS_L33     XXXXXXX
+#define RAIS_L34     XXXXXXX
 #define RAIS_L35     LGUI(KC_BSPC)
 
 #define RAIS_R01     XXXXXXX
@@ -426,7 +428,7 @@ enum custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------|
  * |Zoom0 | Mute | Vol- | Vol+ |SetSnd|  -   |  1   |  2   |  3   |  .   |
  * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      | Bspc |  ,   | Del  |      |      |
+ * |      |      |      |      |      | Bspc |  0   | Del  |      |      |
 * `---------------------------------------------------------------------'
  */
 #define ADJ_L01     LGUI(KC_PLUS)

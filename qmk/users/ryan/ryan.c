@@ -63,6 +63,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       /*return false;*/
     
     
+    case VIM_QMK_KEYMAP:
+      if (record->event.pressed) {
+        SEND_STRING(":e ~/projects/dotfiles/qmk/users/ryan/ryan.h"SS_TAP(X_ENTER));
+      }
+        break;
+
     case VIM_QUIT:
       if (record->event.pressed) {
         SEND_STRING(":q"SS_TAP(X_ENTER));
