@@ -64,8 +64,6 @@ enum custom_keycodes {
   VIM_QMK_KEYMAP_H, 
   VIM_QMK_KEYMAP_C, 
 
-  VIM_QUIT,
-  VIM_WRITE,
   TMUX_PANE_NEXT,
   TMUX_WIN_PREV,
   TMUX_WIN_NEXT,
@@ -73,6 +71,11 @@ enum custom_keycodes {
   TMUX_ZOOM_TOGGLE,
   TMUX_EVEN_VERT,
   TMUX_EVEN_HOR,
+  VIM_HELP,
+  VIM_QUIT,
+  VIM_WRITE,
+  VIM_MERGETOOL,
+  VIM_DIFFTOOL,
   VIM_PASTE_LAST_YANK,
   VIM_DIFF_TOGGLE,
   VIM_PICK_AXE,
@@ -592,7 +595,7 @@ enum custom_keycodes {
  * ,---------------------------------------------------------------------.
  * |FWiDir| FINDP|FFiDir|FINDFI| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
  * |------+------+------+------+-------------+------+------+------+------|
- * |      |RECCHG| REC  | TEST |      | B-P  | DECL |TAGSEL| B-N  |USAGEW|
+ * |      |RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
  * |------+------+------+------+------|------+------+------+------+------|
  * |      |      |      | PROJV| Gundo|STYLE | DIGC |BACKC | TEMP |USAGCF|
  * |------+------+------+------+------+------+------+------+------+------|
@@ -608,7 +611,7 @@ enum custom_keycodes {
 #define VHNAV_L12     VIM_RECENT_CHANGES          // shared
 #define VHNAV_L13     VIM_FILES_RECENT            // shared
 #define VHNAV_L14     VIM_GOTO_TEST               // shared
-#define VHNAV_L15     _______
+#define VHNAV_L15     VIM_HELP
 #define VHNAV_L21     _______
 #define VHNAV_L22     _______
 #define VHNAV_L23     _______
@@ -646,7 +649,7 @@ enum custom_keycodes {
 /* GIT 
  * Vim: This is an extended vim layer
  * ,---------------------------------------------------------------------.
- * |      |      |      |PKAXE |PKAXEC| C-F  | C-N  | C-P  | C-L  |      |
+ * |      |DIFFT |MERGET|PKAXE |PKAXEC| C-F  | C-N  | C-P  | C-L  |      |
  * |------+------+------+------+-------------+------+------+------+------|
  * |      |STATUS|EDITIT|GMASTF|BLAME | A-F  | A-N  | A-P  | A-L  |      |
  * |------+------+------+------+------|------+------+------+------+------|
@@ -656,8 +659,8 @@ enum custom_keycodes {
  * `---------------------------------------------------------------------'
  */
 #define GIT_L01     _______
-#define GIT_L02     _______
-#define GIT_L03     _______
+#define GIT_L02     VIM_DIFFTOOL
+#define GIT_L03     VIM_MERGETOOL
 #define GIT_L04     VIM_PICK_AXE
 #define GIT_L05     VIM_PICK_AXE_CURRENT_FILE
 #define GIT_L11     _______

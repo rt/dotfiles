@@ -115,6 +115,21 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Gedit"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_MERGETOOL:
+      if (record->event.pressed) {
+        SEND_STRING(":Git mergetool"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_DIFFTOOL:
+      if (record->event.pressed) {
+        SEND_STRING(":Git difftool"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_HELP:
+      if (record->event.pressed) {
+        SEND_STRING(":Help"SS_TAP(X_ENTER));
+      }
+        break;
     case VIM_DIFF_INDEX:
       if (record->event.pressed) {
         SEND_STRING(":Gdiffsplit"SS_TAP(X_ENTER));
