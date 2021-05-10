@@ -34,11 +34,9 @@ Search only git files.  Will put in quickfix, and you can search any branch.
 Kinda rare, usually pull branch into a different directory for analysis
 - :Ggrep findMe master
 
-    
-    
-    
-    
-    
+
+
+
 In nerdtree, we need to change directories, get nerdtree in the main pane, and move to the main pain.
 Then, do search.
 ```

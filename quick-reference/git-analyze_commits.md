@@ -19,4 +19,10 @@ Same as doing it via fugitive, but easier to view
 - <range>Gitv (<range>Glog) // file mode
 
 
+*Gitv*
+Easier to view commits, `D` will give the diff
+```
+:Gitv! (Glog)              // file mode
+:<range>Gitv (<range>Glog) // file mode
+```
 

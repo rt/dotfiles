@@ -42,12 +42,3 @@ Ctrl-x
 *tweak your queries*
 `q:` will allow you to edit previous commands, instead of having to write them out again
 
-
-### ultisnips
-
-The sniplets are in the dotfiles project, executed per filetype.
-To use visually highlighted text in ultisnips, visually select then press <TAB> then type the trigger word.
-You can then do more complicated things than surround.
-Also, see use with the python interpreter http://vimcasts.org/episodes/ultisnips-python-interpolation/
-
-

@@ -35,7 +35,7 @@ Plug 'sjl/gundo.vim'
 Plug 'nelstrom/vim-visual-star-search'
 Plug 'tpope/vim-abolish'
 Plug 'tommcdo/vim-exchange'
-" Plug 'SirVer/ultisnips'
+Plug 'SirVer/ultisnips'
 Plug 'honza/vim-snippets'
 Plug 'machakann/vim-highlightedyank'
 " Plug 'w0rp/ale'
@@ -64,7 +64,6 @@ Plug 'guns/vim-sexp'
 Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'clojure-vim/async-clj-omni'
 Plug 'luochen1990/rainbow'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Plug 'bhurlow/vim-parinfer'
 
 
@@ -795,13 +794,8 @@ nmap <Leader>tr :!tmux send-keys -t 2 C-p C-j <CR><CR>
 nmap <Leader>tb :!tmux send-keys -t forward:dotfiles.2 source\ \./bootstrap\.sh\ rtsunoda C-j<CR><CR>
 
 """""" Fugitive 
-nnoremap <Leader>gs :Gstatus<CR>
-nnoremap <Leader>gd :Gdiff<CR>
-nnoremap <Leader>gdm :Gdiff master:%<CR>
-nnoremap <Leader>gb :Gblame<CR>
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>ge :Gedit<CR>
 nnoremap <Leader>gem :Gedit master:%<CR>
 nnoremap <Leader>gm :Gmerge<CR>
 nnoremap <Leader>gl :Glog -10<CR><CR>
@@ -812,22 +806,6 @@ nnoremap <Leader>glm :Glog -10 --author=rtsunoda --<CR><CR>
 
 """""" goyo
 nnoremap <Leader>G :Goyo<CR>
-
-"""""" tabularize
-if exists(":Tabularize")
-  nmap <Leader>a= :Tabularize /=<CR>
-  vmap <Leader>a= :Tabularize /=<CR>
-  nmap <Leader>a: :Tabularize /:\zs<CR>
-  vmap <Leader>a: :Tabularize /:\zs<CR>
-  "nmap <Leader>a\| :Tabularize /\|<CR>
-  "vmap <Leader>a\| :Tabularize /\|<CR>
-  nmap <Leader>a// :Tabularize /\/\/<CR>
-  vmap <Leader>a// :Tabularize /\/\/<CR>
-endif
-
-"""""" Work (if you run out of keyboard space)
-
-
 
 " ----------------------------------------------------------------------------
 " Commands

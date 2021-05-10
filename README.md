@@ -5,6 +5,11 @@ Over the years this seems to be one of the only things I try to keep up.
 As such, it's becoming more of a convenience place to help with productivity.
 More heavy lifting stuff is done in the remira repo.
 
+- bash_profile: individual topics to put in env
+- bin: tranferred to home direrectory
+- bin-tests: tests for bin
+- config: config files for build
+- dockerfiles: Dockerfiles for whatevers
 - dotfiles: vim, tmux, scripts, etc.
 - environment setup: mac, cloud instance, raspberrypi ...
 - quick-reference: preview from vim/terminal things I quickly forget
@@ -75,6 +80,8 @@ It's easier to just have my keyboard files here and copy them to a qmk_firmware 
 git clone https://github.com/qmk/qmk_firmware
 cd dotfiles/
 ./copy_qmk_files ../qmk_firmware/
+cd ../qmk_firmware/
+make handwired/mrkabuda:ryan:avrdude
 ```
 
 **Dependencies**

@@ -61,7 +61,8 @@ enum custom_keycodes {
   VRSN,
   RGB_SLD,
 
-  VIM_QMK_KEYMAP, 
+  VIM_QMK_KEYMAP_H, 
+  VIM_QMK_KEYMAP_C, 
 
   VIM_QUIT,
   VIM_WRITE,
@@ -118,7 +119,6 @@ enum custom_keycodes {
   VIM_CHANGE_LAST,
   VIM_DISPATCH_NPM,
   VIM_SHOW_QUICK_REF,
-  VIM_SHOW_WORKFLOWS,
   VIM_ONLY,
   VIM_COMMENT,
   VIM_GUNDO,
@@ -366,7 +366,7 @@ enum custom_keycodes {
 /* Raise
  * Global: Function Keys and Reference
  * ,---------------------------------------------------------------------.
- * |QkRef |WRKFLW|Keymap|      |      |      |      |      |  F11 |  F12 |
+ * |QkRef |      |KeympH|KeympC|      |      |      |      |  F11 |  F12 |
  * |------+------+------+------+-------------+------+------+------+------|
  * |      |      |      |      |      |Insert|      |      |      |      |
  * |------+------+------+------+------|------+------+------+------+------|
@@ -376,9 +376,9 @@ enum custom_keycodes {
  * `---------------------------------------------------------------------'
  */
 #define RAIS_L01     VIM_SHOW_QUICK_REF
-#define RAIS_L02     VIM_SHOW_WORKFLOWS
-#define RAIS_L03     VIM_QMK_KEYMAP
-#define RAIS_L04     XXXXXXX
+#define RAIS_L02     XXXXXXX
+#define RAIS_L03     VIM_QMK_KEYMAP_H
+#define RAIS_L04     VIM_QMK_KEYMAP_C
 #define RAIS_L05     XXXXXXX
 #define RAIS_L11     XXXXXXX
 #define RAIS_L12     XXXXXXX
@@ -393,7 +393,7 @@ enum custom_keycodes {
 #define RAIS_L31     XXXXXXX
 #define RAIS_L32     XXXXXXX
 #define RAIS_L33     XXXXXXX
-#define RAIS_L34     XXXXXXX
+#define RAIS_L34     KC_TAB
 #define RAIS_L35     LGUI(KC_BSPC)
 
 #define RAIS_R01     XXXXXXX

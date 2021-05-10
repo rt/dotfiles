@@ -1,4 +1,4 @@
-## ctags
+## vim-ctags
 
 *Work Js es5*
 ```

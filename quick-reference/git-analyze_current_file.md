@@ -15,15 +15,9 @@ You still need to dig to see the diff
 :Glog -10 -- % 
 ```
 
-*Gitv*
-Easier to view commits, `D` will give the diff
-```
-:Gitv! (Glog)              // file mode
-:<range>Gitv (<range>Glog) // file mode
-```
 
 You will want to see the diff or reference (to copy)  with index/master
-- `Gdiff` : With index
+- `:Gdiffsplit` : With index
 - `Gdiff master:%` : With master
 - `Gedit` : Reference with index (toggles working/index files)
 - `Gedit master:%` : Reference master

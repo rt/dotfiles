@@ -63,9 +63,15 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       /*return false;*/
     
     
-    case VIM_QMK_KEYMAP:
+    case VIM_QMK_KEYMAP_H:
       if (record->event.pressed) {
         SEND_STRING(":e ~/projects/dotfiles/qmk/users/ryan/ryan.h"SS_TAP(X_ENTER));
+      }
+        break;
+
+    case VIM_QMK_KEYMAP_C:
+      if (record->event.pressed) {
+        SEND_STRING(":e ~/projects/dotfiles/qmk/users/ryan/ryan.c"SS_TAP(X_ENTER));
       }
         break;
 
@@ -96,27 +102,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case VIM_GIT_STATUS:
       if (record->event.pressed) {
-        SEND_STRING(",gs");
+        SEND_STRING(":Git"SS_TAP(X_ENTER));
       }
         break;
     case VIM_GIT_BLAME:
       if (record->event.pressed) {
-        SEND_STRING(",gb");
+        SEND_STRING(":Git blame"SS_TAP(X_ENTER));
       }
         break;
     case VIM_EDIT_INDEX_TOGGLE:
       if (record->event.pressed) {
-        SEND_STRING(",ge");
+        SEND_STRING(":Gedit"SS_TAP(X_ENTER));
       }
         break;
     case VIM_DIFF_INDEX:
       if (record->event.pressed) {
-        SEND_STRING(",gd");
+        SEND_STRING(":Gdiffsplit"SS_TAP(X_ENTER));
       }
         break;
     case VIM_DIFF_MASTER:
       if (record->event.pressed) {
-        SEND_STRING(",gdm");
+        SEND_STRING(":Gdiffsplit master:%"SS_TAP(X_ENTER));
       }
         break;
     case VIM_GIT_MASTER_FILE:
@@ -329,11 +335,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_SHOW_QUICK_REF:
       if (record->event.pressed) {
         SEND_STRING(":ShowQuickReference"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_SHOW_WORKFLOWS:
-      if (record->event.pressed) {
-        SEND_STRING(":ShowWorkflows"SS_TAP(X_ENTER));
       }
         break;
     case VIM_ONLY:
