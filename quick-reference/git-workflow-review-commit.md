@@ -8,6 +8,7 @@ Do work and want to look at what's in the commit
 
 - :Git difftool               // quickfix list of edited working files (stages and unstaged don't come up)
 - ]q                          // next
+- :Gvdiffsplit                // if you want the diff view
 - :GitGutterUndoHunk          // similar to piecemeal (piecemeal allows you to see what is in staged and working)
 - :Git                        // stage what you want, diff if curious, and commit
 - :Git push
