@@ -590,11 +590,11 @@ function! <SID>SynStack()
 endfunc
 
 function! s:git_pickaxe(cword)
-  execute 'Glog -S' . a:cword . ' --'
+  execute 'Gclog -10 -S' . a:cword . ' --'
 endfunction
 
 function! s:git_pickaxe_current_file(cword)
-  execute 'Glog -S' . a:cword . ' -- %'
+  execute 'Gclog -S' . a:cword . ' -- %'
 endfunction
 
 function! s:git_grep(cword)
@@ -796,6 +796,8 @@ nmap <Leader>tb :!tmux send-keys -t forward:dotfiles.2 source\ \./bootstrap\.sh\
 """""" Fugitive 
 nnoremap <Leader>gr :Gread<CR>
 nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gn :diffget //3<CR>
+nnoremap <Leader>gt :diffget //2<CR>
 nnoremap <Leader>gem :Gedit master:%<CR>
 nnoremap <Leader>gl :Glog -10<CR><CR>
 nnoremap <Leader>glf :Glog -10 --reverse<CR><CR>
