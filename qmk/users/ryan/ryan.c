@@ -132,12 +132,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case VIM_DIFF_INDEX:
       if (record->event.pressed) {
-        SEND_STRING(":Gdiffsplit"SS_TAP(X_ENTER));
+        SEND_STRING(":Gvdiffsplit"SS_TAP(X_ENTER));
       }
         break;
     case VIM_DIFF_MASTER:
       if (record->event.pressed) {
-        SEND_STRING(":Gdiffsplit master:%"SS_TAP(X_ENTER));
+        SEND_STRING(":Gvdiffsplit master:%"SS_TAP(X_ENTER));
       }
         break;
     case VIM_GIT_MASTER_FILE:
@@ -145,9 +145,44 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(",gem");
       }
         break;
+    case VIM_LOG_COMMIT_MESSAGES:
+      if (record->event.pressed) {
+        SEND_STRING(":Gclog --grep=rtsunoda --");
+      }
+        break;
+    case VIM_LOG_CURRENT_FILE:
+      if (record->event.pressed) {
+        SEND_STRING(":Gclog -10 -- %"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_LOG_RECENT:
+      if (record->event.pressed) {
+        SEND_STRING(":Gclog -10"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_GREP:
+      if (record->event.pressed) {
+        SEND_STRING(":Ggrep master");
+      }
+        break;
     case VIM_GITV:
       if (record->event.pressed) {
-        SEND_STRING("Gitv");
+        SEND_STRING(":Gitv"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_BROWSE:
+      if (record->event.pressed) {
+        SEND_STRING(":'<,'>GBrowse"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_HUNK_NEXT:
+      if (record->event.pressed) {
+        SEND_STRING("GitGutterNextHunk"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_HUNK_PREV:
+      if (record->event.pressed) {
+        SEND_STRING("GitGutterPrevHunk"SS_TAP(X_ENTER));
       }
         break;
     case VIM_PICK_AXE:

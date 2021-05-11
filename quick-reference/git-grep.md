@@ -5,5 +5,5 @@ Working copy files is better done with Ag.
 
 - `:Ggrep something` Working copy files
 - `:Ggrep --cached something` 
-- `:Ggrep somephing branch-name` Search a branch
+- `:Ggrep something branch-name` Search a branch
 

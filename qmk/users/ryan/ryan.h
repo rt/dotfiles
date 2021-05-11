@@ -71,6 +71,11 @@ enum custom_keycodes {
   TMUX_ZOOM_TOGGLE,
   TMUX_EVEN_VERT,
   TMUX_EVEN_HOR,
+
+  VIM_GREP,
+  VIM_HUNK_NEXT,
+  VIM_HUNK_PREV,
+  VIM_BROWSE,
   VIM_HELP,
   VIM_QUIT,
   VIM_WRITE,
@@ -78,6 +83,9 @@ enum custom_keycodes {
   VIM_DIFFTOOL,
   VIM_PASTE_LAST_YANK,
   VIM_DIFF_TOGGLE,
+  VIM_LOG_CURRENT_FILE,
+  VIM_LOG_COMMIT_MESSAGES,
+  VIM_LOG_RECENT,
   VIM_PICK_AXE,
   VIM_PICK_AXE_CURRENT_FILE,
   VIM_USAGES_CWORD,
@@ -595,7 +603,7 @@ enum custom_keycodes {
  * ,---------------------------------------------------------------------.
  * |FWiDir| FINDP|FFiDir|FINDFI| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
  * |------+------+------+------+-------------+------+------+------+------|
- * |      |RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
+ * |CDROOT|RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
  * |------+------+------+------+------|------+------+------+------+------|
  * |      |      |      | PROJV| Gundo|STYLE | DIGC |BACKC | TEMP |USAGCF|
  * |------+------+------+------+------+------+------+------+------+------|
@@ -607,7 +615,7 @@ enum custom_keycodes {
 #define VHNAV_L03     VIM_FIND_FILE_IN_DIR        // Find file in dir in nerdtree
 #define VHNAV_L04     VIM_FIND_FILE               // shared Find file in git 
 #define VHNAV_L05     VIM_MARKS                   // shared
-#define VHNAV_L11     _______
+#define VHNAV_L11     VIM_WORK_DIR_ROOT
 #define VHNAV_L12     VIM_RECENT_CHANGES          // shared
 #define VHNAV_L13     VIM_FILES_RECENT            // shared
 #define VHNAV_L14     VIM_GOTO_TEST               // shared
@@ -649,23 +657,23 @@ enum custom_keycodes {
 /* GIT 
  * Vim: This is an extended vim layer
  * ,---------------------------------------------------------------------.
- * |      |DIFFT |MERGET|PKAXE |PKAXEC| C-F  | C-N  | C-P  | C-L  |      |
+ * |BROWSE| GREP |      |      |DIFFT |MERGET|      |      |      |PKAXEC|
  * |------+------+------+------+-------------+------+------+------+------|
- * |      |STATUS|EDITIT|GMASTF|BLAME | A-F  | A-N  | A-P  | A-L  |      |
+ * |      |EDITIT|STATUS|GMASTF|BLAME |      |HUNKN |HUNKP |      |PKAXE |
  * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |DIFFI |DIFFM | GITV | Q-F  | Q-N  | Q-P  | Q-L  |      |
+ * |      |      |DIFFI |DIFFM | GITV |LOGCF |LOGCM |LOGREC|      |      |
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |
  * `---------------------------------------------------------------------'
  */
-#define GIT_L01     _______
-#define GIT_L02     VIM_DIFFTOOL
-#define GIT_L03     VIM_MERGETOOL
-#define GIT_L04     VIM_PICK_AXE
-#define GIT_L05     VIM_PICK_AXE_CURRENT_FILE
+#define GIT_L01     VIM_BROWSE
+#define GIT_L02     VIM_GREP                      // shared
+#define GIT_L03     _______
+#define GIT_L04     _______
+#define GIT_L05     VIM_DIFFTOOL                  // shared marks
 #define GIT_L11     _______
-#define GIT_L12     VIM_GIT_STATUS
-#define GIT_L13     VIM_EDIT_INDEX_TOGGLE
+#define GIT_L12     VIM_EDIT_INDEX_TOGGLE
+#define GIT_L13     VIM_GIT_STATUS                // shared
 #define GIT_L14     VIM_GIT_MASTER_FILE
 #define GIT_L15     VIM_GIT_BLAME
 #define GIT_L21     _______
@@ -679,20 +687,20 @@ enum custom_keycodes {
 #define GIT_L34     _______
 #define GIT_L35     _______
 
-#define GIT_R01     VIM_CHANGE_FIRST
-#define GIT_R02     VIM_CHANGE_NEXT
-#define GIT_R03     VIM_CHANGE_PREV
-#define GIT_R04     VIM_CHANGE_LAST
+#define GIT_R01     VIM_MERGETOOL
+#define GIT_R02     _______
+#define GIT_R03     _______
+#define GIT_R04     VIM_PICK_AXE_CURRENT_FILE
 #define GIT_R05     _______
-#define GIT_R11     VIM_ARGS_FIRST
-#define GIT_R12     VIM_ARGS_NEXT
-#define GIT_R13     VIM_ARGS_PREV
-#define GIT_R14     VIM_ARGS_LAST
-#define GIT_R15     _______
-#define GIT_R21     VIM_QUICK_FIRST
-#define GIT_R22     VIM_QUICK_NEXT
-#define GIT_R23     VIM_QUICK_PREV
-#define GIT_R24     VIM_QUICK_LAST
+#define GIT_R11     _______
+#define GIT_R12     VIM_HUNK_NEXT
+#define GIT_R13     VIM_HUNK_PREV
+#define GIT_R14     _______
+#define GIT_R15     VIM_PICK_AXE
+#define GIT_R21     VIM_LOG_CURRENT_FILE
+#define GIT_R22     VIM_LOG_COMMIT_MESSAGES
+#define GIT_R23     VIM_LOG_RECENT
+#define GIT_R24     _______
 #define GIT_R25     _______
 #define GIT_R31     _______
 #define GIT_R32     _______
@@ -705,11 +713,11 @@ enum custom_keycodes {
 /* VWNAV 
  * Vim: Work specific navigation
  * ,---------------------------------------------------------------------.
- * |SCRPTS|NOTES |      |      |      |      |CDROOT|      |      |      |
+ * |SCRPTS|NOTES |      |      |      | C-F  | C-N  | C-P  | C-L  |      |
  * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      | A-F  | A-N  | A-P  | A-L  |      |
  * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
+ * |      |      |      |      |      | Q-F  | Q-N  | Q-P  | Q-L  |      |
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |
  * `---------------------------------------------------------------------'
@@ -735,20 +743,20 @@ enum custom_keycodes {
 #define VWNAV_L34     _______
 #define VWNAV_L35     _______
 
-#define VWNAV_R01     _______
-#define VWNAV_R02     VIM_WORK_DIR_ROOT
-#define VWNAV_R03     _______
-#define VWNAV_R04     _______
+#define VWNAV_R01     VIM_CHANGE_FIRST
+#define VWNAV_R02     VIM_CHANGE_NEXT
+#define VWNAV_R03     VIM_CHANGE_PREV
+#define VWNAV_R04     VIM_CHANGE_LAST
 #define VWNAV_R05     _______
-#define VWNAV_R11     _______
-#define VWNAV_R12     _______
-#define VWNAV_R13     _______
-#define VWNAV_R14     _______
+#define VWNAV_R11     VIM_ARGS_FIRST
+#define VWNAV_R12     VIM_ARGS_NEXT
+#define VWNAV_R13     VIM_ARGS_PREV
+#define VWNAV_R14     VIM_ARGS_LAST
 #define VWNAV_R15     _______
-#define VWNAV_R21     _______
-#define VWNAV_R22     _______
-#define VWNAV_R23     _______
-#define VWNAV_R24     _______
+#define VWNAV_R21     VIM_QUICK_FIRST
+#define VWNAV_R22     VIM_QUICK_NEXT
+#define VWNAV_R23     VIM_QUICK_PREV
+#define VWNAV_R24     VIM_QUICK_LAST
 #define VWNAV_R25     _______
 #define VWNAV_R31     _______
 #define VWNAV_R32     _______

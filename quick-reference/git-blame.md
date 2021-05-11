@@ -1,8 +1,5 @@
 # git-blame
 
-### Vim/Fugitive
-
-Typical workflow
 
 ```
 [04] :Git blame
