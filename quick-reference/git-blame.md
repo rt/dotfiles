@@ -2,7 +2,7 @@
 
 
 ```
-[04] :Git blame
+:Git blame
 o # open commit in hsplit to inpect if it is the commit that introduced something
 :q
 - # reblame if you need to dig further (wash and repeat)
@@ -23,6 +23,4 @@ gq # close and put you back on the working file
                         -     reblame at commit
                         ~     reblame at [count]th first grandparent
                         P     reblame at [count]th parent (like HEAD^[count])
-
-### IntelliJ
 

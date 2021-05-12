@@ -84,12 +84,17 @@ enum custom_keycodes {
   VIM_PASTE_LAST_YANK,
   VIM_DIFF_TOGGLE,
   VIM_LOG_CURRENT_FILE,
+  VIM_LOG_CURRENT_FILE_SELECTION,
+  VIM_LOG_CURRENT_FILE_DETAILS,
   VIM_LOG_COMMIT_MESSAGES,
   VIM_LOG_RECENT,
+  VIM_LOG_RELEASE,
   VIM_PICK_AXE,
   VIM_PICK_AXE_CURRENT_FILE,
   VIM_USAGES_CWORD,
   VIM_USAGES_CFILE,
+  VIM_EDIT_ANY,
+  VIM_DIFF_ANY,
   VIM_DIFF_INDEX,
   VIM_DIFF_MASTER,
   VIM_GITV,
@@ -657,30 +662,30 @@ enum custom_keycodes {
 /* GIT 
  * Vim: This is an extended vim layer
  * ,---------------------------------------------------------------------.
- * |BROWSE| GREP |      |      |DIFFT |MERGET|      |      |      |PKAXEC|
+ * |LOGREL| GREP |LOGREC|LOGCM | GITV |MERGET|DIFFT |BROWSE|      |PKAXEC|
  * |------+------+------+------+-------------+------+------+------+------|
- * |      |EDITIT|STATUS|GMASTF|BLAME |      |HUNKN |HUNKP |      |PKAXE |
+ * | EDIT |EDITIT|STATUS|GMASTF|BLAME |      |HUNKN |HUNKP |      |PKAXE |
  * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |DIFFI |DIFFM | GITV |LOGCF |LOGCM |LOGREC|      |      |
+ * | DIFF |      |DIFFI |DIFFM |      |LOGREL|      |LOGCFS|LOGCF |LOGCFD|
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      |      |      |      |      |      |      |      |
  * `---------------------------------------------------------------------'
  */
-#define GIT_L01     VIM_BROWSE
+#define GIT_L01     VIM_LOG_RELEASE
 #define GIT_L02     VIM_GREP                      // shared
-#define GIT_L03     _______
-#define GIT_L04     _______
-#define GIT_L05     VIM_DIFFTOOL                  // shared marks
-#define GIT_L11     _______
+#define GIT_L03     VIM_LOG_RECENT
+#define GIT_L04     VIM_LOG_COMMIT_MESSAGES
+#define GIT_L05     VIM_GITV
+#define GIT_L11     VIM_EDIT_ANY
 #define GIT_L12     VIM_EDIT_INDEX_TOGGLE
 #define GIT_L13     VIM_GIT_STATUS                // shared
 #define GIT_L14     VIM_GIT_MASTER_FILE
 #define GIT_L15     VIM_GIT_BLAME
-#define GIT_L21     _______
+#define GIT_L21     VIM_DIFF_ANY
 #define GIT_L22     _______
 #define GIT_L23     VIM_DIFF_INDEX
 #define GIT_L24     VIM_DIFF_MASTER
-#define GIT_L25     VIM_GITV
+#define GIT_L25     _______
 #define GIT_L31     _______
 #define GIT_L32     _______
 #define GIT_L33     _______
@@ -688,8 +693,8 @@ enum custom_keycodes {
 #define GIT_L35     _______
 
 #define GIT_R01     VIM_MERGETOOL
-#define GIT_R02     _______
-#define GIT_R03     _______
+#define GIT_R02     VIM_DIFFTOOL
+#define GIT_R03     VIM_BROWSE
 #define GIT_R04     VIM_PICK_AXE_CURRENT_FILE
 #define GIT_R05     _______
 #define GIT_R11     _______
@@ -697,11 +702,11 @@ enum custom_keycodes {
 #define GIT_R13     VIM_HUNK_PREV
 #define GIT_R14     _______
 #define GIT_R15     VIM_PICK_AXE
-#define GIT_R21     VIM_LOG_CURRENT_FILE
-#define GIT_R22     VIM_LOG_COMMIT_MESSAGES
-#define GIT_R23     VIM_LOG_RECENT
-#define GIT_R24     _______
-#define GIT_R25     _______
+#define GIT_R21     _______
+#define GIT_R22     _______
+#define GIT_R23     VIM_LOG_CURRENT_FILE_SELECTION
+#define GIT_R24     VIM_LOG_CURRENT_FILE
+#define GIT_R25     VIM_LOG_CURRENT_FILE_DETAILS
 #define GIT_R31     _______
 #define GIT_R32     _______
 #define GIT_R33     _______

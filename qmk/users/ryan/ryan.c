@@ -110,6 +110,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Git blame"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_EDIT_ANY:
+      if (record->event.pressed) {
+        SEND_STRING(":Gedit ");
+      }
+        break;
     case VIM_EDIT_INDEX_TOGGLE:
       if (record->event.pressed) {
         SEND_STRING(":Gedit"SS_TAP(X_ENTER));
@@ -130,6 +135,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Help"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_DIFF_ANY:
+      if (record->event.pressed) {
+        SEND_STRING(":Gvdiffsplit ");
+      }
+        break;
     case VIM_DIFF_INDEX:
       if (record->event.pressed) {
         SEND_STRING(":Gvdiffsplit"SS_TAP(X_ENTER));
@@ -147,7 +157,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case VIM_LOG_COMMIT_MESSAGES:
       if (record->event.pressed) {
-        SEND_STRING(":Gclog --grep=rtsunoda --");
+        SEND_STRING(":Gclog -10 --grep=rtsunoda --");
+      }
+        break;
+    case VIM_LOG_CURRENT_FILE_SELECTION:
+      if (record->event.pressed) {
+        SEND_STRING(":'<,'>Gclog"SS_TAP(X_ENTER));
       }
         break;
     case VIM_LOG_CURRENT_FILE:
@@ -160,6 +175,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Gclog -10"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_LOG_RELEASE:
+      if (record->event.pressed) {
+        SEND_STRING(":Gclog --since=2021.4.1 -- core-webapp/src/main/webapp/resources/shopping/");
+      }
+        break;
+        
     case VIM_GREP:
       if (record->event.pressed) {
         SEND_STRING(":Ggrep master");
@@ -195,6 +216,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":PickAxeCurrentFile"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_LOG_CURRENT_FILE_DETAILS:
+      if (record->event.pressed) {
+        SEND_STRING(":0Gclog"SS_TAP(X_ENTER));
+      }
+        break;
+        
     case VIM_ARGS_FIRST:
       if (record->event.pressed) {
         SEND_STRING("[A");

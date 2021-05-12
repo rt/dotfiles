@@ -1,3 +1,10 @@
 #!/usr/bin/env bash
 
 cp -r qmk/* $1/
+
+
+# Read qmk/users/ryan/ryan.h
+# for line
+#   if in /* Git ...
+#     write and end current file >>i quick-reference/keymap_git.h
+#      start new buf
