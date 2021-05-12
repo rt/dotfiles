@@ -73,6 +73,7 @@ enum custom_keycodes {
   TMUX_EVEN_HOR,
 
   VIM_GREP,
+  VIM_HUNK_UNDO,
   VIM_HUNK_NEXT,
   VIM_HUNK_PREV,
   VIM_BROWSE,
@@ -135,6 +136,7 @@ enum custom_keycodes {
   VIM_CHANGE_LAST,
   VIM_DISPATCH_NPM,
   VIM_SHOW_QUICK_REF,
+  VIM_SHOW_KEYMAPS,
   VIM_ONLY,
   VIM_COMMENT,
   VIM_GUNDO,
@@ -144,7 +146,7 @@ enum custom_keycodes {
   VIM_NERD_MOVE,
   VIM_NERD_DEL,
   VIM_ULTISNIPS_TRIGGER,
-  VIM_WORK_DIR_ROOT,
+  VIM_DIR_ROOT,
   VIM_WORK_SHOW_NOTES,
   VIM_WORK_SHOW_SCRIPTS,
   VIM_WORK_GOTO_COMPONENT,
@@ -157,7 +159,7 @@ enum custom_keycodes {
   VIM_GET_IMPL_CURSOR_WORD,
 };
 
-/* Qwerty: This is to help others understand 40% keyboards
+/* Qwerty
  * ,---------------------------------------------------------------------.
  * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |
  * |------+------+------+------+-------------+------+------+------+------|
@@ -212,7 +214,7 @@ enum custom_keycodes {
 
 
 
-/* COLEMAK-DH 
+/* Colemak-dhm
  * ,---------------------------------------------------------------------.
  * |Sft/Q |_VWN/W|   F  |_IDN/P|_VHN/B|_VHN/J|_IDN/L|   U  |_VWK/Y|Sft/; |
  * |------+------+------+------+-------------+------+------+------+------|
@@ -220,7 +222,7 @@ enum custom_keycodes {
  * |------+------+------+------+------|------+------+------+------+------|
  * |Gui/Z |Alt/X |  C   |_IDE/D|_VHM/V|_VHM/K|_IDE/H|  ,   |Alt/. |Gui/' |
  * |------+------+------+------+------+------+------+------+------+------|
- * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT | Tab  |      |      |
+ * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT |_Misc |      |      |
  * `---------------------------------------------------------------------'
  */
 #define COLE_L01     MT(MOD_LSFT,KC_Q)
@@ -261,13 +263,13 @@ enum custom_keycodes {
 #define COLE_R25     MT(MOD_LGUI,KC_QUOT)
 #define COLE_R31     LT(_RAISE,KC_SPC)
 #define COLE_R32     OSL(_SFT)
-#define COLE_R33     KC_TAB
+#define COLE_R33     OSL(_MISC)
 #define COLE_R34     XXXXXXX
 #define COLE_R35     XXXXXXX
  
 
 
-/* SFT
+/* Shift
  * Global: Shift Layer.  Using instead of OSM to get more keys
  * ,---------------------------------------------------------------------.
  * |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  |
@@ -382,7 +384,7 @@ enum custom_keycodes {
 /* Raise
  * Global: Function Keys and Reference
  * ,---------------------------------------------------------------------.
- * |QkRef |      |KeympH|KeympC|      |      |      |      |  F11 |  F12 |
+ * |QkRef |KEYMPS|KeympH|KeympC|      |      |      |      |  F11 |  F12 |
  * |------+------+------+------+-------------+------+------+------+------|
  * |      |      |      |      |      |Insert|      |      |      |      |
  * |------+------+------+------+------|------+------+------+------+------|
@@ -392,7 +394,7 @@ enum custom_keycodes {
  * `---------------------------------------------------------------------'
  */
 #define RAIS_L01     VIM_SHOW_QUICK_REF
-#define RAIS_L02     XXXXXXX
+#define RAIS_L02     VIM_SHOW_KEYMAPS
 #define RAIS_L03     VIM_QMK_KEYMAP_H
 #define RAIS_L04     VIM_QMK_KEYMAP_C
 #define RAIS_L05     XXXXXXX
@@ -491,7 +493,7 @@ enum custom_keycodes {
 
 
 
-/* NAV 
+/* Nav
  * Global: System, Tmux, App, etc, Navigation
  * ,---------------------------------------------------------------------.
  * |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |TEVENV|
@@ -547,7 +549,7 @@ enum custom_keycodes {
 
 
 
-/* VHOME 
+/* Vim
  * Vim: Editor
  * ,---------------------------------------------------------------------.
  * |      |      |      |VPASTE|      |      | New  | Copy | Move | Del  |
@@ -603,7 +605,7 @@ enum custom_keycodes {
 
 
 
-/* VHNAV 
+/* Vim-nav
  * Vim: Navigation
  * ,---------------------------------------------------------------------.
  * |FWiDir| FINDP|FFiDir|FINDFI| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
@@ -620,7 +622,7 @@ enum custom_keycodes {
 #define VHNAV_L03     VIM_FIND_FILE_IN_DIR        // Find file in dir in nerdtree
 #define VHNAV_L04     VIM_FIND_FILE               // shared Find file in git 
 #define VHNAV_L05     VIM_MARKS                   // shared
-#define VHNAV_L11     VIM_WORK_DIR_ROOT
+#define VHNAV_L11     VIM_DIR_ROOT
 #define VHNAV_L12     VIM_RECENT_CHANGES          // shared
 #define VHNAV_L13     VIM_FILES_RECENT            // shared
 #define VHNAV_L14     VIM_GOTO_TEST               // shared
@@ -659,12 +661,12 @@ enum custom_keycodes {
 
 
 
-/* GIT 
+/* Git
  * Vim: This is an extended vim layer
  * ,---------------------------------------------------------------------.
  * |LOGREL| GREP |LOGREC|LOGCM | GITV |MERGET|DIFFT |BROWSE|      |PKAXEC|
  * |------+------+------+------+-------------+------+------+------+------|
- * | EDIT |EDITIT|STATUS|GMASTF|BLAME |      |HUNKN |HUNKP |      |PKAXE |
+ * | EDIT |EDITIT|STATUS|GMASTF|BLAME |HUNKU |HUNKN |HUNKP |      |PKAXE |
  * |------+------+------+------+------|------+------+------+------+------|
  * | DIFF |      |DIFFI |DIFFM |      |LOGREL|      |LOGCFS|LOGCF |LOGCFD|
  * |------+------+------+------+------+------+------+------+------+------|
@@ -697,7 +699,7 @@ enum custom_keycodes {
 #define GIT_R03     VIM_BROWSE
 #define GIT_R04     VIM_PICK_AXE_CURRENT_FILE
 #define GIT_R05     _______
-#define GIT_R11     _______
+#define GIT_R11     VIM_HUNK_UNDO
 #define GIT_R12     VIM_HUNK_NEXT
 #define GIT_R13     VIM_HUNK_PREV
 #define GIT_R14     _______
@@ -715,7 +717,7 @@ enum custom_keycodes {
 
 
 
-/* VWNAV 
+/* Vim-nav2
  * Vim: Work specific navigation
  * ,---------------------------------------------------------------------.
  * |SCRPTS|NOTES |      |      |      | C-F  | C-N  | C-P  | C-L  |      |
@@ -771,7 +773,7 @@ enum custom_keycodes {
 
 
 
-/* CHROME 
+/* Chrome
  * Chrome: editor, navigation both browser and devtools
  * ,---------------------------------------------------------------------.
  * |      |Search|      |FindFi|Bkmrks|Incog |NewTab|      |      |DelTab|
@@ -832,8 +834,7 @@ enum custom_keycodes {
 
 
 
-/* INAV 
- * IntelliJ: Navigation
+/* IntelliJ-nav
  * Left side: Global Searching
  * Right side: Analysis, File based Searching
  * ,---------------------------------------------------------------------.
@@ -890,7 +891,7 @@ enum custom_keycodes {
 
 
 
-/* Idea 
+/* IntelliJ
  * ,---------------------------------------------------------------------.
  * | Sel+ |Rename|ChSig |ExtrtM|ExtrtV|Scrtch| New  | Copy | Move |Delete|
  * |------+------+------+------+-------------+------+------+------+------|
@@ -945,7 +946,8 @@ enum custom_keycodes {
 
 
 
-/* Misc 
+/* Misc
+ * Places
  * ,---------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+-------------+------+------+------+------|
@@ -1001,7 +1003,7 @@ enum custom_keycodes {
 
 
 
-/* Other 
+/* Other
  * ,---------------------------------------------------------------------.
  * |      |      |      |      |      |      |      |      |      |      |
  * |------+------+------+------+-------------+------+------+------+------|

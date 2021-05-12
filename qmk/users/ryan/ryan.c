@@ -152,7 +152,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case VIM_GIT_MASTER_FILE:
       if (record->event.pressed) {
-        SEND_STRING(",gem");
+        SEND_STRING(":Gedit master:%"SS_TAP(X_ENTER));
       }
         break;
     case VIM_LOG_COMMIT_MESSAGES:
@@ -198,12 +198,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case VIM_HUNK_NEXT:
       if (record->event.pressed) {
-        SEND_STRING("GitGutterNextHunk"SS_TAP(X_ENTER));
+        SEND_STRING(":GitGutterNextHunk"SS_TAP(X_ENTER));
       }
         break;
     case VIM_HUNK_PREV:
       if (record->event.pressed) {
-        SEND_STRING("GitGutterPrevHunk"SS_TAP(X_ENTER));
+        SEND_STRING(":GitGutterPrevHunk"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_HUNK_UNDO:
+      if (record->event.pressed) {
+        SEND_STRING(":GitGutterUndoHunk"SS_TAP(X_ENTER));
       }
         break;
     case VIM_PICK_AXE:
@@ -414,6 +419,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":ShowQuickReference"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_SHOW_KEYMAPS:
+      if (record->event.pressed) {
+        SEND_STRING(":ShowKeymaps"SS_TAP(X_ENTER));
+      }
+        break;
     case VIM_ONLY:
       if (record->event.pressed) {
         SEND_STRING(":only"SS_TAP(X_ENTER));
@@ -464,7 +474,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":WorkShowScripts"SS_TAP(X_ENTER));
       }
         break;
-    case VIM_WORK_DIR_ROOT:
+    case VIM_DIR_ROOT:
       if (record->event.pressed) {
         SEND_STRING(":CdRoot"SS_TAP(X_ENTER));
       }

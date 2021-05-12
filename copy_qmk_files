@@ -3,8 +3,23 @@
 cp -r qmk/* $1/
 
 
-# Read qmk/users/ryan/ryan.h
-# for line
 #   if in /* Git ...
-#     write and end current file >>i quick-reference/keymap_git.h
+#     write and end current file >>i read-only-keymaps/keymap_git.h
 #      start new buf
+
+input="qmk/users/ryan/ryan.h"
+filename=
+# while read line;
+while IFS= read -r line; do
+  if [[ $line = \/\** ]]
+  then
+    filename=`printf '%s\n' "$line" | sed 's/\/\* //'`
+    printf '%s\n' "$line" >> "read-only-keymaps/$filename.c"
+  else
+    if [[ $filename != "" ]]
+    then
+      # write to current keymap
+      printf '%s\n' "$line" >> "read-only-keymaps/$filename.c"
+    fi
+  fi
+done < $input
