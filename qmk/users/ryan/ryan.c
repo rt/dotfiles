@@ -340,48 +340,27 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_TAGBAR_OPEN_AUTOCLOSE:
       if (record->event.pressed) {
         SEND_STRING(":TagbarOpenAutoClose"SS_TAP(X_ENTER));
+        /* SEND_STRING(":TagbarToggle"SS_TAP(X_ENTER)); */
       }
         break;
     case VIM_FIND_INPATH:
       if (record->event.pressed) {
-        SEND_STRING(",k");
+        SEND_STRING(":Rg ");
+      }
+        break;
+    case VIM_FIND_GFILE:
+      if (record->event.pressed) {
+        SEND_STRING(":GFiles"SS_TAP(X_ENTER));
       }
         break;
     case VIM_FIND_FILE:
       if (record->event.pressed) {
-        SEND_STRING(",t");
+        SEND_STRING(":Files"SS_TAP(X_ENTER));
       }
         break;
-    case VIM_FIND_WORD_IN_DIR:
+    case VIM_COMMANDS:
       if (record->event.pressed) {
-        // preview dir in main pane
-        SEND_STRING("go");
-        // move to main pane
-        SEND_STRING(SS_LCTRL("i"));
-        // move down 3 lines to get to dir in main pain
-        SEND_STRING(SS_TAP(X_DOWN));
-        SEND_STRING(SS_TAP(X_DOWN));
-        SEND_STRING(SS_TAP(X_DOWN));
-        // change to selected dir
-        SEND_STRING("cd");
-        // search files
-        SEND_STRING(",k");
-      }
-        break;
-    case VIM_FIND_FILE_IN_DIR:
-      if (record->event.pressed) {
-        // preview dir in main pane
-        SEND_STRING("go");
-        // move to main pane
-        SEND_STRING(SS_LCTRL("i"));
-        // move down 3 lines to get to dir in main pain
-        SEND_STRING(SS_TAP(X_DOWN));
-        SEND_STRING(SS_TAP(X_DOWN));
-        SEND_STRING(SS_TAP(X_DOWN));
-        // change to selected dir
-        SEND_STRING("cd");
-        // search files
-        SEND_STRING(",f");
+        SEND_STRING(":Commands"SS_TAP(X_ENTER));
       }
         break;
     case VIM_MARKS:
@@ -396,17 +375,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         break;
     case VIM_FILES_RECENT:
       if (record->event.pressed) {
-        SEND_STRING("t");
+        SEND_STRING(":Buffers"SS_TAP(X_ENTER));
       }
         break;
     case VIM_VIEW_PROJ:
       if (record->event.pressed) {
-        SEND_STRING(",d");
+        SEND_STRING(":NERDTreeToggle"SS_TAP(X_ENTER));
       }
         break;
     case VIM_FILE_INPROJ:
       if (record->event.pressed) {
-        SEND_STRING(",n");
+        SEND_STRING(":NERDTreeFind"SS_TAP(X_ENTER));
       }
         break;
     case VIM_DISPATCH_NPM:
@@ -477,6 +456,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_DIR_ROOT:
       if (record->event.pressed) {
         SEND_STRING(":CdRoot"SS_TAP(X_ENTER));
+      }
+        break;
+    case VIM_DIR_CURRENT_FILE:
+      if (record->event.pressed) {
+        SEND_STRING(":lcd %:p:h"SS_TAP(X_ENTER));
       }
         break;
     case VIM_WORK_GOTO_COMPONENT:

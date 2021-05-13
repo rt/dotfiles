@@ -43,11 +43,9 @@ Plug 'dense-analysis/ale'
 Plug 'gregsexton/gitv'
 "Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf.vim'
-Plug 'mileszs/ack.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 Plug 'shumphrey/fugitive-gitlab.vim'
-Plug 'tommcdo/vim-fubitive'
 Plug 'alvan/vim-closetag'
 Plug 'ap/vim-css-color'
 Plug 'pangloss/vim-javascript', { 'for': ['javascript', 'javascript.jsx'] }
@@ -169,7 +167,7 @@ highlight nonText ctermbg=NONE
 
 """""" Tags
 "tags:look in current dir then upwards until home
-set tags=./tags,tags;$HOME
+set tags=./.tags,.tags;$HOME
 
 
 """""" Auto Completion 
@@ -295,18 +293,28 @@ nnoremap <Space> za
 " ------------------------------- PLUGINS ------------------------------------
 
 " ----------------------------------------------------------------------------
+" Airline
+" ----------------------------------------------------------------------------
+
+
+" ----------------------------------------------------------------------------
+" Tagbar
+" ----------------------------------------------------------------------------
+nnoremap <silent> <Leader>b :TagbarToggle<CR>
+
+" ----------------------------------------------------------------------------
 " Ale
 " ----------------------------------------------------------------------------
 let g:ale_linters = {
 \   'javascript': ['eslint'],
 \   'clojure': ['clj-kondo'],
 \}
+
 " ----------------------------------------------------------------------------
 " NerdTree
 " ----------------------------------------------------------------------------
 " Close vim if the only win left open is vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 
 " ----------------------------------------------------------------------------
 " EaryAlign
@@ -316,7 +324,6 @@ xmap ga <Plug>(EasyAlign)
 
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
-
 
 " ----------------------------------------------------------------------------
 " Fugitive
@@ -348,6 +355,10 @@ endfunction
 
 command! -nargs=1 DiffRev call s:get_diff_files(<q-args>)
 
+nnoremap <Leader>gr :Gread<CR>
+nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gn :diffget //3<CR>
+nnoremap <Leader>gt :diffget //2<CR>
 
 " ----------------------------------------------------------------------------
 " UltiSnips
@@ -364,7 +375,6 @@ let g:UltiSnipsJumpBackwardTrigger="<s-tab>"
 " If you want :UltiSnipsEdit to split your window.
 let g:UltiSnipsEditSplit="vertical"
 
-
 " ----------------------------------------------------------------------------
 " Gundo
 " ----------------------------------------------------------------------------
@@ -374,15 +384,9 @@ if has('python3')
     let g:gundo_prefer_python3 = 1          
 endif
 
-
 " ----------------------------------------------------------------------------
 " FZF
 " ----------------------------------------------------------------------------
-"let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-
-" ack
-let g:ackprg = 'ag --nogroup --nocolor --column'
-
 set runtimepath+=/usr/local/opt/fzf
 
 " Augmenting Ag command using fzf#vim#with_preview function
@@ -399,6 +403,11 @@ command! -bang -nargs=* Ag
   \                 <bang>0 ? fzf#vim#with_preview('up:60%')
   \                         : fzf#vim#with_preview('right:50%:hidden', '?'),
   \                 <bang>0)
+
+command! -bang -nargs=* Rg
+  \ call fzf#vim#grep(
+  \   'rg --column --line-number --no-heading --color=always --smart-case -- '.shellescape(<q-args>), 1,
+  \   fzf#vim#with_preview(), <bang>0)
 
 " Likewise, Files command with preview window
 command! -bang -nargs=? -complete=dir Files
@@ -425,6 +434,8 @@ command! -bang -nargs=? -complete=dir GFiles
 inoremap <expr> <c-x><c-t> fzf#complete('get_translation_names.sh')
 inoremap <expr> <c-x><c-m> fzf#complete('get_component_names.sh')
 
+" shows all maps
+nmap <Leader>m <plug>(fzf-maps-n)
 
 " ----------------------------------------------------------------------------
 " Goyo Limelight
@@ -458,6 +469,8 @@ endfunction
 
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
 autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+nnoremap <Leader>G :Goyo<CR>
 
 " ----------------------------------------------------------------------------
 " Tmux Integration
@@ -513,16 +526,14 @@ call s:tmux_map('<Leader>to', '.top-right')
 call s:tmux_map('<Leader>tn', '.bottom-left')
 call s:tmux_map('<Leader>t.', '.bottom-right')
 
+nmap <Leader>tr :!tmux send-keys -t 2 C-p C-j <CR><CR>
+" specify exact session.window.pan
+nmap <Leader>tb :!tmux send-keys -t forward:dotfiles.2 source\ \./bootstrap\.sh\ rtsunoda C-j<CR><CR>
+
 " ----------------------------------------------------------------------------
 " Mustache
 " ----------------------------------------------------------------------------
 let g:mustache_abbreviations = 1
-
-" ----------------------------------------------------------------------------
-" Man Pages
-" ----------------------------------------------------------------------------
-
-runtime! ftplugin/man.vim
 
 " ----------------------------------------------------------------------------
 " Closetag
@@ -544,8 +555,6 @@ let g:closetag_emptyTags_caseSensitive = 1
 let g:closetag_shortcut = '>'
 " Add > at current position without closing the current tag, default is ''
 let g:closetag_close_shortcut = '<Leader>>'
-
-
 
 " ----------------------------------------------------------------------------
 " vim-jsx
@@ -570,9 +579,8 @@ function! s:get_file_list(dirPath, fullscreen)
 		call fzf#vim#files(a:dirPath, fzf#vim#with_preview('right:50%:hidden', '?'), a:fullscreen)
 	endif
 endfunction
-
   
-function! HandleURL()
+function! s:handle_url()
   let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
   echo s:uri
   if s:uri != ""
@@ -582,7 +590,7 @@ function! HandleURL()
   endif
 endfunction
 
-function! <SID>SynStack()
+function! s:syn_stack()
   if !exists("*synstack")
     return
   endif
@@ -704,7 +712,7 @@ function! s:goto_tp(tp)
 endfunction
 
 " ----------------------------------------------------------------------------
-" Maps (or variable changes that create a map)
+" General Maps (or variable changes that create a map)
 " ----------------------------------------------------------------------------
 
 " map simple ctrl keys for split/window movement and sizing (colemak)
@@ -718,7 +726,6 @@ xnoremap do :diffget<cr>
 
 "select pasted area"
 nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
-
 
 " http://vimcasts.org/episodes/creating-mappings-that-accept-a-count/ Allow count with mapping for 'n.' using macro and expresssion register
 "nnoremap Q @='n.'<CR>
@@ -735,17 +742,9 @@ vmap ´ [egv
 vmap ˜ ]egv
 
 set pastetoggle=<F3>
-" ----------------------------------------------------------------------------
-" Leaders
-" ----------------------------------------------------------------------------
-
-"""""" general
 
 " Toggle spell
 nmap <silent> <Leader>s :set spell!<CR>
-
-"change to window current working dir
-nnoremap <Leader>cd :lcd %:p:h<CR>
 
 " http://vimcasts.org/episodes/the-edit-command/ 
 cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
@@ -758,49 +757,25 @@ map <Leader>et :tabe %%
 nmap <silent> <Leader>ev :e $MYVIMRC<CR>
 nmap <silent> <Leader>sv :so $MYVIMRC<CR>
 
-nnoremap <Leader>d :NERDTreeToggle<CR>
-nnoremap <Leader>n :NERDTreeFind<CR>
-
-nnoremap <silent> <Leader>b :TagbarToggle<CR>
 
 "Use the same symbols as TextMate for tabstops and EOLs
 set listchars=tab:▸\ ,eol:¬
+
+" set list eol symbols etc
 nmap <Leader>l :set list!<CR>
 
+" close quick fix
 nnoremap <Leader>c :cclose<bar>lclose<cr>
-map <Leader>u :call HandleURL()<cr>
+
+" open url in browser
+map <Leader>u :call <SID>handle_url()<cr>
 
 " Show syntax highlighting groups for word under cursor
-nmap <Leader>pp :call <SID>SynStack()<CR>
+nmap <Leader>pp :call <SID>syn_stack()<CR>
 
 " format json
 nnoremap <Leader>pj :%!python -mjson.tool<CR>
 
-
-"""""" fzf
-nmap t :Buffers<CR>
-nmap <Leader>t :GFiles<CR>
-nmap <Leader>f :Files<CR>
-nmap <Leader>r :Tags<CR>
-nmap <Leader><tab> <plug>(fzf-maps-n)
-nmap <Leader>k   :Ag<space>
-" this doesn't work, why?
-"nmap <Leader>K   :Ag! "<cword>" <CR>
-nmap <Leader>K   :Ggrep! "<cword>" <CR>
-
-"""""" tmux
-nmap <Leader>tr :!tmux send-keys -t 2 C-p C-j <CR><CR>
-" specify exact session.window.pan
-nmap <Leader>tb :!tmux send-keys -t forward:dotfiles.2 source\ \./bootstrap\.sh\ rtsunoda C-j<CR><CR>
-
-"""""" Fugitive 
-nnoremap <Leader>gr :Gread<CR>
-nnoremap <Leader>gw :Gwrite<CR>
-nnoremap <Leader>gn :diffget //3<CR>
-nnoremap <Leader>gt :diffget //2<CR>
-
-"""""" goyo
-nnoremap <Leader>G :Goyo<CR>
 
 " ----------------------------------------------------------------------------
 " Commands
@@ -884,4 +859,3 @@ let g:airline_powerline_fonts = 1 "automatically populate the g:airline_symbols 
 
 " Just show the filename (no path) in the tab
 let g:airline#extensions#tabline#fnamemod = ':t'
-

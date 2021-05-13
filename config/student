@@ -13,7 +13,6 @@ bash_profile/chrome.bash
 bash_profile/fzf.bash
 bash_profile/history.bash
 bash_profile/tmux.bash
-bash_profile/vim.bash
 bash_profile/work.bash
 bash_profile/completion.bash
 bash_profile/prompt_mb.bash

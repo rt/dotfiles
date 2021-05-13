@@ -115,9 +115,9 @@ enum custom_keycodes {
   VIM_TAGBAR_OPEN_AUTOCLOSE,
   VIM_FIND_INPATH,
   VIM_FIND_FILE,
-  VIM_FIND_FILE_IN_DIR,
-  VIM_FIND_WORD_IN_DIR,
+  VIM_FIND_GFILE,
   VIM_MARKS,
+  VIM_COMMANDS,
   VIM_RECENT_CHANGES,
   VIM_FILES_RECENT,
   VIM_VIEW_PROJ,
@@ -147,6 +147,7 @@ enum custom_keycodes {
   VIM_NERD_DEL,
   VIM_ULTISNIPS_TRIGGER,
   VIM_DIR_ROOT,
+  VIM_DIR_CURRENT_FILE,
   VIM_WORK_SHOW_NOTES,
   VIM_WORK_SHOW_SCRIPTS,
   VIM_WORK_GOTO_COMPONENT,
@@ -608,27 +609,27 @@ enum custom_keycodes {
 /* Vim-nav
  * Vim: Navigation
  * ,---------------------------------------------------------------------.
- * |FWiDir| FINDP|FFiDir|FINDFI| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
+ * |      | FINDP|      |FINDFI| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
  * |------+------+------+------+-------------+------+------+------+------|
- * |CDROOT|RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
+ * |COMNDS|RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
  * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      | PROJV| Gundo|STYLE | DIGC |BACKC | TEMP |USAGCF|
+ * |CDROOT| CDCF |      | PROJV| Gundo|STYLE | DIGC |BACKC | TEMP |USAGCF|
  * |------+------+------+------+------+------+------+------+------+------|
  * |      |      |      | ONLY |      |      |      |      |      |      |
  * `---------------------------------------------------------------------'
  */
-#define VHNAV_L01     VIM_FIND_WORD_IN_DIR        // Find word in dir in nerdtree
+#define VHNAV_L01     XXXXXXX
 #define VHNAV_L02     VIM_FIND_INPATH             // shared Find <keyword> in current directory
-#define VHNAV_L03     VIM_FIND_FILE_IN_DIR        // Find file in dir in nerdtree
-#define VHNAV_L04     VIM_FIND_FILE               // shared Find file in git 
+#define VHNAV_L03     VIM_FIND_FILE
+#define VHNAV_L04     VIM_FIND_GFILE               // shared Find file in git 
 #define VHNAV_L05     VIM_MARKS                   // shared
-#define VHNAV_L11     VIM_DIR_ROOT
+#define VHNAV_L11     VIM_COMMANDS
 #define VHNAV_L12     VIM_RECENT_CHANGES          // shared
 #define VHNAV_L13     VIM_FILES_RECENT            // shared
 #define VHNAV_L14     VIM_GOTO_TEST               // shared
 #define VHNAV_L15     VIM_HELP
-#define VHNAV_L21     _______
-#define VHNAV_L22     _______
+#define VHNAV_L21     VIM_DIR_ROOT                // change dir to project top        
+#define VHNAV_L22     VIM_DIR_CURRENT_FILE        // change dir to current file dir
 #define VHNAV_L23     _______
 #define VHNAV_L24     VIM_VIEW_PROJ               // shared
 #define VHNAV_L25     VIM_GUNDO                   // shared local changes (only)

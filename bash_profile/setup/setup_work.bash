@@ -8,7 +8,7 @@ setup_work() {
   tmux new-session -s $sess -d -n root
   tmux send-keys -t $sess:root "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:root "cd ~/dev/repos/dev" Enter
-  tmux send-keys -t $sess:root "ctags -R --language-force=java -f tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
+  tmux send-keys -t $sess:root "ctags -R --language-force=java -f .tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
   
   tmux split-window -v -l 14 -t $sess:root
   tmux send-keys -t $sess:root.2 "cd core-webapp/src/main/webapp/resources/$1" Enter
