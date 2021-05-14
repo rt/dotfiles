@@ -61,9 +61,6 @@ enum custom_keycodes {
   VRSN,
   RGB_SLD,
 
-  VIM_QMK_KEYMAP_H, 
-  VIM_QMK_KEYMAP_C, 
-
   TMUX_PANE_NEXT,
   TMUX_WIN_PREV,
   TMUX_WIN_NEXT,
@@ -72,6 +69,7 @@ enum custom_keycodes {
   TMUX_EVEN_VERT,
   TMUX_EVEN_HOR,
 
+  VIM_SHOW_MY_SNIPPETS, 
   VIM_GREP,
   VIM_HUNK_UNDO,
   VIM_HUNK_NEXT,
@@ -87,8 +85,6 @@ enum custom_keycodes {
   VIM_LOG_CURRENT_FILE,
   VIM_LOG_CURRENT_FILE_SELECTION,
   VIM_LOG_CURRENT_FILE_DETAILS,
-  VIM_LOG_COMMIT_MESSAGES,
-  VIM_LOG_RECENT,
   VIM_LOG_RELEASE,
   VIM_PICK_AXE,
   VIM_PICK_AXE_CURRENT_FILE,
@@ -98,7 +94,7 @@ enum custom_keycodes {
   VIM_DIFF_ANY,
   VIM_DIFF_INDEX,
   VIM_DIFF_MASTER,
-  VIM_GITV,
+  VIM_GIT_COMMITS,
   VIM_GIT_MASTER_FILE,
   VIM_EDIT_INDEX_TOGGLE,
   VIM_GIT_STATUS,
@@ -158,6 +154,26 @@ enum custom_keycodes {
   VIM_GET_USAGES_BY_CURRENT_FILE,
   VIM_GET_IMPL,
   VIM_GET_IMPL_CURSOR_WORD,
+
+  WORK_DB_MIGRATIONS_SHARED,
+  WORK_DB_MIGRATIONS_CLIENT,
+  WORK_FE_ROUTES,
+  WORK_FE_CONTROLLERS,
+  WORK_FE_COMPONENTS,
+  WORK_FE_TEMPLATES,
+  WORK_FE_STYLES,
+  WORK_FE_HANDLEBAR_HELPERS,
+  WORK_FE_STORES,
+  WORK_FE_MODELS,
+  WORK_FE_ACTIONS,
+  WORK_GOTO_TP,
+  WORK_GOTO_JIRA,
+  WORK_GOTO_CONFLUENCE,
+  WORK_EDIT_ELP,
+  WORK_EDIT_STARTUP_LOG,
+  WORK_EDIT_JENKINSFILE,
+  WORK_EDIT_BUILD,
+
 };
 
 /* Qwerty
@@ -385,7 +401,7 @@ enum custom_keycodes {
 /* Raise
  * Global: Function Keys and Reference
  * ,---------------------------------------------------------------------.
- * |QkRef |KEYMPS|KeympH|KeympC|      |      |      |      |  F11 |  F12 |
+ * |QkRef |KEYMPS|MYSNIP|      |      |      |      |      |  F11 |  F12 |
  * |------+------+------+------+-------------+------+------+------+------|
  * |      |      |      |      |      |Insert|      |      |      |      |
  * |------+------+------+------+------|------+------+------+------+------|
@@ -396,8 +412,8 @@ enum custom_keycodes {
  */
 #define RAIS_L01     VIM_SHOW_QUICK_REF
 #define RAIS_L02     VIM_SHOW_KEYMAPS
-#define RAIS_L03     VIM_QMK_KEYMAP_H
-#define RAIS_L04     VIM_QMK_KEYMAP_C
+#define RAIS_L03     VIM_SHOW_MY_SNIPPETS
+#define RAIS_L04     XXXXXXX
 #define RAIS_L05     XXXXXXX
 #define RAIS_L11     XXXXXXX
 #define RAIS_L12     XXXXXXX
@@ -665,7 +681,7 @@ enum custom_keycodes {
 /* Git
  * Vim: This is an extended vim layer
  * ,---------------------------------------------------------------------.
- * |LOGREL| GREP |LOGREC|LOGCM | GITV |MERGET|DIFFT |BROWSE|      |PKAXEC|
+ * |LOGREL| GREP |      |CMMITS|      |MERGET|DIFFT |BROWSE|      |PKAXEC|
  * |------+------+------+------+-------------+------+------+------+------|
  * | EDIT |EDITIT|STATUS|GMASTF|BLAME |HUNKU |HUNKN |HUNKP |      |PKAXE |
  * |------+------+------+------+------|------+------+------+------+------|
@@ -676,9 +692,9 @@ enum custom_keycodes {
  */
 #define GIT_L01     VIM_LOG_RELEASE
 #define GIT_L02     VIM_GREP                      // shared
-#define GIT_L03     VIM_LOG_RECENT
-#define GIT_L04     VIM_LOG_COMMIT_MESSAGES
-#define GIT_L05     VIM_GITV
+#define GIT_L03     _______
+#define GIT_L04     VIM_GIT_COMMITS
+#define GIT_L05     _______
 #define GIT_L11     VIM_EDIT_ANY
 #define GIT_L12     VIM_EDIT_INDEX_TOGGLE
 #define GIT_L13     VIM_GIT_STATUS                // shared
@@ -719,58 +735,54 @@ enum custom_keycodes {
 
 
 /* Vim-nav2
- * Vim: Work specific navigation
- * ,---------------------------------------------------------------------.
- * |SCRPTS|NOTES |      |      |      | C-F  | C-N  | C-P  | C-L  |      |
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |      |      |      | A-F  | A-N  | A-P  | A-L  |      |
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      |      |      | Q-F  | Q-N  | Q-P  | Q-L  |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * More vim navigation
  */
-#define VWNAV_L01     VIM_WORK_SHOW_SCRIPTS
-#define VWNAV_L02     VIM_WORK_SHOW_NOTES
+
+// Left
+#define VWNAV_L01     _______
+#define VWNAV_L02     _______
 #define VWNAV_L03     _______
 #define VWNAV_L04     _______
 #define VWNAV_L05     _______
+
 #define VWNAV_L11     _______
 #define VWNAV_L12     _______
 #define VWNAV_L13     _______
 #define VWNAV_L14     _______
 #define VWNAV_L15     _______
+
 #define VWNAV_L21     _______
 #define VWNAV_L22     _______
 #define VWNAV_L23     _______
 #define VWNAV_L24     _______
 #define VWNAV_L25     _______
-#define VWNAV_L31     _______
-#define VWNAV_L32     _______
+
 #define VWNAV_L33     _______
 #define VWNAV_L34     _______
 #define VWNAV_L35     _______
 
+// Right
 #define VWNAV_R01     VIM_CHANGE_FIRST
 #define VWNAV_R02     VIM_CHANGE_NEXT
 #define VWNAV_R03     VIM_CHANGE_PREV
 #define VWNAV_R04     VIM_CHANGE_LAST
 #define VWNAV_R05     _______
+
 #define VWNAV_R11     VIM_ARGS_FIRST
 #define VWNAV_R12     VIM_ARGS_NEXT
 #define VWNAV_R13     VIM_ARGS_PREV
 #define VWNAV_R14     VIM_ARGS_LAST
 #define VWNAV_R15     _______
+
 #define VWNAV_R21     VIM_QUICK_FIRST
 #define VWNAV_R22     VIM_QUICK_NEXT
 #define VWNAV_R23     VIM_QUICK_PREV
 #define VWNAV_R24     VIM_QUICK_LAST
 #define VWNAV_R25     _______
+
 #define VWNAV_R31     _______
 #define VWNAV_R32     _______
 #define VWNAV_R33     _______
-#define VWNAV_R34     _______
-#define VWNAV_R35     _______
 
 
 
@@ -947,59 +959,58 @@ enum custom_keycodes {
 
 
 
-/* Misc
- * Places
- * ,---------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+/* Work
+ * Work specific stuff
+ * - FE on left BE on right
+ * - Places on bottom
+ * - Goto on right
  */
-#define MISC_L01     _______
-#define MISC_L02     _______
-#define MISC_L03     _______
-#define MISC_L04     _______
-#define MISC_L05     _______
-#define MISC_L11     _______
-#define MISC_L12     _______
-#define MISC_L13     _______
+
+// Left
+#define MISC_L01     WORK_FE_ROUTES
+#define MISC_L02     WORK_FE_CONTROLLERS
+#define MISC_L03     WORK_FE_COMPONENTS
+#define MISC_L04     WORK_FE_TEMPLATES
+#define MISC_L05     WORK_FE_STYLES
+
+#define MISC_L11     WORK_FE_STORES
+#define MISC_L12     WORK_FE_MODELS
+#define MISC_L13     WORK_FE_ACTIONS
 #define MISC_L14     _______
-#define MISC_L15     _______
-#define MISC_L21     _______
+#define MISC_L15     WORK_FE_HANDLEBAR_HELPERS
+
+#define MISC_L21     WORK_EDIT_STARTUP_LOG
 #define MISC_L22     _______
 #define MISC_L23     _______
-#define MISC_L24     _______
-#define MISC_L25     _______
-#define MISC_L31     _______
-#define MISC_L32     _______
-#define MISC_L33     _______
-#define MISC_L34     _______
-#define MISC_L35     _______
+#define MISC_L24     WORK_EDIT_ELP
+#define MISC_L25     WORK_EDIT_BUILD
 
+#define MISC_L33     VIM_WORK_SHOW_SCRIPTS
+#define MISC_L35     VIM_WORK_SHOW_NOTES
+#define MISC_L34     _______
+
+// Right
 #define MISC_R01     _______
 #define MISC_R02     _______
 #define MISC_R03     _______
 #define MISC_R04     _______
-#define MISC_R05     _______
-#define MISC_R11     _______
-#define MISC_R12     _______
+#define MISC_R05     WORK_GOTO_TP
+
+#define MISC_R11     WORK_DB_MIGRATIONS_SHARED
+#define MISC_R12     WORK_DB_MIGRATIONS_CLIENT
 #define MISC_R13     _______
 #define MISC_R14     _______
-#define MISC_R15     _______
-#define MISC_R21     _______
+#define MISC_R15     WORK_GOTO_JIRA
+
+#define MISC_R21     WORK_EDIT_JENKINSFILE
 #define MISC_R22     _______
 #define MISC_R23     _______
 #define MISC_R24     _______
-#define MISC_R25     _______
+#define MISC_R25     WORK_GOTO_CONFLUENCE
+
 #define MISC_R31     _______
 #define MISC_R32     _______
 #define MISC_R33     _______
-#define MISC_R34     _______
-#define MISC_R35     _______
 
 
 

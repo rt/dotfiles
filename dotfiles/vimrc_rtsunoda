@@ -40,7 +40,6 @@ Plug 'honza/vim-snippets'
 Plug 'machakann/vim-highlightedyank'
 " Plug 'w0rp/ale'
 Plug 'dense-analysis/ale'
-Plug 'gregsexton/gitv'
 "Plug 'tpope/vim-sensible'
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
@@ -91,6 +90,10 @@ set autoindent                 " always set autoindenting on
 set smartindent
 "set copyindent                 " copy the previous indentation on autoindenting
 "set spell                      " do toggle instead
+set pastetoggle=<F3>
+
+"Use the same symbols as TextMate for tabstops and EOLs
+set listchars=tab:▸\ ,eol:¬
 
 " dont prompt when file is changed externally (just warn)
 set autoread
@@ -296,6 +299,11 @@ nnoremap <Space> za
 " Airline
 " ----------------------------------------------------------------------------
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1 "automatically populate the g:airline_symbols dictionary with the powerline symbols.
+
+" Just show the filename (no path) in the tab
+let g:airline#extensions#tabline#fnamemod = ':t'
 
 " ----------------------------------------------------------------------------
 " Tagbar
@@ -631,7 +639,12 @@ function! s:get_component(cfile)
 	let filename = substitute(a:cfile, "^#", "", "")
 	echom 'CFILE: ' . filename
 	call fzf#run(fzf#wrap(fzf#vim#with_preview({'source': 'get_component.sh ' . filename}, 'right:50%:hidden', '?')))
+endfunction
 
+" open specific
+function! s:open_project_file(relpath)
+  let path = system('get_project_path.sh ' . a:relpath)
+  execute 'edit ' . path
 endfunction
 
 " get_templates (from component/controller)
@@ -650,12 +663,6 @@ endfunction
 " get_style_file
 function! s:get_style_file(path)
   let filename = system('get_style_file.sh ' .  a:path) 
-  execute 'edit ' filename
-endfunction
-
-" get_test_component (from component/controller)
-function! s:get_test_component(cfile)
-  let filename = system('get_test_component.sh ' .  a:cfile)
   execute 'edit ' filename
 endfunction
 
@@ -711,8 +718,19 @@ function! s:goto_tp(tp)
 	silent exec "!open '".s:uri."'"
 endfunction
 
+function! s:goto_jira(id)
+  let s:uri = 'https://switchfly.atlassian.net/browse/SS-' . a:id
+	silent exec "!open '".s:uri."'"
+endfunction
+
+function! s:goto_confluence(tp)
+  let s:uri = 'https://confluence.switchfly.com/dosearchsite.action?cql=siteSearch+~+"' . a:tp . '"'
+	silent exec "!open '".s:uri."'"
+endfunction
+
+
 " ----------------------------------------------------------------------------
-" General Maps (or variable changes that create a map)
+" General Maps
 " ----------------------------------------------------------------------------
 
 " map simple ctrl keys for split/window movement and sizing (colemak)
@@ -732,39 +750,17 @@ nnoremap <expr> gV    "`[".getregtype(v:register)[0]."`]"
 " Although this is a little nicer using :normal
 nnoremap Q :normal n.<CR>
 
-" http://vimcasts.org/episodes/bubbling-text/
-" Bubble single lines requires unimpaired
-" These are <Alt-e> and <Alt-n> characters on Mac
-nmap ´ [e
-nmap ˜ ]e
-" Bubble multiple lines
-vmap ´ [egv
-vmap ˜ ]egv
-
-set pastetoggle=<F3>
-
 " Toggle spell
 nmap <silent> <Leader>s :set spell!<CR>
-
-" http://vimcasts.org/episodes/the-edit-command/ 
-cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<CR>
-map <Leader>ew :e %%
-map <Leader>es :sp %%
-map <Leader>ev :vsp %%
-map <Leader>et :tabe %%
 
 " Quickly edit/reload the vimrc file
 nmap <silent> <Leader>ev :e $MYVIMRC<CR>
 nmap <silent> <Leader>sv :so $MYVIMRC<CR>
 
-
-"Use the same symbols as TextMate for tabstops and EOLs
-set listchars=tab:▸\ ,eol:¬
-
 " set list eol symbols etc
 nmap <Leader>l :set list!<CR>
 
-" close quick fix
+" close quick fix and location
 nnoremap <Leader>c :cclose<bar>lclose<cr>
 
 " open url in browser
@@ -790,9 +786,11 @@ nnoremap <Leader>pj :%!python -mjson.tool<CR>
 command! -nargs=* Wrap set wrap linebreak nolist
 command! -nargs=* NoWrap set nowrap nolinebreak 
 
+command! -nargs=* CdRoot call <SID>get_project_path('')
 command! -bang -nargs=* ShowQuickReference call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/quick-reference', 1)
-command! -bang -nargs=* ShowWorkflows call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/workflows', 1)
 command! -bang -nargs=* ShowKeymaps call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/read-only-keymaps', 1)
+command! -bang -nargs=* ShowMySnippets call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/dotfiles/vim_rtsunoda/UltiSnips', 1)
+
 command! -bang -nargs=* PickAxe call <SID>git_pickaxe(expand('<cword>'))
 command! -bang -nargs=* PickAxeCurrentFile call <SID>git_pickaxe_current_file(expand('<cword>'))
 command! -bang -nargs=* UsagesCWord call <SID>git_grep(expand('<cword>'))
@@ -807,21 +805,24 @@ command! -nargs=* GetStyleFile call <SID>get_style_file(expand('%'))
 
 """""" Work
 command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/switchfly', 1)
-command! -bang -nargs=* WorkShowScripts call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/bin/work', 1)
+command! -nargs=* WorkPlaceELP call <SID>open_project_file('common/src/main/resources/ezrez.local.properties')
+command! -nargs=* WorkPlaceLog call <SID>open_project_file('log.txt')
+command! -nargs=* WorkPlaceJenkinsfile call <SID>open_project_file('Jenkinsfile')
+command! -nargs=* WorkPlaceBuild call <SID>open_project_file('build.xml')
 
 command! -nargs=* WorkGotoComponent call <SID>get_component(expand('<cfile>'))
 command! -nargs=* WorkGetComponentTemplates call <SID>get_templates(expand('%'))
 command! -nargs=* WorkGetBackingFile call <SID>get_backing_file(expand('%'))
-command! -nargs=* WorkGetTestComponent call <SID>get_test_component(expand('%'))
 command! -nargs=* WorkGetConfluenceUsagesCursorFile call <SID>get_confluence_usages_cursor(expand('%'), expand('<cfile>'))
 command! -nargs=* WorkGetConfluenceUsagesCursorWord call <SID>get_confluence_usages_cursor(expand('%'), expand('<cword>'))
 command! -nargs=* WorkGetMigrationsShared call <SID>get_migrations('shared')
 command! -nargs=* WorkGetMigrationsClient call <SID>get_migrations('client')
 
-command! -nargs=* CdRoot call <SID>get_project_path('')
 command! -nargs=* CdShopping call <SID>get_project_path('core-webapp/src/main/webapp/resources/shopping')
 
 command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
+command! -nargs=* WorkGotoJira call <SID>goto_jira(expand('<cword>'))
+command! -nargs=* WorkGotoConfluence call <SID>goto_confluence(expand('<cword>'))
 
 " go to template definition (gf): no work required
 " go to js definitions (ctags): no work required
@@ -829,12 +830,12 @@ command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
 command! -bang -nargs=* WorkListRoutes call <SID>get_simple_shopping_list('scripts/routes', <bang>0)
 command! -bang -nargs=* WorkListControllers call <SID>get_simple_shopping_list('scripts/controllers', <bang>0)
 command! -bang -nargs=* WorkListComponents call <SID>get_simple_shopping_list('scripts/components', <bang>0)
-command! -bang -nargs=* WorkListHandlebarHelpers call <SID>get_simple_shopping_list('scripts/handlebars_helpers', <bang>0)
 command! -bang -nargs=* WorkListTemplates call <SID>get_simple_shopping_list('templates', <bang>0)
-command! -bang -nargs=* WorkListActions call <SID>get_simple_shopping_list('scripts/liquid/actions', <bang>0)
-command! -bang -nargs=* WorkListModels call <SID>get_simple_shopping_list('scripts/liquid/models', <bang>0)
-command! -bang -nargs=* WorkListStores call <SID>get_simple_shopping_list('scripts/liquid/stores', <bang>0)
 command! -bang -nargs=* WorkListStyles call <SID>get_simple_shopping_list('styles', <bang>0)
+command! -bang -nargs=* WorkListHandlebarHelpers call <SID>get_simple_shopping_list('scripts/handlebars_helpers', <bang>0)
+command! -bang -nargs=* WorkListStores call <SID>get_simple_shopping_list('scripts/liquid/stores', <bang>0)
+command! -bang -nargs=* WorkListModels call <SID>get_simple_shopping_list('scripts/liquid/models', <bang>0)
+command! -bang -nargs=* WorkListActions call <SID>get_simple_shopping_list('scripts/liquid/actions', <bang>0)
 
 " notes: filters/interceptors
 command! -bang WorkFiltersAndInterceptors call fzf#run(fzf#wrap(
@@ -853,9 +854,3 @@ set statusline=%<%f\ %h%m%r%{fugitive#statusline()}%=%-14.(%l,%c%V%)\ %P
 set statusline+=%#warningmsg#
 set statusline+=%*
 
-""""" status/tabline vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1 "automatically populate the g:airline_symbols dictionary with the powerline symbols.
-
-" Just show the filename (no path) in the tab
-let g:airline#extensions#tabline#fnamemod = ':t'

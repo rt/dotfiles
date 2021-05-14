@@ -5,7 +5,7 @@
 # core-webapp/aa/bb/cc
 rpath="$1"
 
-modulePath=${rpath%%/*} #remove from end greedily, get module path
+modulePath=${rpath%/*} #remove file part from the end
 filePart=${rpath##*/} #remove longest part (greedily) from the front
 
 name=${filePart%.*} #remove extension

@@ -7,6 +7,8 @@ cp -r qmk/* $1/
 #     write and end current file >>i read-only-keymaps/keymap_git.h
 #      start new buf
 
+rm read-only-keymaps/*
+
 input="qmk/users/ryan/ryan.h"
 filename=
 # while read line;

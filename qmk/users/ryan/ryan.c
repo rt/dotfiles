@@ -63,18 +63,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
       /*return false;*/
     
     
-    case VIM_QMK_KEYMAP_H:
-      if (record->event.pressed) {
-        SEND_STRING(":e ~/projects/dotfiles/qmk/users/ryan/ryan.h"SS_TAP(X_ENTER));
-      }
-        break;
-
-    case VIM_QMK_KEYMAP_C:
-      if (record->event.pressed) {
-        SEND_STRING(":e ~/projects/dotfiles/qmk/users/ryan/ryan.c"SS_TAP(X_ENTER));
-      }
-        break;
-
     case VIM_QUIT:
       if (record->event.pressed) {
         SEND_STRING(":q"SS_TAP(X_ENTER));
@@ -155,11 +143,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Gedit master:%"SS_TAP(X_ENTER));
       }
         break;
-    case VIM_LOG_COMMIT_MESSAGES:
-      if (record->event.pressed) {
-        SEND_STRING(":Gclog -10 --grep=rtsunoda --");
-      }
-        break;
     case VIM_LOG_CURRENT_FILE_SELECTION:
       if (record->event.pressed) {
         SEND_STRING(":'<,'>Gclog"SS_TAP(X_ENTER));
@@ -168,11 +151,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_LOG_CURRENT_FILE:
       if (record->event.pressed) {
         SEND_STRING(":Gclog -10 -- %"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_LOG_RECENT:
-      if (record->event.pressed) {
-        SEND_STRING(":Gclog -10"SS_TAP(X_ENTER));
       }
         break;
     case VIM_LOG_RELEASE:
@@ -186,9 +164,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Ggrep master");
       }
         break;
-    case VIM_GITV:
+    case VIM_GIT_COMMITS:
       if (record->event.pressed) {
-        SEND_STRING(":Gitv"SS_TAP(X_ENTER));
+        SEND_STRING(":Commits"SS_TAP(X_ENTER));
       }
         break;
     case VIM_BROWSE:
@@ -403,6 +381,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":ShowKeymaps"SS_TAP(X_ENTER));
       }
         break;
+    case VIM_SHOW_MY_SNIPPETS:
+      if (record->event.pressed) {
+        SEND_STRING(":ShowMySnippets"SS_TAP(X_ENTER));
+      }
+        break;
+
     case VIM_ONLY:
       if (record->event.pressed) {
         SEND_STRING(":only"SS_TAP(X_ENTER));
@@ -536,6 +520,98 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case TMUX_EVEN_VERT:
       if (record->event.pressed) {
         SEND_STRING(SS_LCTRL("b")":select-layout even-vertical"SS_TAP(X_ENTER));
+      }
+        break;
+    
+
+    case WORK_DB_MIGRATIONS_SHARED:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGetMigrationsShared"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_DB_MIGRATIONS_CLIENT:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGetMigrationsClient"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_ROUTES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListRoutes"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_CONTROLLERS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListControllers"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_COMPONENTS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListComponents"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_TEMPLATES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListTemplates"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_STYLES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListStyles"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_HANDLEBAR_HELPERS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListHandlebarHelpers"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_STORES:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListStores"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_MODELS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListModels"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_FE_ACTIONS:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkListActions"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_GOTO_TP:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGotoTp"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_GOTO_JIRA:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGotoJira"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_GOTO_CONFLUENCE:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkGotoConfluence"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_EDIT_ELP:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkPlaceELP"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_EDIT_STARTUP_LOG:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkPlaceLog"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_EDIT_JENKINSFILE:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkPlaceJenkinsfile"SS_TAP(X_ENTER));
+      }
+        break;
+    case WORK_EDIT_BUILD:
+      if (record->event.pressed) {
+        SEND_STRING(":WorkPlaceBuild"SS_TAP(X_ENTER));
       }
         break;
         
