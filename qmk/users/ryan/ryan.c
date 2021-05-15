@@ -158,8 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":Gclog --since=2021.4.1 -- core-webapp/src/main/webapp/resources/shopping/");
       }
         break;
-        
-    case VIM_GREP:
+    case VIM_GIT_GREP:
       if (record->event.pressed) {
         SEND_STRING(":Ggrep master");
       }

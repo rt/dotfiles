@@ -3,6 +3,15 @@
  * - FE on left BE on right
  * - Places on bottom
  * - Goto on right
+ * ,---------------------------------------------------------------------.
+ * |Routes|Ctrlrs|Cmpnts|Tmplts|Styles|      |      |      |      |  TP  |
+ * |------+------+------+------+-------------+------+------+------+------|
+ * |Stores|Models|Actins|      |Helprs|MgrShr|MgrClt|      |      | Jira |
+ * |------+------+------+------+------|------+------+------+------+------|
+ * |StrtLg|      |      | ELP  |Build |Jnkins|      |      |      |Cnflnc|
+ * |------+------+------+------+------+------+------+------+------+------|
+ * |      |      |Scrpts|Notes |      |      |      |      |      |      |
+ * `---------------------------------------------------------------------'
  */
 
 // Left
@@ -25,8 +34,8 @@
 #define MISC_L25     WORK_EDIT_BUILD
 
 #define MISC_L33     VIM_WORK_SHOW_SCRIPTS
-#define MISC_L35     VIM_WORK_SHOW_NOTES
-#define MISC_L34     _______
+#define MISC_L34     VIM_WORK_SHOW_NOTES
+#define MISC_L35     _______
 
 // Right
 #define MISC_R01     _______
