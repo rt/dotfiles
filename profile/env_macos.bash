@@ -18,10 +18,19 @@ alias mac.showdesktop="defaults write com.apple.finder CreateDesktop -bool true 
 alias mac.show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
 alias mac.hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 
+alias utils.flushDns="flushDnsMac"
+
+# Trim new lines and copy to clipboard
+alias c="tr -d '\n' | pbcopy"
+
 # OS X has no `md5sum`, so use `md5` as a fallback
 command -v md5sum > /dev/null || alias md5sum="md5"
 # OS X has no `sha1sum`, so use `shasum` as a fallback
 command -v sha1sum > /dev/null || alias sha1sum="shasum"
+
+function flushDnsMac() {
+  sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache
+}
 
 # requires brew first
 install_mac_tools() {

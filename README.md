@@ -5,15 +5,15 @@ Over the years this seems to be one of the only things I try to keep up.
 As such, it's becoming more of a convenience place to help with productivity.
 More heavy lifting stuff is done in the remira repo.
 
-- bash_profile: individual topics to put in env
 - bin: tranferred to home direrectory
 - bin-tests: tests for bin
 - config: config files for build
 - dockerfiles: Dockerfiles for whatevers
 - dotfiles: vim, tmux, scripts, etc.
-- environment setup: mac, cloud instance, raspberrypi ...
-- quick-reference: preview from vim/terminal things I quickly forget
 - playground: for screwing around, testing, etc.
+- profile: individual topics to put in env
+-- setup: mac, cloud instance, raspberrypi ...
+- quick-reference: preview from vim/terminal things I quickly forget
 - qmk: my qmk keyboard files
 
 ### dotfiles
@@ -21,7 +21,7 @@ More heavy lifting stuff is done in the remira repo.
 Things you might want to put in your shell profile.
 It's a 'buy in' system where you make a `config` file that contains the files you want to include.
 
-- bash_profile (env vars, aliases, functions)
+- (env vars, aliases, functions)
 - bin (executables)
 - dotfiles (.vimrc, .tmux.conf, etc)
 

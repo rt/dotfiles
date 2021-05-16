@@ -1,3 +1,70 @@
+export PATH="$HOME/bin:$PATH";
+export PATH="$HOME/bin/vim:$PATH";
+export PATH="$HOME/bin/vim/work:$PATH";
+export PATH="$HOME/Library/Python/3.8/bin:$PATH";
+export PATH="$HOME/projects/flutter/bin:$PATH";
+
+export NODE_PATH=/usr/lib/nodejs
+
+# Make vim the default editor
+export EDITOR="vim";
+
+# Prefer US English and use UTF-8
+export LANG="en_US.UTF-8";
+export LC_ALL="en_US.UTF-8";
+
+# Highlight section titles in manual pages
+export LESS_TERMCAP_md="${yellow}";
+
+# Don’t clear the screen after quitting a manual page
+export MANPAGER="less -X";
+
+# Always enable colored `grep` output
+export GREP_OPTIONS="--color=auto";
+
+# Case-insensitive globbing (used in pathname expansion)
+shopt -s nocaseglob;
+
+# Append to the Bash history file, rather than overwriting it
+shopt -s histappend;
+
+# Autocorrect typos in path names when using `cd`
+shopt -s cdspell;
+
+# Enable some Bash 4 features when possible:
+# * `autocd`, e.g. `**/qux` will enter `./foo/bar/baz/qux`
+# * Recursive globbing, e.g. `echo **/*.txt`
+for option in autocd globstar; do
+    shopt -s "$option" 2> /dev/null;
+done;
+
+# Enable aliases to be sudo’ed
+alias sudo='sudo '
+alias sp='source ~/.bash_profile'
+
+##### History
+
+# Larger bash history (allow 32³ entries; default is 500)
+export HISTSIZE=32768;
+export HISTFILESIZE=$HISTSIZE;
+export HISTCONTROL=ignoredups;
+
+# Make some commands not show up in history
+export HISTIGNORE="ls:cd:cd -:pwd:exit:date:* --help";
+
+##### Terminal Syntax Highlighting
+
+# Pipe Highlight to less
+export LESSOPEN="| $(which highlight) %s --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+export LESS=" -R"
+alias less='less -m -N -g -i -J --line-numbers --underline-special'
+alias more='less'
+
+# Use "highlight" in place of "cat"
+alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+
+
+##### Utils
 alias utils.calc="calc"
 alias utils.dataurl="dataurl"
 alias utils.escape="escape"
@@ -14,7 +81,6 @@ alias utils.sniff="sudo ngrep -d 'en0' -t '^(GET|POST) ' 'tcp and port 80'"
 alias utils.httpdump="sudo tcpdump -i en1 -n -s 0 -w - | grep -a -o -E \"Host\: .*|GET \/.*\""
 
 # Dns
-alias utils.flushDns="flushDnsMac"
 alias utils.digga="digga"
 
 # $ ping -c4 www.google.com | awk '/---/,0'
@@ -23,8 +89,6 @@ alias utils.digga="digga"
 # round-trip min/avg/max/stddev = 87.110/92.619/98.271/3.955 ms
 #
 #
-# Trim new lines and copy to clipboard
-alias c="tr -d '\n' | pbcopy"
 
 # Simple calculator
 function calc() {
@@ -117,10 +181,6 @@ function digga() {
 # Hosts file changes shouldn't need network restart
 
 
-function flushDnsMac() {
-  sudo killall -HUP mDNSResponder;sudo killall mDNSResponderHelper;sudo dscacheutil -flushcache
-}
-
 function restartNic() {
   sudo ifconfig $1 down
   sudo ifconfig $1 up
@@ -129,4 +189,7 @@ function restartNic() {
 function showResolveConf() {
   cat /etc/resolv.conf
 }
+
+
+
 

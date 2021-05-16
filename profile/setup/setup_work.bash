@@ -96,25 +96,9 @@ setup_work() {
 
   tmux select-pane -t $sess:work.1
   
-  #----- dotfiles
-  tmux new-window -t $sess -n dotfiles
-  tmux send-keys -t $sess:dotfiles "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:dotfiles "cd ~/projects/dotfiles" Enter
-  tmux send-keys -t $sess:dotfiles "vim" Enter
-  
-  #tmux split-window -h -l 85 -t $sess:dotfiles
-  tmux split-window -v -l 14 -t $sess:dotfiles
-  tmux send-keys -t $sess:dotfiles.2 "cd ~/projects/dotfiles" Enter
-
-  tmux split-window -v -l 14 -t $sess:dotfiles
-  tmux send-keys -t $sess:dotfiles.3 "cd ~/projects/qmk_firmware" Enter
-
-  tmux select-pane -t $sess:dotfiles.1
-
   #select first
   tmux select-window -t $sess:root
 
   tmux -2 attach-session -t $sess
-
 
 }

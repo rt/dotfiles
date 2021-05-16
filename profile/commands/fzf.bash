@@ -1,4 +1,8 @@
 
+##### Completion (this was done in .bashrc when you do the install, which does some completion)
+#[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
 # export FZF_DEFAULT_COMMAND='ag -g ""'
 # --files: List files that would be searched but do not search
 # --no-ignore: Do not respect .gitignore, etc...
