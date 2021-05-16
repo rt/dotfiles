@@ -1,22 +1,19 @@
 # dotfiles
 
-Just my personal dotfiles, not that great.
-Over the years this seems to be one of the only things I try to keep up.
-As such, it's becoming more of a convenience place to help with productivity.
-More heavy lifting stuff is done in the remira repo.
+Just my personal dotfiles/playground, not that great.
 
-- bin: tranferred to home direrectory
-- bin-tests: tests for bin
-- config: config files for build
 - dockerfiles: Dockerfiles for whatevers
-- dotfiles: vim, tmux, scripts, etc.
 - playground: for screwing around, testing, etc.
 - profile: individual topics to put in env
+-- bin: tranferred to home direrectory
+-- bin-tests: tests for bin
+-- config: config files for build
+-- dotfiles: vim, tmux, scripts, etc.
 -- setup: mac, cloud instance, raspberrypi ...
 - quick-reference: preview from vim/terminal things I quickly forget
 - qmk: my qmk keyboard files
 
-### dotfiles
+### profile
 
 Things you might want to put in your shell profile.
 It's a 'buy in' system where you make a `config` file that contains the files you want to include.
@@ -30,7 +27,7 @@ The bootstrap command will put the files in $HOME/.extrafile, which you can sour
 
 ```bash
 git clone https://github.com/rt/dotfiles.git
-cd dotfiles/
+cd dotfiles/profile/
 ./bootstrap configfile
 echo "source ~/.extrafile" >>  ~/.bash_profile
 source ~/.bash_profile
