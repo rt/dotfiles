@@ -3,6 +3,9 @@
 Just my personal dotfiles/playground, not that great.
 
 - dockerfiles: Dockerfiles for whatevers
+- keyboard: keyboard stuff
+-- qmk: my qmk keyboard files
+-- read-only-keymaps: quick reference keymaps
 - playground: for screwing around, testing, etc.
 - profile: individual topics to put in env
 -- bin: tranferred to home direrectory
@@ -11,7 +14,6 @@ Just my personal dotfiles/playground, not that great.
 -- dotfiles: vim, tmux, scripts, etc.
 -- setup: mac, cloud instance, raspberrypi ...
 - quick-reference: preview from vim/terminal things I quickly forget
-- qmk: my qmk keyboard files
 
 ### profile
 
@@ -37,6 +39,26 @@ source ~/.bash_profile
 - command/<file>: set aliases for a command but also namespace alises with prefix of command for easier referencing
 - utils: 'other' aliases to utils, functions, etc
 
+
+### keyboard
+
+I was having a hard time maintaining a fork of qmk_firmware without having conflicts (?)
+It's easier to just have my keyboard files here and copy them to a qmk_firmware clone.
+
+```bash
+git clone https://github.com/qmk/qmk_firmware
+cd dotfiles/keyboard/
+./copy_qmk_files # assumes ../../qmk_firmware/
+cd ../../qmk_firmware/
+make handwired/mrkabuda:ryan:avrdude
+```
+
+**Dependencies**
+You won't be able to flash the first time, and there will be a warning.
+```bash
+./util/qmk_install.sh
+make git-submodule
+```
 
 ### Environments
 
@@ -67,26 +89,6 @@ The devenv Dockerfile is in `dockerfiles/` ...
 
 todo: 
 
-
-### qmk
-
-I was having a hard time maintaining a fork of qmk_firmware without having conflicts (?)
-It's easier to just have my keyboard files here and copy them to a qmk_firmware clone.
-
-```bash
-git clone https://github.com/qmk/qmk_firmware
-cd dotfiles/
-./copy_qmk_files ../qmk_firmware/
-cd ../qmk_firmware/
-make handwired/mrkabuda:ryan:avrdude
-```
-
-**Dependencies**
-You won't be able to flash the first time, and there will be a warning.
-```bash
-./util/qmk_install.sh
-make git-submodule
-```
 
 ### Other installs
 

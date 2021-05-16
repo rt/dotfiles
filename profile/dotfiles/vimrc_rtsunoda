@@ -788,8 +788,8 @@ command! -nargs=* NoWrap set nowrap nolinebreak
 
 command! -nargs=* CdRoot call <SID>get_project_path('')
 command! -bang -nargs=* ShowQuickReference call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/quick-reference', 1)
-command! -bang -nargs=* ShowKeymaps call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/read-only-keymaps', 1)
-command! -bang -nargs=* ShowMySnippets call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/dotfiles/vim_rtsunoda/UltiSnips', 1)
+command! -bang -nargs=* ShowKeymaps call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/keyboard/read-only-keymaps', 1)
+command! -bang -nargs=* ShowMySnippets call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/profile/dotfiles/vim_rtsunoda/UltiSnips', 1)
 
 command! -bang -nargs=* PickAxe call <SID>git_pickaxe(expand('<cword>'))
 command! -bang -nargs=* PickAxeCurrentFile call <SID>git_pickaxe_current_file(expand('<cword>'))

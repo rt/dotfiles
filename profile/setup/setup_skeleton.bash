@@ -19,12 +19,17 @@ setup_skeleton() {
   tmux send-keys -t $sess:dotfiles "cd ~/projects/dotfiles" Enter
   tmux send-keys -t $sess:dotfiles "vim" Enter
   
-  #tmux split-window -h -l 85 -t $sess:dotfiles
   tmux split-window -v -l 24 -t $sess:dotfiles
-  tmux send-keys -t $sess:dotfiles.2 "cd ~/projects/dotfiles" Enter
+  tmux send-keys -t $sess:dotfiles.2 "cd ~/projects/dotfiles/profile/" Enter
+  tmux send-keys -t $sess:dotfiles "./bootstrap rtsunoda"
 
   tmux split-window -v -l 24 -t $sess:dotfiles
-  tmux send-keys -t $sess:dotfiles.3 "cd ~/projects/qmk_firmware" Enter
+  tmux send-keys -t $sess:dotfiles.3 "cd ~/projects/dotfiles/keyboard/" Enter
+  tmux send-keys -t $sess:dotfiles "./copy_qmk_files"
+
+  tmux split-window -h -l 85 -t $sess:dotfiles
+  tmux send-keys -t $sess:dotfiles.4 "cd ~/projects/qmk_firmware" Enter
+  tmux send-keys -t $sess:dotfiles "make handwired/mrkabuda:ryan:avrdude"
 
   tmux select-pane -t $sess:dotfiles.1
 
