@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.ecom_client="setup_ecom_client"
+
 setup_ecom_client() {
 
   sess=ecomclient

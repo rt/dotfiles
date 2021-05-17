@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.betsy="setup_betsy"
+
 setup_betsy() {
 
   sess=betsy

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.ecom_server="setup_ecom_server"
+
 setup_ecom_server() {
 
   sess=ecomserver

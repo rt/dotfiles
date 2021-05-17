@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.raspbian="setup_student_rpi"
+
 setup_student_rpi() {
 
   sess=student

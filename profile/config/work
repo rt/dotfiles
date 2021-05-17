@@ -27,7 +27,7 @@ commands/ant.bash
 commands/ssh.bash
 commands/kubernetes.bash
 commands/prompt_mb.bash
-setup/setup_work.bash
+setup/work.bash
 work.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.work="setup_work"
+
 setup_work() {
 
   sess=${PWD##*/}

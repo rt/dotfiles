@@ -13,7 +13,7 @@ commands/fzf.bash
 commands/chrome.bash
 commands/ssh.bash
 commands/prompt_mb.bash
-setup/setup_student_rpi.bash
+setup/student_rpi.bash
 work.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/nanorc_rtsunoda

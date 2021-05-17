@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.skeleton="setup_skeleton"
+
 setup_skeleton() {
 
   sess=forward

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+alias setup.pebble="setup_pebble"
+
 setup_pebble() {
 
   sess=pebble
