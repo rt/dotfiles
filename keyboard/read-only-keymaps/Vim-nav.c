@@ -1,14 +1,14 @@
 /* Vim-nav
  * Vim: Navigation
- * ,---------------------------------------------------------------------.
- * |      | FINDP|FILES |GFILES| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
- * |------+------+------+------+-------------+------+------+------+------|
- * |COMNDS|RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
- * |------+------+------+------+------|------+------+------+------+------|
- * |CDROOT| CDCF |      | PROJV| Gundo|STYLE | DIGC |BACKC | TEMP |USAGCF|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      | ONLY |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |      | FINDP|FILES |GFILES| MARKS|  |TAGSEL| FNP  | TAGB | TAGS |USAGEF|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |COMNDS|RECCHG| REC  | TEST | HELP |  | B-P  | DECL | IMPL | B-N  |USAGEW|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |CDROOT| CDCF |      | PROJV|      |  |STYLE | DIGC |BACKC | TEMP |USAGCF|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      | ONLY |      |  |      |CMMITS| Gundo|
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -28,7 +28,7 @@
 #define VHNAV_L22     VIM_DIR_CURRENT_FILE            // change dir to current file dir
 #define VHNAV_L23     _______
 #define VHNAV_L24     VIM_VIEW_PROJ                   // [*]
-#define VHNAV_L25     VIM_GUNDO                       // [*] local changes (only)
+#define VHNAV_L25     _______
 
 #define VHNAV_L33     _______
 #define VHNAV_L34     VIM_ONLY                        // [*]
@@ -54,8 +54,8 @@
 #define VHNAV_R25     VIM_GET_USAGES_BY_CURRENT_FILE  // seach where current file usesd, adjusts depending on the extention.
 
 #define VHNAV_R31     VIM_GET_IMPL_CURSOR_WORD        // Find files named like cword
-#define VHNAV_R32     _______
-#define VHNAV_R33     _______
+#define VHNAV_R32     VIM_GIT_COMMITS                 // [*] view recent (all) commits
+#define VHNAV_R33     VIM_GUNDO                       // [*] local changes
 
 
 

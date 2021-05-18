@@ -31,8 +31,7 @@
 //     Features: navigation, editor
 //
 //
-//
-//
+
 enum custom_layers {
   _QWERTY=0,
   _COLE=1,
@@ -62,6 +61,7 @@ enum custom_keycodes {
   RGB_SLD,
 
   TMUX_PANE_NEXT,
+  TMUX_PANE_PREV,
   TMUX_WIN_PREV,
   TMUX_WIN_NEXT,
   TMUX_SCROLL,
@@ -145,7 +145,6 @@ enum custom_keycodes {
   VIM_DIR_ROOT,
   VIM_DIR_CURRENT_FILE,
   VIM_WORK_SHOW_NOTES,
-  VIM_WORK_SHOW_SCRIPTS,
   VIM_WORK_GOTO_COMPONENT,
   VIM_WORK_GET_TEMPLATE,
   VIM_WORK_GET_BACKING_FILE,
@@ -177,70 +176,74 @@ enum custom_keycodes {
 };
 
 /* Qwerty
- * ,---------------------------------------------------------------------.
- * |   Q  |   W  |   E  |   R  |   T  |   Y  |   U  |   I  |   O  |   P  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |   A  |   S  |   D  |   F  |   G  |   H  |   J  |   K  |   L  |   ;  |
- * |------+------+------+------+------|------+------+------+------+------|
- * |   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT | _ADJ |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |   Q  |   W  |   E  |   R  |   T  |  |   Y  |   U  |   I  |   O  |   P  |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |   A  |   S  |   D  |   F  |   G  |  |   H  |   J  |   K  |   L  |   ;  |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |   Z  |   X  |   C  |   V  |   B  |  |   N  |   M  |   ,  |   .  |   /  |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               | _ADJ | _LOW |_G/Ent|  |_R/Spc| _SFT | _ADJ |
+ *               `--------------------'  `--------------------'
  */
+// Left
 #define QWER_L01     KC_Q
 #define QWER_L02     KC_W
 #define QWER_L03     KC_E
 #define QWER_L04     KC_R
 #define QWER_L05     KC_T
+
 #define QWER_L11     KC_A
 #define QWER_L12     KC_S
 #define QWER_L13     KC_D
 #define QWER_L14     KC_F
 #define QWER_L15     KC_G
+
 #define QWER_L21     KC_Z
 #define QWER_L22     KC_X
 #define QWER_L23     KC_C
 #define QWER_L24     KC_V
 #define QWER_L25     KC_B
-#define QWER_L31     _______
-#define QWER_L32     _______
+
 #define QWER_L33     OSL(_ADJUST)
 #define QWER_L34     OSL(_LOWER)
 #define QWER_L35     LT(_GIT,KC_ENTER)
 
+// Right
 #define QWER_R01     KC_Y
 #define QWER_R02     KC_U
 #define QWER_R03     KC_I
 #define QWER_R04     KC_O
 #define QWER_R05     KC_P
+
 #define QWER_R11     KC_H
 #define QWER_R12     KC_J
 #define QWER_R13     KC_K
 #define QWER_R14     KC_L
 #define QWER_R15     KC_SCLN
+
 #define QWER_R21     KC_N
 #define QWER_R22     KC_M
 #define QWER_R23     KC_COMM
 #define QWER_R24     KC_DOT
 #define QWER_R25     KC_SLSH
+
 #define QWER_R31     LT(_RAISE,KC_SPC)
 #define QWER_R32     OSL(_SFT)
 #define QWER_R33     _MISC
-#define QWER_R34     _______
-#define QWER_R35     _______
 
 
 
 /* Colemak-dhm
- * ,---------------------------------------------------------------------.
- * |Sft/Q |_VWN/W|   F  |_IDN/P|_VHN/B|_VHN/J|_IDN/L|   U  |_VWK/Y|Sft/; |
- * |------+------+------+------+-------------+------+------+------+------|
- * |  A   |   R  |_NAV/S|Ctl/T |_CHR/G|_CHR/M|Ctl/N |_NAV/E|   I  |  O   |
- * |------+------+------+------+------|------+------+------+------+------|
- * |Gui/Z |Alt/X |  C   |_IDE/D|_VHM/V|_VHM/K|_IDE/H|  ,   |Alt/. |Gui/' |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      | _ADJ | _LOW |_G/Ent|_R/Spc| _SFT |_Misc |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |Sft/Q |_VWN/W|   F  |_IDN/P|_VHN/B|  |_VHN/J|_IDN/L|   U  |_VWK/Y|Sft/; |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |  A   |   R  |_NAV/S|Ctl/T |_CHR/G|  |_CHR/M|Ctl/N |_NAV/E|   I  |  O   |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |Gui/Z |Alt/X |  C   |_IDE/D|_VHM/V|  |_VHM/K|_IDE/H|  ,   |Alt/. |Gui/' |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               | _ADJ | _LOW |_G/Ent|  |_R/Spc| _SFT |_Misc |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -293,15 +296,15 @@ enum custom_keycodes {
 
 /* Shift
  * Global: Shift Layer.  Using instead of OSM to get more keys
- * ,---------------------------------------------------------------------.
- * |   Q  |   W  |   F  |   P  |   B  |   J  |   L  |   U  |   Y  |   ;  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |   A  |   R  |   S  |   T  |   G  |   M  |   N  |   E  |   I  |   O  |
- * |------+------+------+------+------|------+------+------+------+------|
- * |   Z  |   X  |   C  |   D  |   V  |   K  |   H  |   ,  |   .  |   '  |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |  Esc |CapsLk|      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |   Q  |   W  |   F  |   P  |   B  |  |   J  |   L  |   U  |   Y  |   ;  |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |   A  |   R  |   S  |   T  |   G  |  |   M  |   N  |   E  |   I  |   O  |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |   Z  |   X  |   C  |   D  |   V  |  |   K  |   H  |   ,  |   .  |   '  |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |  Esc |CapsLk|  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -354,15 +357,15 @@ enum custom_keycodes {
 
 /* Lower
  * Global: Symbols
- * ,---------------------------------------------------------------------.
- * |   !  |   @  |   #  |   $  |   %  |   ^  |   &  |   *  |   (  |   )  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |   \  |   |  |   ~  |   `  |   "  |   /  |   -  |   =  |   [  |   ]  |
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |   <  |   >  |   '  |   ?  |   _  |   +  |   {  |   }  |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      | Bspc |AltBk | Del  |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |   !  |   @  |   #  |   $  |   %  |  |   ^  |   &  |   *  |   (  |   )  |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |   \  |   |  |   ~  |   `  |   "  |  |   /  |   -  |   =  |   [  |   ]  |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |      |      |   <  |   >  |   '  |  |   ?  |   _  |   +  |   {  |   }  |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  | Bspc |AltBk | Del  |
+ *               `--------------------'  `--------------------'
  */
 
 //Left
@@ -415,22 +418,22 @@ enum custom_keycodes {
 
 /* Raise
  * Global: Function Keys and Reference
- * ,---------------------------------------------------------------------.
- * |QkRef |KEYMPS|MYSNIP|      |      |      |      |      |  F11 |  F12 |
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |      |      |      |Insert|      |      |      |      |
- * |------+------+------+------+------|------+------+------+------+------|
- * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |  F7  |  F8  |  F9  |  F10 | 
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |GuiBk |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |QkRef |KEYMPS|MYSNIP|WORK  |      |  |      |      |      |  F11 |  F12 |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |      |      |      |      |      |  |Insert|      |      |      |      |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |  F1  |  F2  |  F3  |  F4  |  F5  |  |  F6  |  F7  |  F8  |  F9  |  F10 | 
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |GuiBk |  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
 #define RAIS_L01     VIM_SHOW_QUICK_REF
 #define RAIS_L02     VIM_SHOW_KEYMAPS
 #define RAIS_L03     VIM_SHOW_MY_SNIPPETS
-#define RAIS_L04     XXXXXXX
+#define RAIS_L04     VIM_WORK_SHOW_NOTES
 #define RAIS_L05     XXXXXXX
 
 #define RAIS_L11     XXXXXXX
@@ -476,15 +479,15 @@ enum custom_keycodes {
 
 /* Adjust
  * Global: System and Numpad
- * ,---------------------------------------------------------------------.
- * |Zoom+ | Play | Prev | Next |      |  *   |  7   |  8   |  9   |  /   |
- * |------+------+------+------+-------------+------+------+------+------|
- * |Zoom- | Reset|Colemk|Qwerty|ScrnSh|  +   |  4   |  5   |  6   |  0   |
- * |------+------+------+------+------|------+------+------+------+------|
- * |Zoom0 | Mute | Vol- | Vol+ |SetSnd|  -   |  1   |  2   |  3   |  .   |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      | Bspc |  0   | Del  |      |      |
-* `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |Zoom+ | Play | Prev | Next |      |  |  *   |  7   |  8   |  9   |  /   |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |Zoom- | Reset|Colemk|Qwerty|ScrnSh|  |  +   |  4   |  5   |  6   |  0   |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |Zoom0 | Mute | Vol- | Vol+ |SetSnd|  |  -   |  1   |  2   |  3   |  .   |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  | Bspc |  0   | Del  |
+* `              `--------------------'  `--------------------'
  */
 
 // Left
@@ -537,15 +540,15 @@ enum custom_keycodes {
 
 /* Nav
  * Global: System, Tmux, App, etc, Navigation
- * ,---------------------------------------------------------------------.
- * |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |TEVENV|
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |TSCRLL| PgUp | Home | Left | Down |  Up  |Right |TEVENH|
- * |------+------+------+------+------|------+------+------+------+------|
- * |FlScrn|      |AppWin|PgDown| End  |WkspL |WordL |WordR |WkspR |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |TZMTOG|Enter | Bspc |AltBk | Del  |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |VQUIT |VWRITE|VPRVFI|      |PrevAp|  |TWINP |TPANEN|TPANEP|TWINN |TEVENV|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |      |      |TSCRLL| PgUp | Home |  | Left | Down |  Up  |Right |TEVENH|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |FlScrn|      |AppWin|PgDown| End  |  |WkspL |WordL |WordR |WkspR |      |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |TZMTOG|Enter |  | Bspc |AltBk | Del  |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -574,7 +577,7 @@ enum custom_keycodes {
 // Right
 #define NAV_R01     TMUX_WIN_PREV
 #define NAV_R02     TMUX_PANE_NEXT
-#define NAV_R03     _______
+#define NAV_R03     TMUX_PANE_PREV
 #define NAV_R04     TMUX_WIN_NEXT
 #define NAV_R05     TMUX_EVEN_VERT
 
@@ -597,15 +600,15 @@ enum custom_keycodes {
 
 
 /* Vim-editor
- * ,---------------------------------------------------------------------.
- * |      |      |      |VPASTE|      |      | New  | Copy | Move | Del  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |COMNT |FORMAT|      |      |      |EX_ABV|EX_BLW|      |
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      | SNIP | DIFF |      |      |      |      |DP_NPM|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |ComplX|Compl |SP_ABV|SP_BLW|      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |      |      |      |VPASTE|      |  |      | New  | Copy | Move | Del  |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |      |      |COMNT |FORMAT|      |  |      |      |EX_ABV|EX_BLW|      |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |      |      |      | SNIP | DIFF |  |      |      |      |      |DP_NPM|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |ComplX|Compl |  |SP_ABV|SP_BLW|      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -658,15 +661,15 @@ enum custom_keycodes {
 
 /* Vim-nav
  * Vim: Navigation
- * ,---------------------------------------------------------------------.
- * |      | FINDP|FILES |GFILES| MARKS|TAGSEL| FNP  | TAGB | TAGS |USAGEF|
- * |------+------+------+------+-------------+------+------+------+------|
- * |COMNDS|RECCHG| REC  | TEST | HELP | B-P  | DECL |TAGSEL| B-N  |USAGEW|
- * |------+------+------+------+------|------+------+------+------+------|
- * |CDROOT| CDCF |      | PROJV| Gundo|STYLE | DIGC |BACKC | TEMP |USAGCF|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      | ONLY |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |      | FINDP|FILES |GFILES| MARKS|  |TAGSEL| FNP  | TAGB | TAGS |USAGEF|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |COMNDS|RECCHG| REC  | TEST | HELP |  | B-P  | DECL | IMPL | B-N  |USAGEW|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |CDROOT| CDCF |      | PROJV|      |  |STYLE | DIGC |BACKC | TEMP |USAGCF|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      | ONLY |      |  |      |CMMITS| Gundo|
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -686,7 +689,7 @@ enum custom_keycodes {
 #define VHNAV_L22     VIM_DIR_CURRENT_FILE            // change dir to current file dir
 #define VHNAV_L23     _______
 #define VHNAV_L24     VIM_VIEW_PROJ                   // [*]
-#define VHNAV_L25     VIM_GUNDO                       // [*] local changes (only)
+#define VHNAV_L25     _______
 
 #define VHNAV_L33     _______
 #define VHNAV_L34     VIM_ONLY                        // [*]
@@ -712,82 +715,22 @@ enum custom_keycodes {
 #define VHNAV_R25     VIM_GET_USAGES_BY_CURRENT_FILE  // seach where current file usesd, adjusts depending on the extention.
 
 #define VHNAV_R31     VIM_GET_IMPL_CURSOR_WORD        // Find files named like cword
-#define VHNAV_R32     _______
-#define VHNAV_R33     _______
-
-
-
-/* Git
- * ,---------------------------------------------------------------------.
- * |LOGREL| GREP |      |CMMITS|      |MERGET|DIFFT |BROWSE|      |PKAXEC|
- * |------+------+------+------+-------------+------+------+------+------|
- * | EDIT |EDITIT|STATUS|GMASTF|BLAME |HUNKU |HUNKN |HUNKP |      |PKAXE |
- * |------+------+------+------+------|------+------+------+------+------|
- * | DIFF |      |DIFFI |DIFFM |      |LOGREL|      |LOGCFS|LOGCF |LOGCFD|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
- */
-
-// Left
-#define GIT_L01     VIM_LOG_RELEASE               // git log for a period of time
-#define GIT_L02     VIM_GIT_GREP                  // [*] Grep in any branch
-#define GIT_L03     _______
-#define GIT_L04     VIM_GIT_COMMITS               // view recent (all) commits
-#define GIT_L05     _______
-
-#define GIT_L11     VIM_EDIT_ANY                  // check any blob
-#define GIT_L12     VIM_EDIT_INDEX_TOGGLE
-#define GIT_L13     VIM_GIT_STATUS                // [*] git status of commit
-#define GIT_L14     VIM_GIT_MASTER_FILE
-#define GIT_L15     VIM_GIT_BLAME
-
-#define GIT_L21     VIM_DIFF_ANY
-#define GIT_L22     _______
-#define GIT_L23     VIM_DIFF_INDEX
-#define GIT_L24     VIM_DIFF_MASTER
-#define GIT_L25     _______
-
-#define GIT_L33     _______
-#define GIT_L34     _______
-#define GIT_L35     _______
-
-// Right
-#define GIT_R01     VIM_MERGETOOL                 // go through conflicts
-#define GIT_R02     VIM_DIFFTOOL                  // go through all changes in commit (CR)
-#define GIT_R03     VIM_BROWSE
-#define GIT_R04     VIM_PICK_AXE_CURRENT_FILE
-#define GIT_R05     _______
-
-#define GIT_R11     VIM_HUNK_UNDO
-#define GIT_R12     VIM_HUNK_NEXT
-#define GIT_R13     VIM_HUNK_PREV
-#define GIT_R14     _______
-#define GIT_R15     VIM_PICK_AXE
-
-#define GIT_R21     _______
-#define GIT_R22     _______
-#define GIT_R23     VIM_LOG_CURRENT_FILE_SELECTION
-#define GIT_R24     VIM_LOG_CURRENT_FILE
-#define GIT_R25     VIM_LOG_CURRENT_FILE_DETAILS
-
-#define GIT_R31     _______
-#define GIT_R32     _______
-#define GIT_R33     _______
+#define VHNAV_R32     VIM_GIT_COMMITS                 // [*] view recent (all) commits
+#define VHNAV_R33     VIM_GUNDO                       // [*] local changes
 
 
 
 /* Vim-nav2
  * More vim navigation
- * ,---------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |      |      |      |      |      |  | C-F  | C-N  | C-P  | C-L  |      |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |      |      |      |      |      |  | A-F  | A-N  | A-P  | A-L  |      |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |      |      |      |      |      |  | Q-F  | Q-N  | Q-P  | Q-L  |      |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -838,17 +781,77 @@ enum custom_keycodes {
 
 
 
+/* Git
+ * ,----------------------------------.  ,----------------------------------.
+ * |LOGREL| GREP |      |      |      |  |MERGET|DIFFT |BROWSE|      |PKAXEC|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * | EDIT |EDITIT|STATUS|GMASTF|BLAME |  |HUNKU |HUNKN |HUNKP |      |PKAXE |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * | DIFF |      |DIFFI |DIFFM |      |  |LOGREL|      |LOGCFS|LOGCF |LOGCFD|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  |      |      |      |
+ *               `--------------------'  `--------------------'
+ */
+
+// Left
+#define GIT_L01     VIM_LOG_RELEASE               // git log for a period of time
+#define GIT_L02     VIM_GIT_GREP                  // [*] Grep in any branch
+#define GIT_L03     _______
+#define GIT_L04     _______
+#define GIT_L05     _______
+
+#define GIT_L11     VIM_EDIT_ANY                  // check any blob
+#define GIT_L12     VIM_EDIT_INDEX_TOGGLE
+#define GIT_L13     VIM_GIT_STATUS                // [*] git status of commit
+#define GIT_L14     VIM_GIT_MASTER_FILE
+#define GIT_L15     VIM_GIT_BLAME
+
+#define GIT_L21     VIM_DIFF_ANY
+#define GIT_L22     _______
+#define GIT_L23     VIM_DIFF_INDEX
+#define GIT_L24     VIM_DIFF_MASTER
+#define GIT_L25     _______
+
+#define GIT_L33     _______
+#define GIT_L34     _______
+#define GIT_L35     _______
+
+// Right
+#define GIT_R01     VIM_MERGETOOL                 // go through conflicts
+#define GIT_R02     VIM_DIFFTOOL                  // go through all changes in commit (CR)
+#define GIT_R03     VIM_BROWSE
+#define GIT_R04     VIM_PICK_AXE_CURRENT_FILE
+#define GIT_R05     _______
+
+#define GIT_R11     VIM_HUNK_UNDO
+#define GIT_R12     VIM_HUNK_NEXT
+#define GIT_R13     VIM_HUNK_PREV
+#define GIT_R14     _______
+#define GIT_R15     VIM_PICK_AXE
+
+#define GIT_R21     _______
+#define GIT_R22     _______
+#define GIT_R23     VIM_LOG_CURRENT_FILE_SELECTION
+#define GIT_R24     VIM_LOG_CURRENT_FILE
+#define GIT_R25     VIM_LOG_CURRENT_FILE_DETAILS
+
+#define GIT_R31     _______
+#define GIT_R32     _______
+#define GIT_R33     _______
+
+
+
 /* Chrome
  * Chrome: editor, navigation both browser and devtools
- * ,---------------------------------------------------------------------.
- * |      |Search|      |FindFi|Bkmrks|Incog |NewTab|      |      |DelTab|
- * |------+------+------+------+-------------+------+------+------+------|
- * |RunCmd|LstTab|PrvPan|NxtPan|      |BRKPTS|PLYPAU|STPOVR|STPIN |STPOUT|
- * |------+------+------+------+------|------+------+------+------+------|
- * |HrdRld| Rld  | Back | Fwd  |      | TabP |PgDown| PgUp | TabN | Eval |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |DevTls|      | Home | End  |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |      |Search|      |FindFi|Bkmrks|  |Incog |NewTab|      |      |DelTab|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |RunCmd|LstTab|PrvPan|NxtPan|      |  |BRKPTS|PLYPAU|STPOVR|STPIN |STPOUT|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |HrdRld| Rld  | Back | Fwd  |      |  | TabP |PgDown| PgUp | TabN | Eval |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |DevTls|      |  | Home | End  |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -907,15 +910,15 @@ enum custom_keycodes {
 /* IntelliJ-nav
  * Left side: Global Searching
  * Right side: Analysis, File based Searching
- * ,---------------------------------------------------------------------.
- * |NavBar|FindP |FindC |FindF |Marks |      | FnP  |FileHi|FindSy|      |
- * |------+------+------+------+-------------+------+------+------+------|
- * |TMnMx |FindAc|Recent|GotoTe|      | Back | Decl | Impl | Fwd  |Usages|
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |StrctV|DebugV|ProjV | GitV |      |NxtErr|PrvErr|      |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |MaxMin| Term |SupMC |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |NavBar|FindP |FindC |FindF |Marks |  |      | FnP  |FileHi|FindSy|      |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |TMnMx |FindAc|Recent|GotoTe|Blame |  | Back | Decl | Impl | Fwd  |Usages|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |      |StrctV|DebugV|ProjV |      |  |      |NxtErr|PrvErr|      |      |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |LastTl|MaxMin| Term |  |SupMC |CMMITS|LocalC|
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -926,19 +929,19 @@ enum custom_keycodes {
 #define INAV_L05     LGUI(KC_F3)                  // [*] Marks
 
 #define INAV_L11     LSFT(LGUI(KC_QUOT))          // Toggle tool min/max
-#define INAV_L12     LGUI(LSFT(KC_A))             // Find action
+#define INAV_L12     LSFT(LGUI(KC_A))             // [*] Find action Note: there is a mac override need to disable https://intellij-support.jetbrains.com/hc/en-us/articles/360005137400-Cmd-Shift-A-hotkey-opens-Terminal-with-apropos-search-instead-of-the-Find-Action-dialog
 #define INAV_L13     LGUI(KC_E)                   // [*] Recent files popup
-#define INAV_L14     LSFT(LGUI(KC_T))             // Go to test
-#define INAV_L15     LALT(LSFT(KC_SCLN))       // [*] Blame (custom keymap) .... didn't work
+#define INAV_L14     LSFT(LGUI(KC_T))             // [*] Go to test
+#define INAV_L15     LALT(KC_Q)                   // [*] Blame (custom keymap)
 
 #define INAV_L21     _______
 #define INAV_L22     LGUI(KC_7)                   // [*] Project Structure View
 #define INAV_L23     LGUI(KC_5)                   // Debug View
 #define INAV_L24     LGUI(KC_1)                   // Project Files View
-#define INAV_L25     LGUI(KC_9)                   // VCS View
+#define INAV_L25     _______
 
-#define INAV_L33     _______
-#define INAV_L34     LGUI(LSFT(KC_F12))           // Toggle maximizing editor
+#define INAV_L33     KC_F12                       // Last Tool
+#define INAV_L34     LGUI(LSFT(KC_F12))           // [*] Toggle maximizing editor
 #define INAV_L35     LALT(KC_F12)                 // Terminal View
 
 // Right
@@ -961,31 +964,31 @@ enum custom_keycodes {
 #define INAV_R25     _______
 
 #define INAV_R31     LGUI(KC_U)                   // Go to super-method/super-class
-#define INAV_R32     _______                       // Parameter info
-#define INAV_R33     _______
+#define INAV_R32     LALT(KC_W)                   // [*] Commits (custom keymap) but doesn't work!
+#define INAV_R33     LGUI(KC_9)                   // [*] Local changes
 
 
 
 /* IntelliJ
- * ,---------------------------------------------------------------------.
- * | Sel+ |Rename|ChSig |ExtrtM|ExtrtV|Scrtch| New  | Copy | Move |Delete|
- * |------+------+------+------+-------------+------+------+------+------|
- * | Sel- |Surnd |Commnt|Format|Suggst|BrkPts|PlyRes| Over |  In  |  Out |
- * |------+------+------+------+------|------+------+------+------+------|
- * |OverM |ImplM |GenCd |LiveT |ParamI|TogBrk| Eval |CmpFi |CmpPrj|CallHi|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |StatCm|CodeCm|Debug |DebugL| RunL |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * | Sel+ |Rename|ChSig |ExtrtM|ExtrtV|  |Scrtch| New  | Copy | Move |Delete|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * | Sel- |Surnd |Commnt|Format|Suggst|  |BrkPts|PlyRes| Over |  In  |  Out |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |OverM |ImplM |GenCd |LiveT |ParamI|  |TogBrk| Eval |CmpFi |CmpPrj|CallHi|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |StatCm|CodeCm|  |Debug |DebugL| RunL |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
-#define IDEA_L01     LALT(KC_UP)            // Extend selection
+#define IDEA_L01     LALT(KC_UP)                  // Extend selection
 #define IDEA_L02     LSFT(KC_F6)                  // Rename
 #define IDEA_L03     LGUI(KC_F6)                  // Change signature
 #define IDEA_L04     LGUI(LALT(KC_M))             // Extract method
 #define IDEA_L05     LGUI(LALT(KC_V))             // Extract variable
 
-#define IDEA_L11     LALT(KC_DOWN)          // Shrink selection
+#define IDEA_L11     LALT(KC_DOWN)                // Shrink selection
 #define IDEA_L12     LALT(LGUI(KC_T))             // Surround with ... 
 #define IDEA_L13     LGUI(KC_SLSH)                // [*] Comment/uncomment
 #define IDEA_L14     LALT(LGUI(KC_L))             // [*] Format
@@ -1029,17 +1032,16 @@ enum custom_keycodes {
 /* Work
  * Work specific stuff
  * - FE on left BE on right
- * - Places on bottom
  * - Goto on right
- * ,---------------------------------------------------------------------.
- * |Routes|Ctrlrs|Cmpnts|Tmplts|Styles|      |      |      |      |  TP  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |Stores|Models|Actins|      |Helprs|MgrShr|MgrClt|      |      | Jira |
- * |------+------+------+------+------|------+------+------+------+------|
- * |StrtLg|      |      | ELP  |Build |Jnkins|      |      |      |Cnflnc|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |Scrpts|Notes |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |Routes|Ctrlrs|Cmpnts|Tmplts|Styles|  |      |      |      |      |  TP  |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |Stores|Models|Actins|      |Helprs|  |MgrShr|MgrClt|      |      | Jira |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |StrtLg|      |      | ELP  |Build |  |Jnkins|      |      |      |Cnflnc|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -1061,8 +1063,8 @@ enum custom_keycodes {
 #define MISC_L24     WORK_EDIT_ELP
 #define MISC_L25     WORK_EDIT_BUILD
 
-#define MISC_L33     VIM_WORK_SHOW_SCRIPTS
-#define MISC_L34     VIM_WORK_SHOW_NOTES
+#define MISC_L33     _______
+#define MISC_L34     _______
 #define MISC_L35     _______
 
 // Right
@@ -1092,15 +1094,15 @@ enum custom_keycodes {
 
 
 /* Other
- * ,---------------------------------------------------------------------.
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |      |      |      |      |      |  |      |      |      |      |      |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |      |      |      |      |      |  |      |      |      |      |      |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |      |      |      |      |      |  |      |      |      |      |      |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left

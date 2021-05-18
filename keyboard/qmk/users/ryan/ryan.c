@@ -385,7 +385,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         SEND_STRING(":ShowMySnippets"SS_TAP(X_ENTER));
       }
         break;
-
     case VIM_ONLY:
       if (record->event.pressed) {
         SEND_STRING(":only"SS_TAP(X_ENTER));
@@ -429,11 +428,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_WORK_SHOW_NOTES:
       if (record->event.pressed) {
         SEND_STRING(":WorkShowNotes"SS_TAP(X_ENTER));
-      }
-        break;
-    case VIM_WORK_SHOW_SCRIPTS:
-      if (record->event.pressed) {
-        SEND_STRING(":WorkShowScripts"SS_TAP(X_ENTER));
       }
         break;
     case VIM_DIR_ROOT:
@@ -484,6 +478,11 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case VIM_GET_IMPL_CURSOR_WORD:
       if (record->event.pressed) {
         SEND_STRING(":GetImplWord"SS_TAP(X_ENTER));
+      }
+        break;
+    case TMUX_PANE_PREV:
+      if (record->event.pressed) {
+        SEND_STRING(SS_LCTRL("bk"));
       }
         break;
     case TMUX_PANE_NEXT:

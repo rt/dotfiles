@@ -1,15 +1,15 @@
 /* IntelliJ-nav
  * Left side: Global Searching
  * Right side: Analysis, File based Searching
- * ,---------------------------------------------------------------------.
- * |NavBar|FindP |FindC |FindF |Marks |      | FnP  |FileHi|FindSy|      |
- * |------+------+------+------+-------------+------+------+------+------|
- * |TMnMx |FindAc|Recent|GotoTe|      | Back | Decl | Impl | Fwd  |Usages|
- * |------+------+------+------+------|------+------+------+------+------|
- * |      |StrctV|DebugV|ProjV | GitV |      |NxtErr|PrvErr|      |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |MaxMin| Term |SupMC |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |NavBar|FindP |FindC |FindF |Marks |  |      | FnP  |FileHi|FindSy|      |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |TMnMx |FindAc|Recent|GotoTe|Blame |  | Back | Decl | Impl | Fwd  |Usages|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |      |StrctV|DebugV|ProjV |      |  |      |NxtErr|PrvErr|      |      |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |LastTl|MaxMin| Term |  |SupMC |CMMITS|LocalC|
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -20,19 +20,19 @@
 #define INAV_L05     LGUI(KC_F3)                  // [*] Marks
 
 #define INAV_L11     LSFT(LGUI(KC_QUOT))          // Toggle tool min/max
-#define INAV_L12     LGUI(LSFT(KC_A))             // Find action
+#define INAV_L12     LSFT(LGUI(KC_A))             // Find action
 #define INAV_L13     LGUI(KC_E)                   // [*] Recent files popup
 #define INAV_L14     LSFT(LGUI(KC_T))             // Go to test
-#define INAV_L15     LALT(LSFT(KC_SCLN))       // [*] Blame (custom keymap) .... didn't work
+#define INAV_L15     LALT(KC_Q)                   // [*] Blame (custom keymap)
 
 #define INAV_L21     _______
 #define INAV_L22     LGUI(KC_7)                   // [*] Project Structure View
 #define INAV_L23     LGUI(KC_5)                   // Debug View
 #define INAV_L24     LGUI(KC_1)                   // Project Files View
-#define INAV_L25     LGUI(KC_9)                   // VCS View
+#define INAV_L25     _______
 
-#define INAV_L33     _______
-#define INAV_L34     LGUI(LSFT(KC_F12))           // Toggle maximizing editor
+#define INAV_L33     KC_F12                       // Last Tool
+#define INAV_L34     LGUI(LSFT(KC_F12))           // [*] Toggle maximizing editor
 #define INAV_L35     LALT(KC_F12)                 // Terminal View
 
 // Right
@@ -55,8 +55,8 @@
 #define INAV_R25     _______
 
 #define INAV_R31     LGUI(KC_U)                   // Go to super-method/super-class
-#define INAV_R32     _______                       // Parameter info
-#define INAV_R33     _______
+#define INAV_R32     LALT(KC_W)                   // [*] Commits (custom keymap) but doesn't work!
+#define INAV_R33     LGUI(KC_9)                   // [*] Local changes
 
 
 

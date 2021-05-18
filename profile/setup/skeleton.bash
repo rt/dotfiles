@@ -29,7 +29,7 @@ setup_skeleton() {
   tmux send-keys -t $sess:dotfiles.3 "cd ~/projects/dotfiles/keyboard/" Enter
   tmux send-keys -t $sess:dotfiles "./copy_qmk_files"
 
-  tmux split-window -h -l 85 -t $sess:dotfiles
+  tmux split-window -h -l 50 -t $sess:dotfiles
   tmux send-keys -t $sess:dotfiles.4 "cd ~/projects/qmk_firmware" Enter
   tmux send-keys -t $sess:dotfiles "make handwired/mrkabuda:ryan:avrdude"
 

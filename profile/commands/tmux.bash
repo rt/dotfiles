@@ -1,6 +1,8 @@
 alias tmux.session="tm"
 alias tmux.pane="tmp"
 alias tmux.colors="tm_colors"
+alias tmux.config.reload="tmux source-file ~/.tmux.conf"
+alias tmux.detach="tmux detach"
 
 tm_colors() {
   for i in {0..255}; do

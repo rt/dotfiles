@@ -1,17 +1,16 @@
 /* Work
  * Work specific stuff
  * - FE on left BE on right
- * - Places on bottom
  * - Goto on right
- * ,---------------------------------------------------------------------.
- * |Routes|Ctrlrs|Cmpnts|Tmplts|Styles|      |      |      |      |  TP  |
- * |------+------+------+------+-------------+------+------+------+------|
- * |Stores|Models|Actins|      |Helprs|MgrShr|MgrClt|      |      | Jira |
- * |------+------+------+------+------|------+------+------+------+------|
- * |StrtLg|      |      | ELP  |Build |Jnkins|      |      |      |Cnflnc|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |Scrpts|Notes |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |Routes|Ctrlrs|Cmpnts|Tmplts|Styles|  |      |      |      |      |  TP  |
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |Stores|Models|Actins|      |Helprs|  |MgrShr|MgrClt|      |      | Jira |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |StrtLg|      |      | ELP  |Build |  |Jnkins|      |      |      |Cnflnc|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -33,8 +32,8 @@
 #define MISC_L24     WORK_EDIT_ELP
 #define MISC_L25     WORK_EDIT_BUILD
 
-#define MISC_L33     VIM_WORK_SHOW_SCRIPTS
-#define MISC_L34     VIM_WORK_SHOW_NOTES
+#define MISC_L33     _______
+#define MISC_L34     _______
 #define MISC_L35     _______
 
 // Right

@@ -62,6 +62,7 @@ Plug 'tpope/vim-sexp-mappings-for-regular-people'
 Plug 'clojure-vim/async-clj-omni'
 Plug 'luochen1990/rainbow'
 " Plug 'bhurlow/vim-parinfer'
+Plug 'christoomey/vim-tmux-navigator'
 
 
 " Initialize plugin system
@@ -588,6 +589,14 @@ function! s:get_file_list(dirPath, fullscreen)
 	endif
 endfunction
   
+function! s:get_git_file_list(dirPath, fullscreen)
+	if a:fullscreen
+		call fzf#vim#gitfiles(a:dirPath, fzf#vim#with_preview('up:60%'), a:fullscreen)
+	else 
+		call fzf#vim#gitfiles(a:dirPath, fzf#vim#with_preview('right:50%:hidden', '?'), a:fullscreen)
+	endif
+endfunction
+
 function! s:handle_url()
   let s:uri = matchstr(getline("."), '[a-z]*:\/\/[^ >,;]*')
   echo s:uri
@@ -732,7 +741,7 @@ endfunction
 " ----------------------------------------------------------------------------
 " General Maps
 " ----------------------------------------------------------------------------
-
+nmap <leader>f <c-^>
 " map simple ctrl keys for split/window movement and sizing (colemak)
 nnoremap <C-N> <C-W>j
 nnoremap <C-E> <C-W>k
@@ -804,7 +813,7 @@ command! -nargs=* GetImplWord call <SID>get_impl(expand('<cword>'))
 command! -nargs=* GetStyleFile call <SID>get_style_file(expand('%'))
 
 """""" Work
-command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/switchfly', 1)
+command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/notes', 1)
 command! -nargs=* WorkPlaceELP call <SID>open_project_file('common/src/main/resources/ezrez.local.properties')
 command! -nargs=* WorkPlaceLog call <SID>open_project_file('log.txt')
 command! -nargs=* WorkPlaceJenkinsfile call <SID>open_project_file('Jenkinsfile')
@@ -827,15 +836,17 @@ command! -nargs=* WorkGotoConfluence call <SID>goto_confluence(expand('<cword>')
 " go to template definition (gf): no work required
 " go to js definitions (ctags): no work required
 " Useful file browse lists
-command! -bang -nargs=* WorkListRoutes call <SID>get_simple_shopping_list('scripts/routes', <bang>0)
-command! -bang -nargs=* WorkListControllers call <SID>get_simple_shopping_list('scripts/controllers', <bang>0)
-command! -bang -nargs=* WorkListComponents call <SID>get_simple_shopping_list('scripts/components', <bang>0)
-command! -bang -nargs=* WorkListTemplates call <SID>get_simple_shopping_list('templates', <bang>0)
-command! -bang -nargs=* WorkListStyles call <SID>get_simple_shopping_list('styles', <bang>0)
-command! -bang -nargs=* WorkListHandlebarHelpers call <SID>get_simple_shopping_list('scripts/handlebars_helpers', <bang>0)
-command! -bang -nargs=* WorkListStores call <SID>get_simple_shopping_list('scripts/liquid/stores', <bang>0)
-command! -bang -nargs=* WorkListModels call <SID>get_simple_shopping_list('scripts/liquid/models', <bang>0)
-command! -bang -nargs=* WorkListActions call <SID>get_simple_shopping_list('scripts/liquid/actions', <bang>0)
+command! -bang -nargs=* WorkListRoutes call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/routes', <bang>0)
+command! -bang -nargs=* WorkListControllers call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/controllers', <bang>0)
+command! -bang -nargs=* WorkListComponents call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/components', <bang>0)
+command! -bang -nargs=* WorkListTemplates call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/templates', <bang>0)
+command! -bang -nargs=* WorkListStyles call <SID>get_git_file_list('styles', <bang>0)
+command! -bang -nargs=* WorkListHandlebarHelpers call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/handlebars_helpers', <bang>0)
+command! -bang -nargs=* WorkListStores call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/liquid/stores', <bang>0)
+command! -bang -nargs=* WorkListModels call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/liquid/models', <bang>0)
+command! -bang -nargs=* WorkListActions call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/liquid/actions', <bang>0)
+
+command! -bang -nargs=* WorkTomcatLogs call <SID>get_git_file_list('core-webapp/target/tomcat/logs', <bang>0)
 
 " notes: filters/interceptors
 command! -bang WorkFiltersAndInterceptors call fzf#run(fzf#wrap(

@@ -47,11 +47,11 @@ set -g default-command "reattach-to-user-namespace -l ${SHELL}"
 #set -g prefix C-j
 
 # copy with 'enter' or 'y' and send to mac os clipboard: http://goo.gl/2Bfn8
-#unbind -t vi-copy Enter
-bind-key -T copy-mode 'y' send -X copy-pipe-and-cancel "pbcopy"
-
-# create 'v' alias for selecting text
-#bind-key -t vi-copy v begin-selection
+# unbind -T copy-mode Enter
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi MouseDragEnd1Pane send-keys -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi Enter send-keys -X copy-pipe-and-cancel "pbcopy"
 
 # paste
 #unbind C-p
@@ -78,6 +78,8 @@ bind -r L resize-pane -R 5
 # quickly switch panes
 unbind ^J
 bind ^J select-pane -t :.+
+unbind ^K
+bind ^K select-pane -t :.-
 
 # quickly switch tabs
 bind -r C-h select-window -t :-

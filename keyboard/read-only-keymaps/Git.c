@@ -1,20 +1,20 @@
 /* Git
- * ,---------------------------------------------------------------------.
- * |LOGREL| GREP |      |CMMITS|      |MERGET|DIFFT |BROWSE|      |PKAXEC|
- * |------+------+------+------+-------------+------+------+------+------|
- * | EDIT |EDITIT|STATUS|GMASTF|BLAME |HUNKU |HUNKN |HUNKP |      |PKAXE |
- * |------+------+------+------+------|------+------+------+------+------|
- * | DIFF |      |DIFFI |DIFFM |      |LOGREL|      |LOGCFS|LOGCF |LOGCFD|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |      |      |      |      |      |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |LOGREL| GREP |      |      |      |  |MERGET|DIFFT |BROWSE|      |PKAXEC|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * | EDIT |EDITIT|STATUS|GMASTF|BLAME |  |HUNKU |HUNKN |HUNKP |      |PKAXE |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * | DIFF |      |DIFFI |DIFFM |      |  |LOGREL|      |LOGCFS|LOGCF |LOGCFD|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |      |      |  |      |      |      |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
 #define GIT_L01     VIM_LOG_RELEASE               // git log for a period of time
 #define GIT_L02     VIM_GIT_GREP                  // [*] Grep in any branch
 #define GIT_L03     _______
-#define GIT_L04     VIM_GIT_COMMITS               // view recent (all) commits
+#define GIT_L04     _______
 #define GIT_L05     _______
 
 #define GIT_L11     VIM_EDIT_ANY                  // check any blob

@@ -1,13 +1,13 @@
 /* IntelliJ
- * ,---------------------------------------------------------------------.
- * | Sel+ |Rename|ChSig |ExtrtM|ExtrtV|Scrtch| New  | Copy | Move |Delete|
- * |------+------+------+------+-------------+------+------+------+------|
- * | Sel- |Surnd |Commnt|Format|Suggst|BrkPts|PlyRes| Over |  In  |  Out |
- * |------+------+------+------+------|------+------+------+------+------|
- * |OverM |ImplM |GenCd |LiveT |ParamI|TogBrk| Eval |CmpFi |CmpPrj|CallHi|
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |StatCm|CodeCm|Debug |DebugL| RunL |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * | Sel+ |Rename|ChSig |ExtrtM|ExtrtV|  |Scrtch| New  | Copy | Move |Delete|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * | Sel- |Surnd |Commnt|Format|Suggst|  |BrkPts|PlyRes| Over |  In  |  Out |
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |OverM |ImplM |GenCd |LiveT |ParamI|  |TogBrk| Eval |CmpFi |CmpPrj|CallHi|
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |StatCm|CodeCm|  |Debug |DebugL| RunL |
+ *               `--------------------'  `--------------------'
  */
 
 // Left

@@ -1,14 +1,14 @@
 /* Nav
  * Global: System, Tmux, App, etc, Navigation
- * ,---------------------------------------------------------------------.
- * |VQUIT |VWRITE|VPRVFI|      |PrevAp|TWINP |TPANEN|      |TWINN |TEVENV|
- * |------+------+------+------+-------------+------+------+------+------|
- * |      |      |TSCRLL| PgUp | Home | Left | Down |  Up  |Right |TEVENH|
- * |------+------+------+------+------|------+------+------+------+------|
- * |FlScrn|      |AppWin|PgDown| End  |WkspL |WordL |WordR |WkspR |      |
- * |------+------+------+------+------+------+------+------+------+------|
- * |      |      |      |TZMTOG|Enter | Bspc |AltBk | Del  |      |      |
- * `---------------------------------------------------------------------'
+ * ,----------------------------------.  ,----------------------------------.
+ * |VQUIT |VWRITE|VPRVFI|      |PrevAp|  |TWINP |TPANEN|TPANEP|TWINN |TEVENV|
+ * |------+------+------+------+-------  -------+------+------+------+------|
+ * |      |      |TSCRLL| PgUp | Home |  | Left | Down |  Up  |Right |TEVENH|
+ * |------+------+------+------+------|  |------+------+------+------+------|
+ * |FlScrn|      |AppWin|PgDown| End  |  |WkspL |WordL |WordR |WkspR |      |
+ * `------+------+------+------+------+  +------+------+------+------+------'
+ *               |      |TZMTOG|Enter |  | Bspc |AltBk | Del  |
+ *               `--------------------'  `--------------------'
  */
 
 // Left
@@ -37,7 +37,7 @@
 // Right
 #define NAV_R01     TMUX_WIN_PREV
 #define NAV_R02     TMUX_PANE_NEXT
-#define NAV_R03     _______
+#define NAV_R03     TMUX_PANE_PREV
 #define NAV_R04     TMUX_WIN_NEXT
 #define NAV_R05     TMUX_EVEN_VERT
 
