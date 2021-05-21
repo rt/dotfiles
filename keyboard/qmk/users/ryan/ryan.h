@@ -806,7 +806,7 @@ enum custom_keycodes {
 #define GIT_L14     VIM_GIT_MASTER_FILE
 #define GIT_L15     VIM_GIT_BLAME
 
-#define GIT_L21     VIM_DIFF_ANY
+#define GIT_L21     VIM_DIFF_ANY                  // diff file with somewhere else
 #define GIT_L22     _______
 #define GIT_L23     VIM_DIFF_INDEX
 #define GIT_L24     VIM_DIFF_MASTER
@@ -844,7 +844,7 @@ enum custom_keycodes {
 /* Chrome
  * Chrome: editor, navigation both browser and devtools
  * ,----------------------------------.  ,----------------------------------.
- * |      |Search|      |FindFi|Bkmrks|  |Incog |NewTab|      |      |DelTab|
+ * |SrchHi|Search|FindTb|FindFi|Bkmrks|  |Incog |NewTab|      |      |DelTab|
  * |------+------+------+------+-------  -------+------+------+------+------|
  * |RunCmd|LstTab|PrvPan|NxtPan|      |  |BRKPTS|PLYPAU|STPOVR|STPIN |STPOUT|
  * |------+------+------+------+------|  |------+------+------+------+------|
@@ -855,11 +855,11 @@ enum custom_keycodes {
  */
 
 // Left
-#define CHROME_L01     XXXXXXX
+#define CHROME_L01     LGUI(KC_Y)               // search history
 #define CHROME_L02     LGUI(LALT(KC_F))         // [*] search (across loaded resources)
-#define CHROME_L03     XXXXXXX
+#define CHROME_L03     LSFT(LGUI(KC_A))         // [*] search tabs
 #define CHROME_L04     LGUI(KC_O)               // [*] file search (add @ for methods or ! for snippets)
-#define CHROME_L05     LALT(LGUI(KC_B))         // shares bookmarks
+#define CHROME_L05     LALT(LGUI(KC_B))         // [*] bookmarks
 
 #define CHROME_L11     LGUI(LSFT(KC_P))         // [*] run command
 #define CHROME_L12     LGUI(LSFT(KC_T))         // [*] recents (actually last closed tab in this case)

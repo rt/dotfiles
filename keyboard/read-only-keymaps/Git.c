@@ -23,7 +23,7 @@
 #define GIT_L14     VIM_GIT_MASTER_FILE
 #define GIT_L15     VIM_GIT_BLAME
 
-#define GIT_L21     VIM_DIFF_ANY
+#define GIT_L21     VIM_DIFF_ANY                  // diff file with somewhere else
 #define GIT_L22     _______
 #define GIT_L23     VIM_DIFF_INDEX
 #define GIT_L24     VIM_DIFF_MASTER

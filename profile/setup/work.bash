@@ -4,19 +4,34 @@ alias setup.work="setup_work"
 
 setup_work() {
 
-  sess=${PWD##*/}
+  # sess=${PWD##*/}
+  sess=work
 
-  # root
-  tmux new-session -s $sess -d -n root
-  tmux send-keys -t $sess:root "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:root "cd ~/dev/repos/dev" Enter
-  tmux send-keys -t $sess:root "ctags -R --language-force=java -f .tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
+  # dev
+  tmux new-session -s $sess -d -n dev
+  tmux send-keys -t $sess:dev "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:dev "cd ~/dev/repos/dev" Enter
+  tmux send-keys -t $sess:dev "ctags -R --language-force=java -f .tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
+  tmux send-keys -t $sess:dev "vim" Enter
   
-  tmux split-window -v -l 14 -t $sess:root
-  tmux send-keys -t $sess:root.2 "cd core-webapp/src/main/webapp/resources/$1" Enter
-  tmux send-keys -t $sess:root.2 "ctags_javascript scripts/" Enter
+  tmux split-window -v -l 14 -t $sess:dev
+  tmux send-keys -t $sess:dev.2 "cd ~/dev/repos/dev/core-webapp/src/main/webapp/resources/$1" Enter
+  tmux send-keys -t $sess:dev.2 "ctags_javascript scripts/" Enter
 
-  tmux select-pane -t $sess:root.1
+  tmux select-pane -t $sess:dev.1
+
+  # dev1
+  tmux new-window -t $sess -n dev1
+  tmux send-keys -t $sess:dev1 "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:dev1 "cd ~/dev/repos/dev1" Enter
+  tmux send-keys -t $sess:dev1 "ctags -R --language-force=java -f .tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
+  tmux send-keys -t $sess:dev1 "vim" Enter
+
+  tmux split-window -v -l 14 -t $sess:dev1
+  tmux send-keys -t $sess:dev1.2 "cd ~/dev/repos/dev1/core-webapp/src/main/webapp/resources/shopping" Enter
+  tmux send-keys -t $sess:dev1.2 "ctags_javascript scripts/" Enter
+
+  tmux select-pane -t $sess:dev1.1
 
   # migrations
   tmux new-window -t $sess -n migrations
@@ -30,7 +45,20 @@ setup_work() {
 
   tmux select-pane -t $sess:migrations.1
 
-  ### platform
+  # test-automation
+  tmux new-window -t $sess -n test-automation
+  tmux send-keys -t $sess:test-automation "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:test-automation "cd test-automation" Enter
+  tmux send-keys -t $sess:test-automation "vim src/test/resources/rtsunoda.properties"
+
+  tmux split-window -v -l 14 -t $sess:test-automation
+  tmux send-keys -t $sess:test-automation.2 "cd test-automation" Enter
+  tmux send-keys -t $sess:test-automation.2 "mvn -P automation -Dit.test=SomeTestIT verify"
+  # tmux send-keys -t $sess:test-automation "mvn verify -P automation -Dtest.groups=some-group"
+
+  tmux select-pane -t $sess:test-automation.1
+
+  # platform
   tmux new-window -t $sess -n platform
   tmux send-keys -t $sess:platform "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:platform "cd platform" Enter
@@ -38,32 +66,21 @@ setup_work() {
   
   tmux split-window -v -l 10 -t $sess:platform
   tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.2 "docker-compose up"
+  tmux send-keys -t $sess:platform.2 "docker compose up"
   
   tmux split-window -v -l 5 -t $sess:platform
-  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_postgres_1 bash"
+  tmux send-keys -t $sess:platform.3 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.3 "docker exec -it devenv_postgres_1 bash"
 
   tmux split-window -v -l 5 -t $sess:platform
-  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_couchbase_1 bash"
+  tmux send-keys -t $sess:platform.4 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.4 "docker exec -it devenv_couchbase_1 bash"
 
   tmux split-window -v -l 5 -t $sess:platform
-  tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_apache_1 bash"
+  tmux send-keys -t $sess:platform.5 "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform.5 "docker exec -it devenv_apache_1 bash"
 
   tmux select-pane -t $sess:platform.1
-
-  ### hotelenrichment
-  tmux new-window -t $sess -n hotelenrichment
-  tmux send-keys -t $sess:hotelenrichment "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:hotelenrichment "cd ~/dev/repos/hotelenrichment" Enter
-  tmux send-keys -t $sess:hotelenrichment "vim" Enter
-  
-  tmux split-window -v -l 14 -t $sess:hotelenrichment
-  tmux send-keys -t $sess:hotelenrichment.2 "cd ~/dev/repos/hotelenrichment" Enter
-
-  tmux select-pane -t $sess:hotelenrichment.1
 
   ### devops
   tmux new-window -t $sess -n ops
@@ -99,7 +116,7 @@ setup_work() {
   tmux select-pane -t $sess:work.1
   
   #select first
-  tmux select-window -t $sess:root
+  tmux select-window -t $sess:dev
 
   tmux -2 attach-session -t $sess
 

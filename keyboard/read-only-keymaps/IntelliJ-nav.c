@@ -20,9 +20,9 @@
 #define INAV_L05     LGUI(KC_F3)                  // [*] Marks
 
 #define INAV_L11     LSFT(LGUI(KC_QUOT))          // Toggle tool min/max
-#define INAV_L12     LSFT(LGUI(KC_A))             // Find action
+#define INAV_L12     LSFT(LGUI(KC_A))             // [*] Find action Note: there is a mac override need to disable https://intellij-support.jetbrains.com/hc/en-us/articles/360005137400-Cmd-Shift-A-hotkey-opens-Terminal-with-apropos-search-instead-of-the-Find-Action-dialog
 #define INAV_L13     LGUI(KC_E)                   // [*] Recent files popup
-#define INAV_L14     LSFT(LGUI(KC_T))             // Go to test
+#define INAV_L14     LSFT(LGUI(KC_T))             // [*] Go to test
 #define INAV_L15     LALT(KC_Q)                   // [*] Blame (custom keymap)
 
 #define INAV_L21     _______

@@ -4,7 +4,7 @@ alias setup.skeleton="setup_skeleton"
 
 setup_skeleton() {
 
-  sess=forward
+  sess=skeleton
 
   #----- skeleton
   tmux new-session -s $sess -d -n skeleton

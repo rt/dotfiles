@@ -11,13 +11,13 @@
  */
 
 // Left
-#define IDEA_L01     LALT(KC_UP)            // Extend selection
+#define IDEA_L01     LALT(KC_UP)                  // Extend selection
 #define IDEA_L02     LSFT(KC_F6)                  // Rename
 #define IDEA_L03     LGUI(KC_F6)                  // Change signature
 #define IDEA_L04     LGUI(LALT(KC_M))             // Extract method
 #define IDEA_L05     LGUI(LALT(KC_V))             // Extract variable
 
-#define IDEA_L11     LALT(KC_DOWN)          // Shrink selection
+#define IDEA_L11     LALT(KC_DOWN)                // Shrink selection
 #define IDEA_L12     LALT(LGUI(KC_T))             // Surround with ... 
 #define IDEA_L13     LGUI(KC_SLSH)                // [*] Comment/uncomment
 #define IDEA_L14     LALT(LGUI(KC_L))             // [*] Format
