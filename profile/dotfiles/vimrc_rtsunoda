@@ -812,7 +812,7 @@ command! -nargs=* Wrap set wrap linebreak nolist
 command! -nargs=* NoWrap set nowrap nolinebreak 
 
 command! -nargs=* CdRoot call <SID>get_project_path('')
-command! -bang -nargs=* ShowQuickReference call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/quick-reference', 1)
+command! -bang -nargs=* ShowQuickReference call <SID>get_file_list('/Users/rtsunoda/projects/playground/quick-reference', 1)
 command! -bang -nargs=* ShowKeymaps call <SID>get_file_list('/Users/rtsunoda/projects/keyboard/read-only-keymaps', 1)
 command! -bang -nargs=* ShowMySnippets call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/profile/dotfiles/vim_rtsunoda/UltiSnips', 1)
 
