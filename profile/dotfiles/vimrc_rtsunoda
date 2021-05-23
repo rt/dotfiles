@@ -138,12 +138,6 @@ augroup numbertoggle
 augroup END
 
 
-"""""" Session Management
-let g:sessions_dir = '~/projects/dotfiles/vim-sessions'
-exec 'nnoremap <Leader>ss :mks! ' . g:sessions_dir . '/*.vim<C-D><BS><BS><BS><BS><BS>'
-exec 'nnoremap <Leader>sr :so ' . g:sessions_dir. '/*.vim<C-D><BS><BS><BS><BS><BS>'
-set sessionoptions-=options  " Don't save options
-
 """""" Java
 let java_comment_strings=1
 let java_highlight_all=1
