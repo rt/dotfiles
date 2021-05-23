@@ -22,7 +22,7 @@ setup_keyboards() {
   tmux split-window -v -l 24 -t $sess:mrkabuda
   tmux send-keys -t $sess:mrkabuda.2 "cd ~/projects/keyboards/mrkabuda" Enter
 
-  #----- dactyl-keyboard
+  #----- dactyl
   tmux new-window -t $sess -n dactyl
   tmux send-keys -t $sess:dactyl "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:dactyl "cd ~/projects/keyboards/dactyl-keyboard" Enter
@@ -33,15 +33,15 @@ setup_keyboards() {
 
   tmux select-pane -t $sess:dactyl.1
 
-  #----- dactyl-manuform
-  tmux new-window -t $sess -n dactyl-manuform
-  tmux send-keys -t $sess:dactyl-manuform "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:dactyl-manuform "cd ~/projects/keyboards/dactyl-manuform" Enter
-  tmux send-keys -t $sess:dactyl-manuform "vim" Enter
+  #----- manuform
+  tmux new-window -t $sess -n manuform
+  tmux send-keys -t $sess:manuform "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:manuform "cd ~/projects/keyboards/dactyl-manuform" Enter
+  tmux send-keys -t $sess:manuform "vim" Enter
 
-  tmux split-window -v -l 24 -t $sess:dactyl-manuform
-  tmux send-keys -t $sess:dactyl-manuform.2 "cd ~/projects/keyboards/dactyl-manuform" Enter
-  tmux select-pane -t $sess:dactyl-manuform.1
+  tmux split-window -v -l 24 -t $sess:manuform
+  tmux send-keys -t $sess:manuform.2 "cd ~/projects/keyboards/dactyl-manuform" Enter
+  tmux select-pane -t $sess:manuform.1
 
   #----- Cherry-Mx-Bitboard-Re
   tmux new-window -t $sess -n bitboard

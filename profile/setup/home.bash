@@ -1,10 +1,10 @@
 #!/bin/bash
 
-alias setup.skeleton="setup_skeleton"
+alias setup.home="setup_home"
 
-setup_skeleton() {
+setup_home() {
 
-  sess=skeleton
+  sess=home
 
   #----- skeleton
   tmux new-session -s $sess -d -n skeleton

@@ -1,7 +1,7 @@
 /* Chrome
  * Chrome: editor, navigation both browser and devtools
  * ,----------------------------------.  ,----------------------------------.
- * |      |Search|FindTb|FindFi|Bkmrks|  |Incog |NewTab|      |      |DelTab|
+ * |SrchHi|Search|FindTb|FindFi|Bkmrks|  |Incog |NewTab|      |      |DelTab|
  * |------+------+------+------+-------  -------+------+------+------+------|
  * |RunCmd|LstTab|PrvPan|NxtPan|      |  |BRKPTS|PLYPAU|STPOVR|STPIN |STPOUT|
  * |------+------+------+------+------|  |------+------+------+------+------|
@@ -12,11 +12,11 @@
  */
 
 // Left
-#define CHROME_L01     XXXXXXX
+#define CHROME_L01     LGUI(KC_Y)               // search history
 #define CHROME_L02     LGUI(LALT(KC_F))         // [*] search (across loaded resources)
 #define CHROME_L03     LSFT(LGUI(KC_A))         // [*] search tabs
 #define CHROME_L04     LGUI(KC_O)               // [*] file search (add @ for methods or ! for snippets)
-#define CHROME_L05     LALT(LGUI(KC_B))         // shares bookmarks
+#define CHROME_L05     LALT(LGUI(KC_B))         // [*] bookmarks
 
 #define CHROME_L11     LGUI(LSFT(KC_P))         // [*] run command
 #define CHROME_L12     LGUI(LSFT(KC_T))         // [*] recents (actually last closed tab in this case)

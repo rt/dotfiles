@@ -108,5 +108,9 @@ install_mac_tools() {
   #osx base16 terminals
   cd ~/projects
   git clone https://github.com/korzhyk/base16-terminal-app.git
+
+  #osx dracula terminal
+  cd ~/projects
+  git clone https://github.com/dracula/terminal-app.git
 }
 

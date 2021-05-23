@@ -45,18 +45,18 @@ setup_work() {
 
   tmux select-pane -t $sess:migrations.1
 
-  # test-automation
-  tmux new-window -t $sess -n test-automation
-  tmux send-keys -t $sess:test-automation "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:test-automation "cd test-automation" Enter
-  tmux send-keys -t $sess:test-automation "vim src/test/resources/rtsunoda.properties"
+  # automation
+  tmux new-window -t $sess -n automation
+  tmux send-keys -t $sess:automation "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:automation "cd test-automation" Enter
+  tmux send-keys -t $sess:automation "vim src/test/resources/rtsunoda.properties"
 
-  tmux split-window -v -l 14 -t $sess:test-automation
-  tmux send-keys -t $sess:test-automation.2 "cd test-automation" Enter
-  tmux send-keys -t $sess:test-automation.2 "mvn -P automation -Dit.test=SomeTestIT verify"
-  # tmux send-keys -t $sess:test-automation "mvn verify -P automation -Dtest.groups=some-group"
+  tmux split-window -v -l 14 -t $sess:automation
+  tmux send-keys -t $sess:automation.2 "cd test-automation" Enter
+  tmux send-keys -t $sess:automation.2 "mvn -P automation -Dit.test=SomeTestIT verify"
+  # tmux send-keys -t $sess:automation "mvn verify -P automation -Dtest.groups=some-group"
 
-  tmux select-pane -t $sess:test-automation.1
+  tmux select-pane -t $sess:automation.1
 
   # platform
   tmux new-window -t $sess -n platform
