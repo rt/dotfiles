@@ -6,8 +6,17 @@ setup_ecom_client() {
 
   sess=ecomclient
 
+  #----- skeleton
+  tmux new-session -s $sess -d -n skeleton
+  tmux send-keys -t $sess:skeleton "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:skeleton "cd ~/projects/skeleton/skeleton-spec" Enter
+  tmux send-keys -t $sess:skeleton "vim" Enter
+
+  tmux split-window -v -l 24 -t $sess:skeleton
+  tmux send-keys -t $sess:skeleton.2 "cd ~/projects/skeleton/skeleton-spec" Enter
+
   #----- client
-  tmux new-session -s $sess -d -n client
+  tmux new-window -s $sess -n client
   tmux send-keys -t $sess:client "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:client "cd ~/projects/ecom/ecom-client" Enter
   tmux send-keys -t $sess:client "vim" Enter
