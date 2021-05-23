@@ -16,7 +16,7 @@ setup_betsy() {
   tmux send-keys -t $sess:skeleton.2 "cd ~/projects/skeleton/skeleton-spec" Enter
 
   #----- spec
-  tmux new-window -s $sess -n spec
+  tmux new-window -t $sess -n spec
   tmux send-keys -t $sess:spec "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:spec "cd ~/projects/betsy/betsy-spec" Enter
   tmux send-keys -t $sess:spec "vim" Enter

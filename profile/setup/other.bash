@@ -7,7 +7,7 @@ setup_other() {
   sess=other
 
   #----- liquid
-  tmux new-session -t $sess -d -n liquid
+  tmux new-session -s $sess -d -n liquid
   tmux new-window -t $sess -n liquid
   tmux send-keys -t $sess:liquid "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:liquid "cd ~/projects/kabuda/kabuda-liquid" Enter

@@ -7,7 +7,7 @@ setup_playground() {
   sess=playground
 
   #----- dotfiles
-  tmux new-session -t $sess -d -n dotfiles
+  tmux new-session -s $sess -d -n dotfiles
   tmux send-keys -t $sess:dotfiles "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:dotfiles "cd ~/projects/dotfiles" Enter
   tmux send-keys -t $sess:dotfiles "vim" Enter
@@ -16,18 +16,24 @@ setup_playground() {
   tmux send-keys -t $sess:dotfiles.2 "cd ~/projects/dotfiles/profile/" Enter
   tmux send-keys -t $sess:dotfiles "./bootstrap rtsunoda"
 
-  tmux split-window -v -l 24 -t $sess:dotfiles
-  tmux send-keys -t $sess:dotfiles.3 "cd ~/projects/dotfiles/keyboard/" Enter
-  tmux send-keys -t $sess:dotfiles "./copy_qmk_files"
-
-  tmux split-window -h -l 50 -t $sess:dotfiles
-  tmux send-keys -t $sess:dotfiles.4 "cd ~/projects/qmk_firmware" Enter
-  tmux send-keys -t $sess:dotfiles "make handwired/mrkabuda:ryan:avrdude"
-
   tmux select-pane -t $sess:dotfiles.1
 
+  #----- keyboard
+  tmux new-window -t $sess -n keyboard
+  tmux send-keys -t $sess:keyboard "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:keyboard "cd ~/projects/keyboard" Enter
+  tmux send-keys -t $sess:keyboard "vim" Enter
+
+  tmux split-window -v -l 24 -t $sess:keyboard
+  tmux send-keys -t $sess:keyboard.3 "cd ~/projects/keyboard/" Enter
+  tmux send-keys -t $sess:keyboard "./copy_qmk_files"
+
+  tmux split-window -h -l 50 -t $sess:keyboard
+  tmux send-keys -t $sess:keyboard.4 "cd ~/projects/qmk_firmware" Enter
+  tmux send-keys -t $sess:keyboard "make handwired/mrkabuda:ryan:avrdude"
+
   #----- java
-  tmux new-window -s $sess -n java
+  tmux new-window -t $sess -n java
   tmux send-keys -t $sess:java "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:java "cd ~/projects/dotfiles/playground/java" Enter
   tmux send-keys -t $sess:java "vim" Enter

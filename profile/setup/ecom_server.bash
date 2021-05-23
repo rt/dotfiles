@@ -16,7 +16,7 @@ setup_ecom_server() {
   tmux send-keys -t $sess:skeleton.2 "cd ~/projects/skeleton/skeleton-spec" Enter
 
   #----- spec
-  tmux new-window -s $sess -n spec
+  tmux new-window -t $sess -n spec
   tmux send-keys -t $sess:spec "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:spec "cd ~/projects/ecom/ecom-spec" Enter
   tmux send-keys -t $sess:spec "vim" Enter
@@ -30,7 +30,7 @@ setup_ecom_server() {
   #----- server
   tmux new-window -t $sess -n server
   tmux send-keys -t $sess:server "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:server "cd ~/projects/betsy/betsy-server" Enter
+  tmux send-keys -t $sess:server "cd ~/projects/ecom/ecom-server" Enter
   tmux send-keys -t $sess:server "vim" Enter
 
   tmux split-window -v -l 5 -t $sess:server
