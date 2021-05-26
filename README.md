@@ -1,19 +1,12 @@
 # dotfiles
 
-Just my personal dotfiles/playground, not that great.
+my personal dotfiles.
 
-- dockerfiles: Dockerfiles for whatevers
-- keyboard: keyboard stuff
--- qmk: my qmk keyboard files
--- read-only-keymaps: quick reference keymaps
-- playground: for screwing around, testing, etc.
-- profile: individual topics to put in env
--- bin: tranferred to home direrectory
--- bin-tests: tests for bin
--- config: config files for build
--- dotfiles: vim, tmux, scripts, etc.
--- setup: mac, cloud instance, raspberrypi ...
-- quick-reference: preview from vim/terminal things I quickly forget
+- bin: tranferred to home direrectory
+- bin-tests: tests for bin
+- config: config files for build
+- dotfiles: vim, tmux, scripts, etc.
+- setup: mac, cloud instance, raspberrypi ...
 
 ### profile
 
@@ -83,7 +76,3 @@ flutter doctor # after adding to path
 *kicad*
 
 
-### playground and quick reference
-
-Mainly for my own lookup, lots to clean up atm...
-The general feel is easy reference, repl selected statements, small tinkerings before making an actual project.

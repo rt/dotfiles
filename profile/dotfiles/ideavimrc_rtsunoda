@@ -1,1 +1,5 @@
 source ~/.vimrc
+set surround
+set commentary
+set exchange
+set highlightedyank
