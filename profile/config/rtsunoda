@@ -1,5 +1,6 @@
 env_common.bash
 env_macos.bash
+env_work.bash
 commands/bash.bash
 commands/ls.bash
 commands/cd.bash
@@ -34,7 +35,6 @@ setup/ecom_server.bash
 setup/betsy.bash
 setup/keyboards.bash
 setup/work.bash
-work.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda
