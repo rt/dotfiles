@@ -14,7 +14,6 @@ commands/chrome.bash
 commands/ssh.bash
 commands/prompt_mb.bash
 setup/student_rpi.bash
-work.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/nanorc_rtsunoda
 dotfiles/vim_rtsunoda

@@ -1,0 +1,8 @@
+$0 src/positional_parameters/functions_test.sh
+$1 foo
+$2 bar
+$#:2
+$@:foo bar
+$*:foo bar
+FUNCNAME:getPositionalParametersDetails
+$@:foo bar
