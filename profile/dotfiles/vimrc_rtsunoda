@@ -491,14 +491,8 @@ nnoremap <Leader>G :Goyo<CR>
 
 
 " when triggering this command, vim will grab your path and line location and pass it along
-map <Leader>tt :call RemoteSendCommand(TestLineCommand(expand("%:p"), line(".")))<CR>
+map <Leader>ta :call RemoteSendCommand(TestLineCommand(expand("%:p"), line(".")))<CR>
 map <Leader>tpc :call RemoteSendCommand(QueryWithinPsql(expand("%:p")))<CR>
-
-" This would be better done as a bash script so you could pass the dbname (db, sqlfile)
-function! QueryClientDb(path)
-  let cmd = join(["psql -U postgres -h localhost -d rtsunoda_client_185 -f ", a:path], "")
-  return cmd
-endfunction
 
 function! QueryWithinPsql(path)
   let cmd = join(["\\i ", a:path], "")

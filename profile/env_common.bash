@@ -1,9 +1,18 @@
 export PATH="$HOME/bin:$PATH";
 export PATH="$HOME/bin/vim:$PATH";
 export PATH="$HOME/bin/vim/work:$PATH";
+
+# Python
 export PATH="$HOME/Library/Python/3.8/bin:$PATH";
+
+# Flutter
 export PATH="$HOME/projects/flutter/bin:$PATH";
 
+# Go
+export GOPATH="$HOME/go"
+export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
+
+# NodeJs
 export NODE_PATH=/usr/lib/nodejs
 
 # Make vim the default editor
