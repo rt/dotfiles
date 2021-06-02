@@ -22,6 +22,7 @@ commands/openssl.bash
 commands/psql.bash
 commands/tmux.bash
 commands/fzf.bash
+commands/fd.bash
 commands/brew.bash
 commands/chrome.bash
 commands/ant.bash

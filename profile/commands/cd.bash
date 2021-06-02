@@ -2,16 +2,17 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
-alias cd.fuzzy="fd" # similar to default fzf esc-c
+# alias cd.fuzzy="fd" # similar to default fzf esc-c
+alias cd.git.root='cd $(git rev-parse --show-toplevel)'
 
 
 # fd - cd to selected directory
-fd() {
-  local dir
-  dir=$(find ${1:-.} -path '*/\.*' -prune \
-                  -o -type d -print 2> /dev/null | fzf +m) &&
-  cd "$dir"
-}
+# fd() {
+#   local dir
+#   dir=$(find ${1:-.} -path '*/\.*' -prune \
+#                   -o -type d -print 2> /dev/null | fzf +m) &&
+#   cd "$dir"
+# }
 
 # Another CTRL-T script to select a directory and paste it into line
 #__fzf_select_dir ()

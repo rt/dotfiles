@@ -812,7 +812,6 @@ command! -nargs=* GetUsagesByCurrentFile call <SID>get_usages_by_current_file(ex
 command! -nargs=* GrepMaster call <SID>git_grep_master(expand('<cword>'))
 command! -nargs=* GotoTest call <SID>get_test(expand('%'))
 command! -nargs=* GetImpl call <SID>get_impl(expand('%:t:r'))
-command! -nargs=* GetImplWord call <SID>get_impl(expand('<cword>'))
 
 command! -nargs=* GetStyleFile call <SID>get_style_file(expand('%'))
 

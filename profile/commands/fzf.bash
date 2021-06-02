@@ -9,12 +9,18 @@
 # --hidden: Search hidden files and folders
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" $(git rev-parse --show-toplevel)'
+
 #If you're running fzf in a large git repository, git ls-tree can boost up the speed of the traversal.
-#export FZF_DEFAULT_COMMAND='
-  #(git ls-tree -r --name-only HEAD ||
-   #find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
-      #sed s/^..//) 2> /dev/null'
+# export FZF_DEFAULT_COMMAND='
+#   (git ls-tree -r --name-only HEAD ||
+#    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
+#       sed s/^..//) 2> /dev/null'
+
+# export FZF_CTRL_T_COMMAND="fd --hidden --follow --exclude \".git\" . $HOME"
+# export FZF_ALT_C_COMMAND="fd -t d --hidden --follow --exclude \".git\" . $HOME"
+# export FZF_ALT_C_COMMAND='fd $(git rev-parse --show-toplevel) -t d'
 
 export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up'
 #export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up,up:preview-up,down:preview-down'

@@ -1,4 +1,4 @@
-# Repl
+# repl
 
 ```bash
 git clone https://github.com/motemen/gore.git

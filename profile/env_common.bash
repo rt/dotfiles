@@ -49,7 +49,10 @@ done;
 
 # Enable aliases to be sudo’ed
 alias sudo='sudo '
+
+# common stuff
 alias sp='source ~/.bash_profile'
+
 
 ##### History
 

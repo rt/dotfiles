@@ -49,6 +49,7 @@ install_mac_tools() {
   brew install go
 
   brew install fzf
+  brew install fd
   # To install useful key bindings and fuzzy completion:
   $(brew --prefix)/opt/fzf/install
 
