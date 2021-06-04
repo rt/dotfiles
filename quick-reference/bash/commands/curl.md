@@ -39,3 +39,8 @@ https_proxy=some-proxy.net:proxy-port curl -I https://somewhere.com:443
 curl --trace-ascii test1.log https://somewhere.com
 ```
 
+
+</dev/tcp/localhost/443 && echo Works
+curl https://localhost/v2/ && echo Works
+
+

@@ -30,6 +30,7 @@ commands/ssh.bash
 commands/kubernetes.bash
 commands/prompt_mb.bash
 setup/profile.bash
+setup/playground.bash
 setup/other.bash
 setup/ecom_client.bash
 setup/ecom_server.bash

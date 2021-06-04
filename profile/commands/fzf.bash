@@ -18,9 +18,8 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 #    find . -path "*/\.*" -prune -o -type f -print -o -type l -print |
 #       sed s/^..//) 2> /dev/null'
 
-# export FZF_CTRL_T_COMMAND="fd --hidden --follow --exclude \".git\" . $HOME"
-# export FZF_ALT_C_COMMAND="fd -t d --hidden --follow --exclude \".git\" . $HOME"
-# export FZF_ALT_C_COMMAND='fd $(git rev-parse --show-toplevel) -t d'
+export FZF_CTRL_T_COMMAND='fd . $(git rev-parse --show-toplevel) --hidden --follow --exclude ".git" --exclude node_modules'
+export FZF_ALT_C_COMMAND='fd . $(git rev-parse --show-toplevel) -t d --hidden --follow --exclude ".git" --exclude node_modules'
 
 export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up'
 #export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up,up:preview-up,down:preview-down'

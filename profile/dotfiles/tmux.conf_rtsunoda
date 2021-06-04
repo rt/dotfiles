@@ -3,6 +3,7 @@
 ###########################
 
 # set -g @plugin 'dracula/tmux'
+# source "/usr/lib/python3.8/site-packages/powerline/bindings/tmux/powerline.conf"
 
 # use 256 term for pretty colors
 set -g default-terminal "screen-256color"
@@ -103,8 +104,9 @@ bind r source-file ~/.tmux.conf \; display "Reloaded!"
 bind m command-prompt "splitw 'exec man %%'"
 bind M neww -n mutt mutt
 bind V neww -n vim vim
+
 ###########################
-# Status Bar
+# Status Bar https://arcolinux.com/everything-you-need-to-know-about-tmux-status-bar/
 ###########################
 
 # set refresh interval for status bar
@@ -132,10 +134,10 @@ set-option -g default-shell /bin/bash
 set-option -g status-style bg=colour11,fg=colour15,dim
 
 # default window title colors
-set-window-option -g window-status-style fg=colour5,bg=default,dim
+set-window-option -g window-status-style fg=colour5,bg=default
 
 # active window title colors
-set-window-option -g window-status-current-style fg=colour244,bg=colour0,dim
+set-window-option -g window-status-current-style fg=colour244,bg=default
 
 # pane border
 set-option -g pane-border-style fg=colour7 #base02
