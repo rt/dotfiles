@@ -36,7 +36,10 @@ setup/ecom_client.bash
 setup/ecom_server.bash
 setup/betsy.bash
 setup/keyboards.bash
-setup/work.bash
+setup/work-dev.bash
+setup/work-devops.bash
+setup/work-tools.bash
+setup/work-automation.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda

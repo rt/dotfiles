@@ -10,7 +10,8 @@
 # --follow: Follow symlinks
 # --glob: Additional conditions for search (in this case ignore everything in the .git/ folder)
 
-export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" $(git rev-parse --show-toplevel)'
+# export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*"'
+export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.git/*" --glob "!*.swp"'
 
 #If you're running fzf in a large git repository, git ls-tree can boost up the speed of the traversal.
 # export FZF_DEFAULT_COMMAND='
