@@ -4,7 +4,7 @@
 
 - `Ag` Simple but you can't work with the subset, unless you want to use buffers as the list container
 
-- `args ...` > `vimgrep /patt/g ##`: Put scope files in args then get subset with vimgrep to quickfix list
+- :args `grep keyword -rl dir` > `vimgrep /patt/g ##`: Put scope files in args then get subset with vimgrep to quickfix list
     or,
 - `Ggrep ...` 
 
@@ -51,3 +51,7 @@ If you want to write the files as you go along, you can add in a call to :update
 argdo bd
 ```
 
+**IntelliJ**
+
+1. Search on word/pattern
+2. Relace on Search different word patter on Scope (Previous search)

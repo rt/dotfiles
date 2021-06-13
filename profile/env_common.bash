@@ -72,8 +72,8 @@ export LESS=" -R"
 alias less='less -m -N -g -i -J --line-numbers --underline-special'
 alias more='less'
 
-# Use "highlight" in place of "cat"
-alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
+# Use "highlight" in place of "cat" (let's not do this sometimes you need to make here documents, etc)
+# alias cat="highlight $1 --out-format xterm256 --line-numbers --quiet --force --style solarized-light"
 
 
 ##### Utils

@@ -35,6 +35,7 @@ setup/other.bash
 setup/ecom_client.bash
 setup/ecom_server.bash
 setup/betsy.bash
+setup/sa.bash
 setup/keyboards.bash
 setup/work-dev.bash
 setup/work-devops.bash

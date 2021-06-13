@@ -1,13 +1,11 @@
-## vim-ctags
+# vim-ctags
 
-*Work Js es5*
-```
-ctags_javascript dir
-```
+create in the directory you will be working in.
 
 *Work Java and others (es6 included)*
 ```
-ctags -R .
+ctags -R -f .tags src/
+ctags -R --language-force=java -f .tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/
 ```
 
 #### keys
@@ -17,4 +15,8 @@ ctags -R .
     g]          : see definitions (when multiple)
     
 
+*Work Js es5*
+```
+ctags_javascript dir
+```
 
