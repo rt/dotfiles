@@ -63,6 +63,7 @@ Plug 'clojure-vim/async-clj-omni'
 Plug 'luochen1990/rainbow'
 " Plug 'bhurlow/vim-parinfer'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'hashivim/vim-terraform'
 
 
 " Initialize plugin system
@@ -292,6 +293,15 @@ nnoremap <Space> za
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                  Plugins                                   "
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""""""""""""""
+"  Terraform  "
+"""""""""""""""
+
+" let g:terraform_align=1
+" let g:terraform_fold_sections=1
+" let g:terraform_fmt_on_save=1
+" let g:terraform_binary_path="/usr/local/Cellar/terraform/0.13.5/bin/terraform"
 
 """""""""""""
 "  Airline  "
@@ -817,6 +827,7 @@ command! -nargs=* GetStyleFile call <SID>get_style_file(expand('%'))
 
 """""" Work
 command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/notes', 1)
+command! -bang -nargs=* WorkShowProvisioners call <SID>get_file_list('/Users/rtsunoda/dev/repos/devops/provisioners', 1)
 command! -nargs=* WorkPlaceELP call <SID>open_project_file('common/src/main/resources/ezrez.local.properties')
 command! -nargs=* WorkPlaceJenkinsfile call <SID>open_project_file('Jenkinsfile')
 command! -nargs=* WorkPlaceBuild call <SID>open_project_file('build.xml')

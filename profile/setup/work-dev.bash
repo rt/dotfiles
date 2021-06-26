@@ -14,11 +14,20 @@ setup_work_dev() {
   tmux send-keys -t $sess:dev "ctags -R --language-force=java -f .tags core-webapp/src/ webapp-spring/src/ webcf/src/ web-common/src/ core/src/ common/src/" Enter
   tmux send-keys -t $sess:dev "vim" Enter
   
-  tmux split-window -v -l 14 -t $sess:dev
-  tmux send-keys -t $sess:dev.2 "cd ~/dev/repos/dev/core-webapp/src/main/webapp/resources/$1" Enter
-  tmux send-keys -t $sess:dev.2 "ctags_javascript scripts/" Enter
-
   tmux select-pane -t $sess:dev.1
+
+  # front-end
+  tmux new-window -t $sess -n front-end
+  tmux send-keys -t $sess:front-end "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:front-end "cd ~/dev/repos/dev/core-webapp/src/main/webapp/resources/$1" Enter
+  tmux send-keys -t $sess:front-end "ctags_javascript scripts/" Enter
+  tmux send-keys -t $sess:front-end "npm run package.watch -- --dsn=qaone --dev=true"
+
+  tmux split-window -v -l 14 -t $sess:front-end
+  tmux send-keys -t $sess:front-end.2 "cd ~/dev/repos/dev/core-webapp/src/main/webapp/resources/$1" Enter
+  tmux send-keys -t $sess:front-end.2 "npm test -- --bundle=liquid"
+
+  tmux select-pane -t $sess:front-end.1
 
   # migrations
   tmux new-window -t $sess -n migrations
@@ -35,24 +44,20 @@ setup_work_dev() {
   # platform
   tmux new-window -t $sess -n platform
   tmux send-keys -t $sess:platform "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:platform "cd platform" Enter
-  tmux send-keys -t $sess:platform "vim" Enter
+  tmux send-keys -t $sess:platform "cd platform/devenv" Enter
+  tmux send-keys -t $sess:platform "docker compose up"
   
   tmux split-window -v -l 10 -t $sess:platform
   tmux send-keys -t $sess:platform.2 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.2 "docker compose up"
-  
-  tmux split-window -v -l 5 -t $sess:platform
+  tmux send-keys -t $sess:platform.2 "docker exec -it devenv_postgres_1 bash"
+
+  tmux split-window -v -l 10 -t $sess:platform
   tmux send-keys -t $sess:platform.3 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.3 "docker exec -it devenv_postgres_1 bash"
+  tmux send-keys -t $sess:platform.3 "docker exec -it devenv_couchbase_1 bash"
 
-  tmux split-window -v -l 5 -t $sess:platform
+  tmux split-window -v -l 10 -t $sess:platform
   tmux send-keys -t $sess:platform.4 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.4 "docker exec -it devenv_couchbase_1 bash"
-
-  tmux split-window -v -l 5 -t $sess:platform
-  tmux send-keys -t $sess:platform.5 "cd platform/devenv" Enter
-  tmux send-keys -t $sess:platform.5 "docker exec -it devenv_apache_1 bash"
+  tmux send-keys -t $sess:platform.4 "docker exec -it devenv_apache_1 bash"
 
   tmux select-pane -t $sess:platform.1
 
