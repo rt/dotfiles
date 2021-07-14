@@ -1,3 +1,4 @@
 *.swp
-playground
+*.class
+
 .DS_Store

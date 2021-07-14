@@ -1,9 +1,0 @@
-John - Michael
-John: 15 - Michael: 0
-John: 30 - Michael: 0
-John: 30 - Michael: 15
-John: 40 - Michael: 15
-John: 40 - Michael: 30
-Deuce
-John: Advantage
-John: Winner

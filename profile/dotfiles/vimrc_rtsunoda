@@ -64,6 +64,7 @@ Plug 'luochen1990/rainbow'
 " Plug 'bhurlow/vim-parinfer'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'hashivim/vim-terraform'
+Plug 'chrisbra/unicode.vim'
 
 
 " Initialize plugin system
