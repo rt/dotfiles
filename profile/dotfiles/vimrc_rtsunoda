@@ -545,6 +545,8 @@ call s:tmux_map('<Leader>to', '.top-right')
 call s:tmux_map('<Leader>tn', '.bottom-left')
 call s:tmux_map('<Leader>t.', '.bottom-right')
 
+nmap <Leader>td :!tmux send-keys -t 2 C-d C-j <CR><CR>
+nmap <Leader>tll :!tmux send-keys -t 2 C-l<CR><CR>
 nmap <Leader>tr :!tmux send-keys -t 2 C-p C-j <CR><CR>
 " specify exact session.window.pan
 nmap <Leader>tb :!tmux send-keys -t forward:dotfiles.2 source\ \./bootstrap\.sh\ rtsunoda C-j<CR><CR>

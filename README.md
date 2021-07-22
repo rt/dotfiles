@@ -76,3 +76,19 @@ flutter doctor # after adding to path
 *kicad*
 
 
+Hey devs,
+
+We have upgraded Ember to 2.18 and JQuery to 3.6 on UAT.  This eliminates a
+high JQuery security vulnerability and puts us on track to moving towards best
+practices on Ember.  When changing branches `swf.init.branch` or `ant
+initialize_branch_properties`. 
+
+We have checked all Team Regression Tests and believe everything is passing.
+Margot on Hachicore will be going through a test strategy and Sally has also
+been contacted. If you feel that there is a Ember level problem in your story
+feel free to reach out to Ryan or Ivan on the Hachicore Team.
+
+Thank you,
+
+Ryan
+
