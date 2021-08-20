@@ -116,6 +116,8 @@ set wildignore=*'
 set path+=$PWD/**  "so that gf can find things
 
 let mapleader=","
+let maplocalleader = "\\"
+" let maplocalleader="\<space>"
 
 
 """""" Abbreviations
