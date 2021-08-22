@@ -6,8 +6,19 @@ setup_playground_cloud() {
 
   sess=playgroundcloud
 
+  #----- top
+  tmux new-session -s $sess -d -n top
+  tmux send-keys -t $sess:top "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:top "cd ~/projects/playground-cloud/" Enter
+  tmux send-keys -t $sess:top "vim" Enter
+  
+  tmux split-window -v -l 24 -t $sess:top
+  tmux send-keys -t $sess:top.2 "cd ~/projects/playground-cloud/" Enter
+
+  tmux select-pane -t $sess:top.1
+
   #----- gcloud
-  tmux new-session -s $sess -d -n gcloud
+  tmux new-window -t $sess -n gcloud
   tmux send-keys -t $sess:gcloud "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:gcloud "cd ~/projects/playground-cloud/gcloud/" Enter
   tmux send-keys -t $sess:gcloud "vim" Enter
@@ -17,7 +28,7 @@ setup_playground_cloud() {
   tmux send-keys -t $sess:gcloud.2 "echo 'You must pull and run the image, once you have it you don't want to delete it because you are logged in.'" Enter
   tmux send-keys -t $sess:gcloud.2 "docker exec -it gcloud-config bash"
 
-  tmux select-pane -t $sess:gcloud.1
+  tmux select-pane -t $sess:aws.1
 
   #----- aws
   tmux new-window -t $sess -n aws
@@ -46,7 +57,7 @@ setup_playground_cloud() {
   tmux select-pane -t $sess:oci.1
 
   #select first
-  tmux select-window -t $sess:gcloud
+  tmux select-window -t $sess:top
 
   tmux -2 attach-session -t $sess
 
