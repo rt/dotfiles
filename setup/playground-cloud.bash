@@ -4,7 +4,7 @@ alias setup.playground.cloud="setup_playground_cloud"
 
 setup_playground_cloud() {
 
-  sess=cloud
+  sess=playgroundcloud
 
   #----- gcloud
   tmux new-session -s $sess -d -n gcloud
