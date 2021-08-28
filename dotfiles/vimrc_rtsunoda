@@ -737,22 +737,11 @@ function! s:get_migrations(shareOrClient)
 	call fzf#vim#files('migrations/' . a:shareOrClient . '/scripts/v' .  releaseVersion, fzf#vim#with_preview({'options': ['--query', '']}))
 endfunction
 
-" TP
-function! s:goto_tp(tp)
-  let s:uri = 'https://tp.switchfly.com/entity/' . a:tp
-	silent exec "!open '".s:uri."'"
-endfunction
-
+" Jira
 function! s:goto_jira(id)
   let s:uri = 'https://switchfly.atlassian.net/browse/SS-' . a:id
 	silent exec "!open '".s:uri."'"
 endfunction
-
-function! s:goto_confluence(tp)
-  let s:uri = 'https://confluence.switchfly.com/dosearchsite.action?cql=siteSearch+~+"' . a:tp . '"'
-	silent exec "!open '".s:uri."'"
-endfunction
-
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "                                General Maps                                "
@@ -821,7 +810,7 @@ command! -bang -nargs=* ShowPlaygroundClojure call <SID>get_file_list('/Users/rt
 command! -bang -nargs=* ShowPlaygroundBash call <SID>get_file_list('/Users/rtsunoda/projects/playground-bash', 1)
 command! -bang -nargs=* ShowPlaygroundMisc call <SID>get_file_list('/Users/rtsunoda/projects/playground-misc', 1)
 command! -bang -nargs=* ShowKeymaps call <SID>get_file_list('/Users/rtsunoda/projects/keyboard/read-only-keymaps', 1)
-command! -bang -nargs=* ShowMySnippets call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/profile/dotfiles/vim_rtsunoda/UltiSnips', 1)
+command! -bang -nargs=* ShowMySnippets call <SID>get_file_list('/Users/rtsunoda/projects/dotfiles/dotfiles/vim_rtsunoda/UltiSnips', 1)
 
 command! -bang -nargs=* PickAxe call <SID>git_pickaxe(expand('<cword>'))
 command! -bang -nargs=* PickAxeCurrentFile call <SID>git_pickaxe_current_file(expand('<cword>'))
@@ -836,10 +825,7 @@ command! -nargs=* GetStyleFile call <SID>get_style_file(expand('%'))
 
 """""" Work
 command! -bang -nargs=* WorkShowNotes call <SID>get_file_list('/Users/rtsunoda/projects/work/notes', 1)
-command! -bang -nargs=* WorkShowProvisioners call <SID>get_file_list('/Users/rtsunoda/dev/repos/devops/provisioners', 1)
 command! -nargs=* WorkPlaceELP call <SID>open_project_file('common/src/main/resources/ezrez.local.properties')
-command! -nargs=* WorkPlaceJenkinsfile call <SID>open_project_file('Jenkinsfile')
-command! -nargs=* WorkPlaceBuild call <SID>open_project_file('build.xml')
 
 command! -nargs=* WorkGotoComponent call <SID>get_component(expand('<cfile>'))
 command! -nargs=* WorkGetComponentTemplates call <SID>get_templates(expand('%'))
@@ -851,24 +837,12 @@ command! -nargs=* WorkGetMigrationsClient call <SID>get_migrations('client')
 
 command! -nargs=* CdShopping call <SID>get_project_path('core-webapp/src/main/webapp/resources/shopping')
 
-command! -nargs=* WorkGotoTp call <SID>goto_tp(expand('<cword>'))
 command! -nargs=* WorkGotoJira call <SID>goto_jira(expand('<cword>'))
-command! -nargs=* WorkGotoConfluence call <SID>goto_confluence(expand('<cword>'))
 
 " go to template definition (gf): no work required
 " go to js definitions (ctags): no work required
 " Useful file browse lists
 command! -bang -nargs=* WorkListRoutes call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/routes', <bang>0)
-command! -bang -nargs=* WorkListControllers call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/controllers', <bang>0)
-command! -bang -nargs=* WorkListComponents call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/components', <bang>0)
-command! -bang -nargs=* WorkListTemplates call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/templates', <bang>0)
-command! -bang -nargs=* WorkListStyles call <SID>get_git_file_list('styles', <bang>0)
-command! -bang -nargs=* WorkListHandlebarHelpers call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/handlebars_helpers', <bang>0)
-command! -bang -nargs=* WorkListStores call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/liquid/stores', <bang>0)
-command! -bang -nargs=* WorkListModels call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/liquid/models', <bang>0)
-command! -bang -nargs=* WorkListActions call <SID>get_git_file_list('core-webapp/src/main/webapp/resources/shopping/scripts/liquid/actions', <bang>0)
-
-command! -bang -nargs=* WorkTomcatLogs call <SID>get_git_file_list('core-webapp/target/tomcat/logs', <bang>0)
 
 " notes: filters/interceptors
 command! -bang WorkFiltersAndInterceptors call fzf#run(fzf#wrap(

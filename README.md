@@ -1,12 +1,12 @@
 # dotfiles
 
-my personal dotfiles.
+personal dotfiles.
 
 - bin: tranferred to home direrectory
 - bin-tests: tests for bin
 - config: config files for build
 - dotfiles: vim, tmux, scripts, etc.
-- setup: mac, cloud instance, raspberrypi ...
+- setup: tmux sessios
 
 ### profile
 
