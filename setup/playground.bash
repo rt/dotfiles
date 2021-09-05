@@ -50,6 +50,17 @@ setup_playground() {
 
   tmux select-pane -t $sess:bash.1
 
+  #----- skeleton-spec
+  tmux new-window -t $sess -n skeleton-spec
+  tmux send-keys -t $sess:skeleton-spec "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:skeleton-spec "cd ~/projects/skeleton/skeleton-spec" Enter
+  tmux send-keys -t $sess:skeleton-spec "vim" Enter
+  
+  tmux split-window -v -l 24 -t $sess:skeleton-spec
+  tmux send-keys -t $sess:skeleton-spec.2 "cd ~/projects/skeleton/skeleton-spec" Enter
+
+  tmux select-pane -t $sess:skeleton-spec.1
+
   #-----
 
   #select first

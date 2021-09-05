@@ -34,11 +34,8 @@ setup/playground.bash
 setup/playground-misc.bash
 setup/playground-cloud.bash
 setup/other.bash
-setup/ecom_client.bash
-setup/ecom_server.bash
 setup/betsy.bash
-setup/sa.bash
-setup/skeleton-gitlab.bash
+setup/generator.bash
 setup/keyboards.bash
 setup/work-dev.bash
 setup/work-devops.bash

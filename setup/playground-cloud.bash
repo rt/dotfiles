@@ -55,6 +55,18 @@ setup_playground_cloud() {
   tmux send-keys -t $sess:oci.2 "docker exec -it gcloud-config bash"
 
   tmux select-pane -t $sess:oci.1
+  
+  #----- gitlab-k8s-cicd
+  tmux new-window -t $sess -n gitlab-k8s-cicd
+  tmux send-keys -t $sess:gitlab-k8s-cicd "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:gitlab-k8s-cicd "cd ~/projects/gitlab-k8s-cicd/" Enter
+  tmux send-keys -t $sess:gitlab-k8s-cicd "vim" Enter
+  
+  tmux split-window -v -l 24 -t $sess:gitlab-k8s-cicd
+  tmux send-keys -t $sess:gitlab-k8s-cicd.2 "cd ~/projects/gitlab-k8s-cicd/" Enter
+
+  tmux select-pane -t $sess:gitlab-k8s-cicd.1
+
 
   #select first
   tmux select-window -t $sess:top
