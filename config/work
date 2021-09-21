@@ -29,9 +29,6 @@ commands/ssh.bash
 commands/kubernetes.bash
 commands/prompt_mb.bash
 setup/work-dev.bash
-setup/work-devops.bash
-setup/work-tools.bash
-setup/work-automation.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda

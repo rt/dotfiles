@@ -17,17 +17,6 @@ setup_playground_misc() {
 
   tmux select-pane -t $sess:top.1
 
-  #----- postgres
-  tmux new-window -t $sess -n postgres
-  tmux send-keys -t $sess:postgres "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:postgres "cd ~/projects/playground-misc/postgres" Enter
-  tmux send-keys -t $sess:postgres "vim repl.md" Enter
-  
-  tmux split-window -v -l 24 -t $sess:postgres
-  tmux send-keys -t $sess:postgres.2 "cd ~/projects/playground-misc/postgres" Enter
-
-  tmux select-pane -t $sess:postgres.1
-
   #----- python
   tmux new-window -t $sess -n python
   tmux send-keys -t $sess:python "printf '\033]2;%s\033\\' '$1'; '$@';" Enter

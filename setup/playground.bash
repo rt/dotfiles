@@ -50,16 +50,49 @@ setup_playground() {
 
   tmux select-pane -t $sess:bash.1
 
-  #----- skeleton-spec
-  tmux new-window -t $sess -n skeleton-spec
-  tmux send-keys -t $sess:skeleton-spec "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:skeleton-spec "cd ~/projects/skeleton/skeleton-spec" Enter
-  tmux send-keys -t $sess:skeleton-spec "vim" Enter
+  #----- data
+  tmux new-window -t $sess -n data
+  tmux send-keys -t $sess:data "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:data "cd ~/projects/playground-data" Enter
+  tmux send-keys -t $sess:data "vim repl.md" Enter
   
-  tmux split-window -v -l 24 -t $sess:skeleton-spec
-  tmux send-keys -t $sess:skeleton-spec.2 "cd ~/projects/skeleton/skeleton-spec" Enter
+  tmux split-window -v -l 24 -t $sess:data
+  tmux send-keys -t $sess:data.2 "cd ~/projects/playground-data" Enter
 
-  tmux select-pane -t $sess:skeleton-spec.1
+  tmux select-pane -t $sess:data.1
+
+  #----- cloud
+  tmux new-window -t $sess -n cloud
+  tmux send-keys -t $sess:cloud "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:cloud "cd ~/projects/playground-cloud" Enter
+  tmux send-keys -t $sess:cloud "vim repl.md" Enter
+  
+  tmux split-window -v -l 24 -t $sess:cloud
+  tmux send-keys -t $sess:cloud.2 "cd ~/projects/playground-cloud" Enter
+
+  tmux select-pane -t $sess:cloud.1
+
+  #----- misc
+  tmux new-window -t $sess -n misc
+  tmux send-keys -t $sess:misc "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:misc "cd ~/projects/playground-misc" Enter
+  tmux send-keys -t $sess:misc "vim repl.md" Enter
+  
+  tmux split-window -v -l 24 -t $sess:misc
+  tmux send-keys -t $sess:misc.2 "cd ~/projects/playground-misc" Enter
+
+  tmux select-pane -t $sess:misc.1
+
+  #----- remira
+  tmux new-window -t $sess -n remira
+  tmux send-keys -t $sess:remira "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:remira "cd ~/projects/remira" Enter
+  tmux send-keys -t $sess:remira "vim" Enter
+
+  tmux split-window -v -l 24 -t $sess:remira
+  tmux send-keys -t $sess:remira.2 "cd ~/projects/remira" Enter
+
+  tmux select-pane -t $sess:remira.1
 
   #-----
 

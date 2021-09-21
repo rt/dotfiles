@@ -3,7 +3,8 @@ alias vim.grep.keyword="vg"
 # same thing but you type in the search
 alias vim.grep.input="ag --nobreak --nonumbers --noheading . | fzf"
 alias vim.ctags.es5="ctags_javascript"
-alias vim.ctags.es6="ctags -R"
+# alias vim.ctags.es6="ctags -R"
+alias vim.ctags.es6="ctags -R -f .tags src/"
 
 # fuzzy grep open via ag
 vg() {
