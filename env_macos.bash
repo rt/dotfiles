@@ -45,6 +45,7 @@ install_mac_tools() {
   brew install tree
   brew install the_silver_searcher 
   brew install ripgrep
+  brew bash-completion
 
   brew install go
 
@@ -69,6 +70,7 @@ install_mac_tools() {
   brew install maven
   brew install postgresql@9.4 
   brew pin postgresql@9.4
+  brew install mongosh
   brew install clojure/tools/clojure
   brew cask install intellij-idea-ce
   #brew cask install intellij-idea

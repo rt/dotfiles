@@ -15,6 +15,9 @@ export PATH="$PATH:${GOPATH}/bin:${GOROOT}/bin"
 # NodeJs
 export NODE_PATH=/usr/lib/nodejs
 
+# Visual Studio Code
+export PATH="$PATH:/Applications/Visual\ Studio\ Code.app/Contents/Resources/app/bin"
+
 # Make vim the default editor
 export EDITOR="vim";
 
