@@ -1,0 +1,142 @@
+#! /usr/bin/env bash
+
+invalid_input () {
+  local actual=$1
+  echo "Invalid input '$actual''" >&2
+  exit 1
+}
+
+create_app () {
+
+  read -p "Please enter client (ie react, rpi) -> " client
+
+  [[ -z $client ]] && invalid_input $client
+
+  read -p "Please enter server (ie nodejs) -> " server
+
+  [[ -z $server ]] && invalid_input $server
+
+  read -p "Please enter store (ie postgres-nodejs) -> " store
+
+  [[ -z $store ]] && invalid_input $store
+
+
+  # Break out if need to automate
+
+  get_store $store
+  get_server $server
+  get_client $client
+
+}
+
+get_root () {
+  git clone https://github.com/rt/kabuda-cli.git
+  cp -R kabuda-cli/root/* . 
+  rm -rf kabuda-cli
+}
+
+get_client () {
+  git clone https://github.com/rt/kabuda-client-$1.git
+  mv kabuda-client-$1 client
+  cd client
+  rm -rf .git
+}
+
+get_deploy () {
+  git clone https://github.com/rt/kabuda-deploy.git
+  mv kabuda-deploy deploy
+  cd deploy
+  rm -rf .git
+}
+
+get_devtools () {
+  git clone https://github.com/rt/kabuda-devtools.git
+  mv kabuda-devtools devtools
+  cd devtools
+  rm -rf .git
+}
+
+get_server () {
+  git clone https://github.com/rt/kabuda-server-$1.git
+  mv kabuda-server-$1 server
+  cd server
+  rm -rf .git
+}
+
+get_store () {
+  git clone https://github.com/rt/kabuda-store-$1.git
+  mv kabuda-store-$1 store
+  cd store
+  rm -rf .git
+}
+
+invalid_input () {
+  local actual=$1
+  echo "Invalid input '$actual''" >&2
+  exit 1
+}
+
+clear 
+echo "
+Please Select:
+1. Create App
+2. Get Client
+3. Get Server
+4. Get Store
+5. Get Dev Tools
+6. Get Deploy
+7. Get Root Files
+0. Quit
+"
+
+read -p "Enter selection [0-7] > " REPLY
+if [[ $REPLY =~ ^[0-7]$ ]]; then
+  if [[ $REPLY == 0 ]]; then
+    echo "Program terminated."
+    exit
+  fi
+  if [[ $REPLY == 1 ]]; then
+    create_app
+    exit
+  fi
+  if [[ $REPLY == 2 ]]; then
+	  read -p "Please enter client (ie react) -> " client
+    
+    # input is empty (invalid)
+    [[ -z $client ]] && invalid_input $client
+
+    get_client $client
+    exit
+  fi
+  if [[ $REPLY == 3 ]]; then
+	  read -p "Please enter server (ie nodejs) -> " server
+
+    # input is empty (invalid)
+    [[ -z $server ]] && invalid_input $server
+
+    get_server $server
+    exit
+  fi
+  if [[ $REPLY == 4 ]]; then
+	  read -p "Please enter store (ie postgres-nodejs) -> " store
+
+    # input is empty (invalid)
+    [[ -z $store ]] && invalid_input $store
+
+    get_store $store
+    exit
+  fi
+  if [[ $REPLY == 5 ]]; then
+    get_devtools 
+    exit
+  fi
+  if [[ $REPLY == 6 ]]; then
+    get_deploy 
+    exit
+  fi
+  if [[ $REPLY == 7 ]]; then
+    get_root
+    exit
+  fi
+fi
+
