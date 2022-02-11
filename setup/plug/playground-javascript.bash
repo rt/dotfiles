@@ -12,10 +12,6 @@ javascript_exercises() {
   tmux send-keys -t "$1":javascript-exercises.2 "cd ~/projects/playground-javascript/exercises" Enter
   tmux send-keys -t "$1":javascript-exercises.2 "npm test -- my-exercise"
 
-  tmux split-window -v -l 12 -t "$1":javascript-exercises
-  tmux send-keys -t "$1":javascript-exercises.3 "cd ~/projects/playground-javascript/exercises" Enter
-  tmux send-keys -t "$1":javascript-exercises.3 "npm run create my-exercise"
-
   tmux select-pane -t "$1":javascript-exercises.1
 }
 

@@ -40,6 +40,7 @@ setup/plug/playground-data.bash
 setup/plug/playground-java.bash
 setup/plug/playground-javascript.bash
 setup/plug/playground-misc.bash
+setup/plug/dotfiles.bash
 setup/plug/playgrounds.bash
 setup/plug/projects.bash
 setup/plug/work.bash
