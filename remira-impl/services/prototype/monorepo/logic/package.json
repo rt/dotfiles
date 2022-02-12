@@ -52,7 +52,7 @@
     "kabuda-liquid": "^0.4.10",
     "moment": "2.23.0",
     "multer": "^0.1.8",
-    "node-fetch": "^2.1.2",
+    "node-fetch": "^2.6.7",
     "passport": "0.3.2",
     "passport-local": "1.0.0",
     "pg": "6.4.2",
