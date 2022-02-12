@@ -1,0 +1,3 @@
+--post
+
+DELETE FROM translations WHERE name = 'CRUISE_CANCELLATION_POLICY' ;
