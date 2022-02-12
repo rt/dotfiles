@@ -6,7 +6,7 @@ personal dotfiles.
 - bin-tests: tests for bin
 - config: config files for build
 - dotfiles: vim, tmux, scripts, etc.
-- setup: tmux sessios
+- setup: tmux sessions
 
 ### profile
 

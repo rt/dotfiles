@@ -1,0 +1,16 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: items
+spec:
+  rules:
+  - host: localhost # app.bar.com
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/item"
+        backend:
+          service:
+            name: items
+            port:
+              number: 80

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: frontend
+spec:
+  # type: LoadBalancer ...use ingress instead
+  type: NodePort # not the default ClusterIP if using ingress controller
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: frontend

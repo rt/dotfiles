@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logic
+spec:
+  selector:
+    matchLabels:
+      app: logic
+  replicas: 1
+  minReadySeconds: 15
+  strategy:
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
+      maxSurge: 1 
+  template:
+    metadata:
+      labels:
+        app: logic
+    spec:
+      containers:
+      - image: pebble/logic
+        imagePullPolicy: Always
+        name: logic
+        ports:
+          - containerPort: 3000

@@ -1,0 +1,23 @@
+{
+  "name": "deploy",
+  "version": "0.9.0",
+  "description": "",
+  "scripts": {
+    "build-demo": "babel-node tools/aws/build-demo",
+    "build-images": "babel-node tools/build-images",
+    "build-private": "babel-node tools/aws/build-private",
+    "build-uat": "babel-node tools/aws/build-uat",
+    "ci-build": "babel-node tools/run ci-build",
+    "gcloud-prepare": "babel-node tools/gcloud-prepare appengine appengine.yaml",
+    "load-test": "babel-node tools/aws/load-test",
+    "release": "standard-version"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/node": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "aws-sdk": "2.41.0",
+    "node-fetch": "1.6.3",
+    "standard-version": "4.0.0"
+  }
+}
