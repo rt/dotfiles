@@ -1,5 +1,18 @@
 #!/bin/bash
 
+alias plug.project.basic="project_basic"
+
+project_basic() {
+  tmux new-window -t "$1" -n basic
+  tmux send-keys -t "$1":basic "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t "$1":basic "vim README.md" Enter
+  
+  # repl terminal
+  tmux split-window -v -l 24 -t "$1":basic
+
+  tmux select-pane -t "$1":basic.1
+}
+  
 alias plug.project.component-library="project_component-library"
 
 project_component-library() {

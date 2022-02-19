@@ -1,10 +1,10 @@
 #!/bin/bash
 
-alias setup.current="setup_current"
+alias setup.betsy="setup_betsy"
 
-setup_current() {
+setup_betsy() {
 
-  sess=current
+  sess=betsy
 
   ----- betsy-spec
   tmux new-session -s $sess -d -n betsy-spec

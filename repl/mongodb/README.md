@@ -2,7 +2,6 @@
 
 https://docs.mongodb.com/v4.4/mongo/
 
-`mongosh`
 
 ```bash
 docker run --rm --name mongodb -p 27017:27017 -d mongo:latest
