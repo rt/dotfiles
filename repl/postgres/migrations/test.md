@@ -35,4 +35,3 @@ UPDATE test_table SET field_date = now();
 -- DELETE data
 DELETE FROM test_table;
 ```
-

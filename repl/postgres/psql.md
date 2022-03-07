@@ -1,34 +1,28 @@
+# psql
 
-Get row counts
+**psql**
 
-```sql
-select pg_namespace.nspname || '.' || pg_class.relname as "table", reltuples as "rows" from pg_class join pg_namespace on pg_class.relnamespace = pg_namespace.oid;
+```bash
+# if psql is on local
+psql -U postgres -h localhost
+
+# Or, use docker instance
+docker exec -it postgresql psql -U postgres -h localhost
+
+
+# list databases
+\l
+# change db
+\c <database>
+# list schemas
+\dn
+# get tables and sequences
+\d
+# get tables
+\dt
+# get table def
+\d <table>
+
+# any sql queries against db...
 ```
 
-```sql
-
-CREATE TABLE IF NOT EXISTS log (
-log_id uuid,
-type character varying(256) NOT NULL DEFAULT ''
-);
-
--- Keys
-ALTER TABLE ONLY log
-ADD CONSTRAINT log_pkey PRIMARY KEY (log_id);
-
--- Indexes
-CREATE INDEX log_index ON log USING btree (type);
-
--- Permissions
-ALTER TABLE log OWNER TO postgres;
-
-
-
-```
-
-
-See open connection, etc.
-
-```sql
-select * from pg_stat_activity where datname = 'mydatabasename';
-```

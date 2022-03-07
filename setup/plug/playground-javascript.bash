@@ -1,18 +1,50 @@
 #!/bin/bash
 
-alias plug.javascript.exercises="javascript_exercises"
+alias plug.javascript.server-typescript="javascript_server-typescript"
 
-javascript_exercises() {
-  tmux new-window -t "$1" -n javascript-exercises
-  tmux send-keys -t "$1":javascript-exercises "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t "$1":javascript-exercises "cd ~/projects/playground-javascript/exercises" Enter
-  tmux send-keys -t "$1":javascript-exercises "vim README.md" Enter
-  
-  tmux split-window -v -l 24 -t "$1":javascript-exercises
-  tmux send-keys -t "$1":javascript-exercises.2 "cd ~/projects/playground-javascript/exercises" Enter
-  tmux send-keys -t "$1":javascript-exercises.2 "npm test -- my-exercise"
+javascript_server-typescript() {
+  cd ~/projects/playground-javascript/remira-impl/services/servers/typescript-basic/_templates
+  nvm use v17.6
+  code .
+  cd -
+}
 
-  tmux select-pane -t "$1":javascript-exercises.1
+alias plug.javascript.exercises-js="javascript_exercises-js"
+
+javascript_exercises-js() {
+  cd ~/projects/playground-javascript/exercises/javascript
+  nvm use v17.6
+  code .
+  cd -
+  # tmux new-window -t "$1" -n javascript-exercises-js
+  # tmux send-keys -t "$1":javascript-exercises-js "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  # tmux send-keys -t "$1":javascript-exercises-js "cd ~/projects/playground-javascript/exercises/javascript" Enter
+  # tmux send-keys -t "$1":javascript-exercises-js "vim README.md" Enter
+  #
+  # tmux split-window -v -l 24 -t "$1":javascript-exercises-js
+  # tmux send-keys -t "$1":javascript-exercises-js.2 "cd ~/projects/playground-javascript/exercises/javascript" Enter
+  # tmux send-keys -t "$1":javascript-exercises-js.2 "npm test -- my-exercise"
+  #
+  # tmux select-pane -t "$1":javascript-exercises-js.1
+}
+
+alias plug.javascript.exercises-ts="javascript_exercises-ts"
+
+javascript_exercises-ts() {
+  cd ~/projects/playground-javascript/exercises/typescript
+  nvm use v17.6
+  code .
+  cd -
+  # tmux new-window -t "$1" -n javascript-exercises-ts
+  # tmux send-keys -t "$1":javascript-exercises-ts "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  # tmux send-keys -t "$1":javascript-exercises-ts "cd ~/projects/playground-javascript/exercises/typescript" Enter
+  # tmux send-keys -t "$1":javascript-exercises-ts "vim README.md" Enter
+  #
+  # tmux split-window -v -l 24 -t "$1":javascript-exercises-ts
+  # tmux send-keys -t "$1":javascript-exercises-ts.2 "cd ~/projects/playground-javascript/exercises/typescript" Enter
+  # tmux send-keys -t "$1":javascript-exercises-ts.2 "npm test -- my-exercise"
+  #
+  # tmux select-pane -t "$1":javascript-exercises-ts.1
 }
 
 alias plug.javascript.ref="javascript_ref"

@@ -43,15 +43,15 @@ setup_betsy() {
   tmux send-keys -t $sess:client.2 "cd ~/projects/betsy/betsy-spec/client" Enter
   tmux select-pane -t $sess:client.1
 
-  #----- betsy
-  tmux new-window -t $sess -n betsy
-  tmux send-keys -t $sess:betsy "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:betsy "cd ~/projects/betsy/betsy" Enter
-  tmux send-keys -t $sess:betsy "vim" Enter
+  #----- betsy-old
+  tmux new-window -t $sess -n betsy-old
+  tmux send-keys -t $sess:betsy-old "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:betsy-old "cd ~/projects/betsy/betsy" Enter
+  tmux send-keys -t $sess:betsy-old "vim" Enter
 
-  tmux split-window -v -l 24 -t $sess:betsy
-  tmux send-keys -t $sess:betsy.2 "cd ~/projects/betsy/betsy" Enter
-  tmux select-pane -t $sess:betsy.1
+  tmux split-window -v -l 24 -t $sess:betsy-old
+  tmux send-keys -t $sess:betsy-old.2 "cd ~/projects/betsy/betsy" Enter
+  tmux select-pane -t $sess:betsy-old.1
 
   #select first
   tmux select-window -t $sess:betsy-spec
