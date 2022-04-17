@@ -1,15 +1,16 @@
 #!/bin/bash
 
-alias setup.project="setup_project_component-library"
+alias setup.component-library="setup_project_component-library"
 
 setup_project_component-library() {
 
   # session name takes name of directory (go into directory first)
-  sess=${PWD##*/}
+  sess=component
 
   # temp
   tmux new-session -s $sess -d -n tempwindow
 
+  plug.project.component-library-react
   plug.project.component-library
   plug.project.skeleton
 

@@ -29,7 +29,8 @@ commands/ant.bash
 commands/ssh.bash
 commands/kubernetes.bash
 commands/prompt_mb.bash
-setup/betsy.bash
+setup/betsy-server.bash
+setup/betsy-client.bash
 setup/keyboards.bash
 setup/work.bash
 setup/component-library.bash
