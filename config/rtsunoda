@@ -33,7 +33,6 @@ setup/betsy-server.bash
 setup/betsy-client.bash
 setup/keyboards.bash
 setup/work.bash
-setup/component-library.bash
 setup/project.bash
 setup/plug/other.bash
 setup/plug/playground-cloud.bash

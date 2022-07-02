@@ -19,11 +19,10 @@ project_component-library() {
   tmux new-window -t "$1" -n component-library
   tmux send-keys -t "$1":component-library "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t "$1":component-library "cd ~/projects/skeleton/component-library" Enter
-  tmux send-keys -t "$1":component-library "vim README.md" Enter
   
   tmux split-window -v -l 24 -t "$1":component-library
-  tmux send-keys -t "$1":component-library.2 "cd ~/projects/skeleton/component-library/playground" Enter
-  tmux send-keys -t "$1":component-library.2 "code ."
+  tmux send-keys -t "$1":component-library.2 "cd ~/projects/skeleton/component-library" Enter
+  tmux send-keys -t "$1":component-library.2 "npm run storybook"
 
   tmux select-pane -t "$1":component-library.1
 }

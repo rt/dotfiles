@@ -10,20 +10,27 @@ setup_betsy-client() {
   tmux new-session -s $sess -d -n client
   tmux send-keys -t $sess:client "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
   tmux send-keys -t $sess:client "cd ~/projects/betsy/betsy-client" Enter
+  tmux send-keys -t $sess:client.2 "npm start"
 
   tmux split-window -v -l 24 -t $sess:client
   tmux send-keys -t $sess:client.2 "cd ~/projects/betsy/betsy-client" Enter
+  tmux send-keys -t $sess:client.2 "npm run storybook"
+
+  tmux split-window -v -l 24 -t $sess:client
+  tmux send-keys -t $sess:client.3 "cd ~/projects/betsy/betsy-client" Enter
+  tmux send-keys -t $sess:client.3 "npm run push-components ~/projects/somewhere/src/components"
+
   tmux select-pane -t $sess:client.1
 
-  #----- react-boilerplate
-  tmux new-window -t $sess -n react-boilerplate
-  tmux send-keys -t $sess:react-boilerplate "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
-  tmux send-keys -t $sess:react-boilerplate "cd ~/projects/betsy/betsy-client/reference/react-boilerplate" Enter
-  tmux send-keys -t $sess:react-boilerplate "vim" Enter
+  #----- skeleton
+  tmux new-window -t $sess -n skeleton
+  tmux send-keys -t $sess:skeleton "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+  tmux send-keys -t $sess:skeleton "cd ~/projects/skeleton/skeleton" Enter
+  tmux send-keys -t $sess:skeleton "vim" Enter
 
-  tmux split-window -v -l 24 -t $sess:react-boilerplate
-  tmux send-keys -t $sess:react-boilerplate.2 "cd ~/projects/betsy/betsy-client/reference/react-boilerplate" Enter
-  tmux select-pane -t $sess:react-boilerplate.1
+  tmux split-window -v -l 24 -t $sess:skeleton
+  tmux send-keys -t $sess:skeleton.2 "cd ~/projects/skeleton/skeleton" Enter
+  tmux select-pane -t $sess:skeleton.1
 
   #----- betsy-old
   tmux new-window -t $sess -n betsy-old
