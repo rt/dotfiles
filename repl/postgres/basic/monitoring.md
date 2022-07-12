@@ -1,2 +1,0 @@
-# Monitoring (pg_stat)
-
