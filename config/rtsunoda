@@ -30,11 +30,9 @@ commands/ssh.bash
 commands/kubernetes.bash
 commands/prompt_mb.bash
 setup/keyboards.bash
-setup/work.bash
+setup/playground.bash
 setup/project.bash
-setup/plug/dotfiles.bash
 setup/plug/projects.bash
-setup/plug/work.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
 dotfiles/nanorc_rtsunoda
