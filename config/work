@@ -12,14 +12,11 @@ commands/vim.bash
 commands/gzip.bash
 commands/tar.bash
 commands/find.bash
-commands/rsync.bash
-commands/docker.bash
 commands/git.bash
 commands/kill.bash
 commands/jobs.bash
 commands/curl.bash
 commands/openssl.bash
-commands/psql.bash
 commands/tmux.bash
 commands/fzf.bash
 commands/brew.bash

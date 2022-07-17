@@ -12,14 +12,10 @@ commands/vim.bash
 commands/gzip.bash
 commands/tar.bash
 commands/find.bash
-commands/rsync.bash
-commands/docker.bash
 commands/git.bash
 commands/kill.bash
 commands/jobs.bash
-commands/curl.bash
 commands/openssl.bash
-commands/psql.bash
 commands/tmux.bash
 commands/fzf.bash
 commands/fd.bash
@@ -31,7 +27,6 @@ commands/kubernetes.bash
 commands/prompt_mb.bash
 setup/keyboards.bash
 setup/playground.bash
-setup/project.bash
 setup/plug/projects.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda

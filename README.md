@@ -3,7 +3,6 @@
 personal dotfiles.
 
 - bin: tranferred to home direrectory
-- bin-tests: tests for bin
 - config: config files for build
 - dotfiles: vim, tmux, scripts, etc.
 - setup: tmux sessions
@@ -52,11 +51,6 @@ mac.install.tools
 ```bash
 # todo: linux.install.tools
 ```
-
-**Docker**
-
-It was thought to just have it all in a container but this abstraction can cause inconveniences too.
-The devenv Dockerfile is in `dockerfiles/` ... 
 
 **Raspberry pi**
 
