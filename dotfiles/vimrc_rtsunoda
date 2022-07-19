@@ -41,6 +41,7 @@ Plug 'machakann/vim-highlightedyank'
 " Plug 'w0rp/ale'
 Plug 'dense-analysis/ale'
 "Plug 'tpope/vim-sensible'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
