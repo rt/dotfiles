@@ -25,8 +25,6 @@ commands/ant.bash
 commands/ssh.bash
 commands/kubernetes.bash
 commands/prompt_mb.bash
-setup/keyboards.bash
-setup/playground.bash
 setup/plug/projects.bash
 dotfiles/vimrc_rtsunoda
 dotfiles/ideavimrc_rtsunoda
