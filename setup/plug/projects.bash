@@ -34,3 +34,20 @@ project_keyboard() {
   tmux select-pane -t "$1":keyboard.1
 }
 
+alias p.pane="p_pane"
+# alias p.plug="p_plug"
+
+# p_plug() {
+#   tmux new-window -t "" -n "$1"
+#   tmux send-keys -t "":"$1" "printf '\033]2;%s\033\\' '$1'; '$@';" Enter
+#   tmux send-keys -t "":"$1" "cd ~/projects/playground" Enter
+#   tmux send-keys -t "":"$1" Escape "c" "$1"
+# }
+
+p_pane() {
+  tmux split-window -v -l 24 -t "$1":"$2" 
+  # because specifying pane 2 this needs to be executed in empty terminal
+  tmux send-keys -t "$1":"$2".2 "cd ~/projects/playground" Enter
+  tmux send-keys -t "$1":"$2".2 "vim.find" Enter
+  tmux swap-pane -U
+}

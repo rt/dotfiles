@@ -22,6 +22,7 @@ export FZF_DEFAULT_COMMAND='rg --files --no-ignore --hidden --follow --glob "!.g
 export FZF_CTRL_T_COMMAND='fd . $(git rev-parse --show-toplevel) --hidden --follow --exclude ".git" --exclude node_modules'
 export FZF_ALT_C_COMMAND='fd . $(git rev-parse --show-toplevel) -t d --hidden --follow --exclude ".git" --exclude node_modules'
 
-export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up'
-#export FZF_DEFAULT_OPTS='--bind ctrl-f:page-down,ctrl-b:page-up,up:preview-up,down:preview-down'
+# binding (just use defaults: up/down, pgup/pgdown, preview: sft-up/down)
+# export FZF_DEFAULT_OPTS="--preview='less {}' --bind pgdn:page-down,pgup:page-up,ctrl-u:preview-page-up,ctrl-d:preview-page-down"
+export FZF_DEFAULT_OPTS="--preview='less {}' --bind pgdn:page-down,pgup:page-up,ctrl-u:preview-half-page-up,ctrl-d:preview-half-page-down"
 
